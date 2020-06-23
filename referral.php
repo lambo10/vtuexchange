@@ -33,23 +33,10 @@
 		
 		<main id="content" class="content">
 			
-			<section class="vc_row pb-50 bg-cover bg-center" style="background: rgb(241, 241, 241);">
-				
-				<div class="lqd-particles-bg-wrap">
-
-					<div class="ld-particles-container">
-						<div
-							class="ld-particles-inner"
-							id="ld-particles-1"
-							data-particles="true"
-							data-particles-options='{"particles":{"number":{"value":2,"density":1},"color":{"value":["#b9dee2","#ffe3dd"]},"shape":{"type":["circle"]},"size":{"value":450},"move":{"enable":true,"direction":"top","speed":2,"random":true,"out_mode":"out"}},"interactivity":[]}'>
-						</div><!-- /.ld-particles-inner -->
-					</div><!-- /.ld-particles-container -->
-					
-				</div><!-- /.lqd-particles-bg-wrap -->
+			<section class="vc_row pb-50 bg-cover bg-center" style="background: rgb(228, 228, 240);">
 				
 				<div>
-					<div class="lqd-column col-md-12" style="background: rgb(123, 123, 214); padding-top: 10px;padding-bottom: 30px; padding-left: 30px; padding-right: 30px;">
+					<div class="lqd-column col-md-12" style="background: #003879; padding-top: 10px;padding-bottom: 30px; padding-left: 30px; padding-right: 30px;">
 						
 						<h2 class="mb-2 font-size-30 font-weight-light" style="color: white;">Refer Friends & Earn Cash</h2><br>
 						<span class="mb-2 font-size-20 font-weight-light" style="color: white;">Introduce a friend to fintech and you will be credited 300 Naira to your account</span>
@@ -70,7 +57,7 @@
 										<p class="ld_sf_paragraph pr-2">
 											<input type="text" class="ld_sf_text" id="mce-EMAIL" name="EMAIL" placeholder="Your email" value="">
 										</p>
-										<button type="submit" class="ld_sf_submit font-size-10">
+										<button type="button" class="ld_sf_submit font-size-10">
 											<span class="submit-icon">
 												Copy
 											</span>
@@ -129,6 +116,64 @@
 									<div class="contents">
 										<h3 class="mb-2">Successful referral</h3>
 										<p style="font-size: 25px;">10</p>
+									</div><!-- /.contents -->
+								</div><!-- /.iconbox -->
+		
+							</div><!-- /.col-md-6 -->
+							
+						</div><!-- /.row -->
+						<br>
+						<div class="row" data-custom-animations="true" data-ca-options='{"triggerHandler":"inview","animationTarget":"all-childs","duration":"1200","delay":"180","initValues":{"scale":0.8,"opacity":0},"animations":{"scale":1,"opacity":1}}'>
+		
+							<div class="lqd-column col-md-12">
+		
+								<div class="iconbox iconbox-side iconbox-semiround iconbox-shadow iconbox-heading-sm iconbox-filled" id="ld_icon_box_5c4e9c4475e69" data-plugin-options='{"color":"#28d5a7"}'>
+									
+									<div class="contents">
+										<i class="fa fa-link"></i>
+										<h3 class="mb-2">Down lines</h3>
+										<div class="row" style="padding-top: 10px;">
+											<div class="col-md-4">
+												<div>Mr jhone
+													<div style="padding-left: 20px;">
+													<p>Andrew</p>
+													<p>James</p>
+													<p>Luke</p>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-4" style="padding-top: 10px;">
+												<div>Mr jhone
+													<div style="padding-left: 20px;">
+													<p>Andrew</p>
+													<p>James</p>
+													<p>Luke</p>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-4" style="padding-top: 10px;">
+												<div>Mr jhone
+													<div style="padding-left: 20px;">
+													<p>Andrew</p>
+													<p>James</p>
+													<p>Luke</p>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-md-4" style="padding-top: 10px;">
+												<div>Mr jhone
+													<div style="padding-left: 20px;">
+													<p>Andrew</p>
+													<p>James</p>
+													<p>Luke</p>
+													</div>
+												</div>
+											</div>
+											
+										</div>
+
+
 									</div><!-- /.contents -->
 								</div><!-- /.iconbox -->
 		

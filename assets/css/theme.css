@@ -19737,8 +19737,8 @@ body.search .no-results .search-form input[type=submit] {
     opacity: 0;
     -webkit-transform: scale(1.75);
             transform: scale(1.75);
-    background-image: -webkit-gradient(linear, right bottom, left top, from(#1DE1BC), to(#DA0BEE));
-    background-image: linear-gradient(to top left, #1DE1BC 0%, #DA0BEE 100%);
+    /* background-image: -webkit-gradient(linear, right bottom, left top, from(#1DE1BC), to(#DA0BEE));
+    background-image: linear-gradient(to top left, #1DE1BC 0%, #DA0BEE 100%); */
     -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
     transition: opacity 0.3s, -webkit-transform 0.3s;
     transition: opacity 0.3s, transform 0.3s;

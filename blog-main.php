@@ -31,378 +31,289 @@
     include 'header2.php';
     ?>
 	<br>
-		<main id="content" class="content pt-0">
+	<main id="content" class="content">
 			
-			<section class="vc_row py-0">
-				<div class="container-fluid">
+			<section class="vc_row">
+				<div class="container">
 					<div class="row">
 
 						<div class="lqd-column col-md-12">
 
 							<div class="liquid-blog-posts">
-								<div class="liquid-blog-grid liquid-blog-grid liquid-blog-style-masonry row" data-liquid-masonry="true">
-
-									<div class="lqd-column col-lg-3 col-md-4 col-sm-6 col-xs-12 masonry-item">
-
-										<article class="liquid-lp liquid-blog-item liquid-blog-contents-inside liquid-blog-item-masonry liquid-blog-scheme-light liquid-blog-cloned-title h-600">
-
-											<figure class="liquid-lp-media" style="background-image: url(./assets/demo/latest-posts/lp-14.jpg);">
+								<div class="liquid-blog-grid row" data-liquid-masonry="true">
+	
+									<div class="lqd-column col-md-3 col-sm-6 masonry-item">
+	
+										<article class="liquid-lp mb-40">
+	
+											<figure class="liquid-lp-media">
 												<a href="#">
-													<img src="./assets/demo/latest-posts/lp-14.jpg" alt="Lates Post">
+													<img src="./assets/demo/blog/blog-19.jpg" alt="Lates Post">
 												</a>
 											</figure>
 										
-											<div class="liquid-blog-item-inner">
+											<header class="liquid-lp-header">
+												<h2 class="liquid-lp-title h4 font-size-19"><a href="#">Business meeting 2017 in San Francisco</a></h2>
+											</header>
 										
-												<a href="#" class="liquid-overlay-link">Business meeting 2017 in San Francisco</a>
-											
-												<header class="liquid-lp-header">
-													<div class="liquid-lp-details">
-														<ul class="liquid-lp-category liquid-lp-category-filled">
-															<li><a href="#">Business</a></li>
-														</ul>
-													</div><!-- /.liquid-lp-details -->
-													<h2 class="liquid-lp-title size-sm font-weight-bold h3 liquid-lp-title-clone" data-fittext="true" data-fittext-options='{ "maxFontSize": "currentFontSize" }'>
-														<a href="#" data-split-text="text" data-split-options='{ "type": "lines" }'>Business meeting 2017 in San Francisco</a>
-													</h2>
-												</header>
-												
-												<footer class="liquid-lp-footer">
-													<h2 class="liquid-lp-title size-sm font-weight-bold h3 liquid-lp-title-original" data-fittext="true" data-fittext-options='{ "maxFontSize": "currentFontSize" }'>
-														<a href="#" data-split-text="text" data-split-options='{ "type": "lines" }'>Business meeting 2017 in San Francisco</a>
-													</h2>
-													<a href="#" class="btn btn-naked text-uppercase ltr-sp-1 size-sm font-weight-bold liquid-lp-read-more">
-														<span>
-															<span class="btn-line btn-line-before"></span>
-															<span class="btn-txt">Continue Reading</span>
-															<span class="btn-line btn-line-after"></span>
+											<div class="liquid-lp-excerpt">
+												<p>We're conducting a study of marijuana use during pregnancy.</p>
+											</div><!-- /.latest-post-excerptc -->
+										
+											<footer class="liquid-lp-footer">
+												<a href="#" class="btn btn-naked liquid-lp-read-more font-weight-bold">
+													<span>
+														<span class="btn-txt">Read more</span>
+														<span class="btn-icon">
+															<i class="fa fa-angle-right"></i>
 														</span>
-													</a>
-												</footer>
-										
-											</div><!-- /.liquid-blog-item-inner -->
+													</span>
+												</a>
+											</footer>
 										
 										</article>
-
-									</div><!-- /.lqd-column col-lg-3 col-md-4 col-sm-6 col-xs-12 masonry-item -->
-
-									<div class="lqd-column col-lg-3 col-md-4 col-sm-6 col-xs-12 masonry-item">
-
-										<article class="liquid-lp liquid-blog-item liquid-blog-contents-inside liquid-blog-item-masonry liquid-blog-scheme-light liquid-blog-cloned-title h-400">
-
-											<figure class="liquid-lp-media" style="background-image: url(./assets/demo/latest-posts/lp-15.jpg);">
+	
+									</div><!-- /.col-md-3 col-sm-6 -->
+	
+									<div class="lqd-column col-md-3 col-sm-6 masonry-item">
+	
+										<article class="liquid-lp mb-40">
+	
+											<figure class="liquid-lp-media">
 												<a href="#">
-													<img src="./assets/demo/latest-posts/lp-15.jpg" alt="Lates Post">
+													<img src="./assets/demo/blog/blog-20.jpg" alt="Lates Post">
 												</a>
 											</figure>
 										
-											<div class="liquid-blog-item-inner">
+											<header class="liquid-lp-header">
+												<h2 class="liquid-lp-title h4 font-size-19"><a href="#">5 reasons to purchase desktop computers</a></h2>
+											</header>
 										
-												<a href="#" class="liquid-overlay-link">5 reasons to purchase desktop computers</a>
-											
-												<header class="liquid-lp-header">
-													<div class="liquid-lp-details">
-														<ul class="liquid-lp-category liquid-lp-category-filled">
-															<li><a href="#">Business</a></li>
-														</ul>
-													</div><!-- /.liquid-lp-details -->
-													<h2 class="liquid-lp-title size-sm font-weight-bold h3 liquid-lp-title-clone" data-fittext="true" data-fittext-options='{ "maxFontSize": "currentFontSize" }'>
-														<a href="#" data-split-text="text" data-split-options='{ "type": "lines" }'>5 reasons to purchase desktop computers</a>
-													</h2>
-												</header>
-												
-												<footer class="liquid-lp-footer">
-													<h2 class="liquid-lp-title size-sm font-weight-bold h3 liquid-lp-title-original" data-fittext="true" data-fittext-options='{ "maxFontSize": "currentFontSize" }'>
-														<a href="#" data-split-text="text" data-split-options='{ "type": "lines" }'>5 reasons to purchase desktop computers</a>
-													</h2>
-													<a href="#" class="btn btn-naked text-uppercase ltr-sp-1 size-sm font-weight-bold liquid-lp-read-more">
-														<span>
-															<span class="btn-line btn-line-before"></span>
-															<span class="btn-txt">Continue Reading</span>
-															<span class="btn-line btn-line-after"></span>
+											<div class="liquid-lp-excerpt">
+												<p>We're conducting a study of marijuana use during pregnancy.</p>
+											</div><!-- /.latest-post-excerptc -->
+										
+											<footer class="liquid-lp-footer">
+												<a href="#" class="btn btn-naked liquid-lp-read-more font-weight-bold">
+													<span>
+														<span class="btn-txt">Read more</span>
+														<span class="btn-icon">
+															<i class="fa fa-angle-right"></i>
 														</span>
-													</a>
-												</footer>
-										
-											</div><!-- /.liquid-blog-item-inner -->
+													</span>
+												</a>
+											</footer>
 										
 										</article>
-
-									</div><!-- /.lqd-column col-lg-3 col-md-4 col-sm-6 col-xs-12 masonry-item -->
-									
-									<div class="lqd-column col-lg-3 col-md-4 col-sm-6 col-xs-12 masonry-item">
-
-										<article class="liquid-lp liquid-blog-item liquid-blog-contents-inside liquid-blog-item-masonry liquid-blog-scheme-light liquid-blog-cloned-title h-300">
-
-											<figure class="liquid-lp-media" style="background-image: url(./assets/demo/latest-posts/lp-16.jpg);">
+	
+									</div><!-- /.col-md-3 col-sm-6 -->
+	
+									<div class="lqd-column col-md-3 col-sm-6 masonry-item">
+	
+										<article class="liquid-lp mb-40">
+	
+											<figure class="liquid-lp-media">
 												<a href="#">
-													<img src="./assets/demo/latest-posts/lp-16.jpg" alt="Lates Post">
+													<img src="./assets/demo/blog/blog-21.jpg" alt="Lates Post">
 												</a>
 											</figure>
 										
-											<div class="liquid-blog-item-inner">
+											<header class="liquid-lp-header">
+												<h2 class="liquid-lp-title h4 font-size-19"><a href="#">Top 10 night creams will help your skin to relax</a></h2>
+											</header>
 										
-												<a href="#" class="liquid-overlay-link">See the unmatched beauty of the great lakes</a>
-											
-												<header class="liquid-lp-header">
-													<div class="liquid-lp-details">
-														<ul class="liquid-lp-category liquid-lp-category-filled">
-															<li><a href="#">Business</a></li>
-														</ul>
-													</div><!-- /.liquid-lp-details -->
-													<h2 class="liquid-lp-title size-sm font-weight-bold h3 liquid-lp-title-clone" data-fittext="true" data-fittext-options='{ "maxFontSize": "currentFontSize" }'>
-														<a href="#" data-split-text="text" data-split-options='{ "type": "lines" }'>See the unmatched beauty of the great lakes</a>
-													</h2>
-												</header>
-												
-												<footer class="liquid-lp-footer">
-													<h2 class="liquid-lp-title size-sm font-weight-bold h3 liquid-lp-title-original" data-fittext="true" data-fittext-options='{ "maxFontSize": "currentFontSize" }'>
-														<a href="#" data-split-text="text" data-split-options='{ "type": "lines" }'>See the unmatched beauty of the great lakes</a>
-													</h2>
-													<a href="#" class="btn btn-naked text-uppercase ltr-sp-1 size-sm font-weight-bold liquid-lp-read-more">
-														<span>
-															<span class="btn-line btn-line-before"></span>
-															<span class="btn-txt">Continue Reading</span>
-															<span class="btn-line btn-line-after"></span>
+											<div class="liquid-lp-excerpt">
+												<p>We're conducting a study of marijuana use during pregnancy.</p>
+											</div><!-- /.latest-post-excerptc -->
+										
+											<footer class="liquid-lp-footer">
+												<a href="#" class="btn btn-naked liquid-lp-read-more font-weight-bold">
+													<span>
+														<span class="btn-txt">Read more</span>
+														<span class="btn-icon">
+															<i class="fa fa-angle-right"></i>
 														</span>
-													</a>
-												</footer>
-										
-											</div><!-- /.liquid-blog-item-inner -->
+													</span>
+												</a>
+											</footer>
 										
 										</article>
-										
-									</div><!-- /.lqd-column col-lg-3 col-md-4 col-sm-6 col-xs-12 masonry-item -->
-									
-									<div class="lqd-column col-lg-3 col-md-4 col-sm-6 col-xs-12 masonry-item">
-
-										<article class="liquid-lp liquid-blog-item liquid-blog-contents-inside liquid-blog-item-masonry liquid-blog-scheme-light liquid-blog-cloned-title h-500">
-
-											<figure class="liquid-lp-media" style="background-image: url(./assets/demo/latest-posts/lp-17.jpg);">
+	
+									</div><!-- /.col-md-3 col-sm-6 -->
+	
+									<div class="lqd-column col-md-3 col-sm-6 masonry-item">
+	
+										<article class="liquid-lp mb-40">
+	
+											<figure class="liquid-lp-media">
 												<a href="#">
-													<img src="./assets/demo/latest-posts/lp-17.jpg" alt="Lates Post">
+													<img src="./assets/demo/blog/blog-22.jpg" alt="Lates Post">
 												</a>
 											</figure>
 										
-											<div class="liquid-blog-item-inner">
+											<header class="liquid-lp-header">
+												<h2 class="liquid-lp-title h4 font-size-19"><a href="#">Combing hair 10 tips for proper hair combing</a></h2>
+											</header>
 										
-												<a href="#" class="liquid-overlay-link">Investment trend monitor: Top trends in 2017</a>
-											
-												<header class="liquid-lp-header">
-													<div class="liquid-lp-details">
-														<ul class="liquid-lp-category liquid-lp-category-filled">
-															<li><a href="#">Business</a></li>
-														</ul>
-													</div><!-- /.liquid-lp-details -->
-													<h2 class="liquid-lp-title size-sm font-weight-bold h3 liquid-lp-title-clone" data-fittext="true" data-fittext-options='{ "maxFontSize": "currentFontSize" }'>
-														<a href="#" data-split-text="text" data-split-options='{ "type": "lines" }'>Investment trend monitor: Top trends in 2017</a>
-													</h2>
-												</header>
-												
-												<footer class="liquid-lp-footer">
-													<h2 class="liquid-lp-title size-sm font-weight-bold h3 liquid-lp-title-original" data-fittext="true" data-fittext-options='{ "maxFontSize": "currentFontSize" }'>
-														<a href="#" data-split-text="text" data-split-options='{ "type": "lines" }'>Investment trend monitor: Top trends in 2017</a>
-													</h2>
-													<a href="#" class="btn btn-naked text-uppercase ltr-sp-1 size-sm font-weight-bold liquid-lp-read-more">
-														<span>
-															<span class="btn-line btn-line-before"></span>
-															<span class="btn-txt">Continue Reading</span>
-															<span class="btn-line btn-line-after"></span>
+											<div class="liquid-lp-excerpt">
+												<p>We're conducting a study of marijuana use during pregnancy.</p>
+											</div><!-- /.latest-post-excerptc -->
+										
+											<footer class="liquid-lp-footer">
+												<a href="#" class="btn btn-naked liquid-lp-read-more font-weight-bold">
+													<span>
+														<span class="btn-txt">Read more</span>
+														<span class="btn-icon">
+															<i class="fa fa-angle-right"></i>
 														</span>
-													</a>
-												</footer>
-										
-											</div><!-- /.liquid-blog-item-inner -->
+													</span>
+												</a>
+											</footer>
 										
 										</article>
-										
-									</div><!-- /.lqd-column col-lg-3 col-md-4 col-sm-6 col-xs-12 masonry-item -->
-
-									<div class="lqd-column col-lg-3 col-md-4 col-sm-6 col-xs-12 masonry-item">
-
-										<article class="liquid-lp liquid-blog-item liquid-blog-contents-inside liquid-blog-item-masonry liquid-blog-scheme-light liquid-blog-cloned-title h-400">
-
-											<figure class="liquid-lp-media" style="background-image: url(./assets/demo/latest-posts/lp-14.jpg);">
+	
+									</div><!-- /.col-md-3 col-sm-6 -->
+	
+									<div class="lqd-column col-md-3 col-sm-6 masonry-item">
+	
+										<article class="liquid-lp mb-40">
+	
+											<figure class="liquid-lp-media">
 												<a href="#">
-													<img src="./assets/demo/latest-posts/lp-14.jpg" alt="Lates Post">
+													<img src="./assets/demo/blog/blog-23.jpg" alt="Lates Post">
 												</a>
 											</figure>
 										
-											<div class="liquid-blog-item-inner">
+											<header class="liquid-lp-header">
+												<h2 class="liquid-lp-title h4 font-size-19"><a href="#">Investment trend monitor: Top trends in 2017</a></h2>
+											</header>
 										
-												<a href="#" class="liquid-overlay-link">5 reasons to purchase desktop computers</a>
-											
-												<header class="liquid-lp-header">
-													<div class="liquid-lp-details">
-														<ul class="liquid-lp-category liquid-lp-category-filled">
-															<li><a href="#">Business</a></li>
-														</ul>
-													</div><!-- /.liquid-lp-details -->
-													<h2 class="liquid-lp-title size-sm font-weight-bold h3 liquid-lp-title-clone" data-fittext="true" data-fittext-options='{ "maxFontSize": "currentFontSize" }'>
-														<a href="#" data-split-text="text" data-split-options='{ "type": "lines" }'>5 reasons to purchase desktop computers</a>
-													</h2>
-												</header>
-												
-												<footer class="liquid-lp-footer">
-													<h2 class="liquid-lp-title size-sm font-weight-bold h3 liquid-lp-title-original" data-fittext="true" data-fittext-options='{ "maxFontSize": "currentFontSize" }'>
-														<a href="#" data-split-text="text" data-split-options='{ "type": "lines" }'>5 reasons to purchase desktop computers</a>
-													</h2>
-													<a href="#" class="btn btn-naked text-uppercase ltr-sp-1 size-sm font-weight-bold liquid-lp-read-more">
-														<span>
-															<span class="btn-line btn-line-before"></span>
-															<span class="btn-txt">Continue Reading</span>
-															<span class="btn-line btn-line-after"></span>
+											<div class="liquid-lp-excerpt">
+												<p>We're conducting a study of marijuana use during pregnancy.</p>
+											</div><!-- /.latest-post-excerptc -->
+										
+											<footer class="liquid-lp-footer">
+												<a href="#" class="btn btn-naked liquid-lp-read-more font-weight-bold">
+													<span>
+														<span class="btn-txt">Read more</span>
+														<span class="btn-icon">
+															<i class="fa fa-angle-right"></i>
 														</span>
-													</a>
-												</footer>
-										
-											</div><!-- /.liquid-blog-item-inner -->
+													</span>
+												</a>
+											</footer>
 										
 										</article>
-
-									</div><!-- /.lqd-column col-lg-3 col-md-4 col-sm-6 col-xs-12 masonry-item -->
-									
-									<div class="lqd-column col-lg-3 col-md-4 col-sm-6 col-xs-12 masonry-item">
-
-										<article class="liquid-lp liquid-blog-item liquid-blog-contents-inside liquid-blog-item-masonry liquid-blog-scheme-light liquid-blog-cloned-title h-500">
-
-											<figure class="liquid-lp-media" style="background-image: url(./assets/demo/latest-posts/lp-17.jpg);">
+	
+									</div><!-- /.col-md-3 col-sm-6 -->
+	
+									<div class="lqd-column col-md-3 col-sm-6 masonry-item">
+	
+										<article class="liquid-lp mb-40">
+	
+											<figure class="liquid-lp-media">
 												<a href="#">
-													<img src="./assets/demo/latest-posts/lp-17.jpg" alt="Lates Post">
+													<img src="./assets/demo/blog/blog-24.jpg" alt="Lates Post">
 												</a>
 											</figure>
 										
-											<div class="liquid-blog-item-inner">
+											<header class="liquid-lp-header">
+												<h2 class="liquid-lp-title h4 font-size-19"><a href="#">Investment trend monitor: Top trends in 2017</a></h2>
+											</header>
 										
-												<a href="#" class="liquid-overlay-link">Investment trend monitor: Top trends in 2017</a>
-											
-												<header class="liquid-lp-header">
-													<div class="liquid-lp-details">
-														<ul class="liquid-lp-category liquid-lp-category-filled">
-															<li><a href="#">Business</a></li>
-														</ul>
-													</div><!-- /.liquid-lp-details -->
-													<h2 class="liquid-lp-title size-sm font-weight-bold h3 liquid-lp-title-clone" data-fittext="true" data-fittext-options='{ "maxFontSize": "currentFontSize" }'>
-														<a href="#" data-split-text="text" data-split-options='{ "type": "lines" }'>Investment trend monitor: Top trends in 2017</a>
-													</h2>
-												</header>
-												
-												<footer class="liquid-lp-footer">
-													<h2 class="liquid-lp-title size-sm font-weight-bold h3 liquid-lp-title-original" data-fittext="true" data-fittext-options='{ "maxFontSize": "currentFontSize" }'>
-														<a href="#" data-split-text="text" data-split-options='{ "type": "lines" }'>Investment trend monitor: Top trends in 2017</a>
-													</h2>
-													<a href="#" class="btn btn-naked text-uppercase ltr-sp-1 size-sm font-weight-bold liquid-lp-read-more">
-														<span>
-															<span class="btn-line btn-line-before"></span>
-															<span class="btn-txt">Continue Reading</span>
-															<span class="btn-line btn-line-after"></span>
+											<div class="liquid-lp-excerpt">
+												<p>We're conducting a study of marijuana use during pregnancy.</p>
+											</div><!-- /.latest-post-excerptc -->
+										
+											<footer class="liquid-lp-footer">
+												<a href="#" class="btn btn-naked liquid-lp-read-more font-weight-bold">
+													<span>
+														<span class="btn-txt">Read more</span>
+														<span class="btn-icon">
+															<i class="fa fa-angle-right"></i>
 														</span>
-													</a>
-												</footer>
-										
-											</div><!-- /.liquid-blog-item-inner -->
+													</span>
+												</a>
+											</footer>
 										
 										</article>
-										
-									</div><!-- /.lqd-column col-lg-3 col-md-4 col-sm-6 col-xs-12 masonry-item -->
-									
-									<div class="lqd-column col-lg-3 col-md-4 col-sm-6 col-xs-12 masonry-item">
-
-										<article class="liquid-lp liquid-blog-item liquid-blog-contents-inside liquid-blog-item-masonry liquid-blog-scheme-light liquid-blog-cloned-title h-300">
-
-											<figure class="liquid-lp-media" style="background-image: url(./assets/demo/latest-posts/lp-15.jpg);">
+	
+									</div><!-- /.col-md-3 col-sm-6 -->
+	
+									<div class="lqd-column col-md-3 col-sm-6 masonry-item">
+	
+										<article class="liquid-lp mb-40">
+	
+											<figure class="liquid-lp-media">
 												<a href="#">
-													<img src="./assets/demo/latest-posts/lp-15.jpg" alt="Lates Post">
+													<img src="./assets/demo/blog/blog-25.jpg" alt="Lates Post">
 												</a>
 											</figure>
 										
-											<div class="liquid-blog-item-inner">
+											<header class="liquid-lp-header">
+												<h2 class="liquid-lp-title h4 font-size-19"><a href="#">Mind power the ultimate success formula</a></h2>
+											</header>
 										
-												<a href="#" class="liquid-overlay-link">See the unmatched beauty of the great lakes</a>
-											
-												<header class="liquid-lp-header">
-													<div class="liquid-lp-details">
-														<ul class="liquid-lp-category liquid-lp-category-filled">
-															<li><a href="#">Business</a></li>
-														</ul>
-													</div><!-- /.liquid-lp-details -->
-													<h2 class="liquid-lp-title size-sm font-weight-bold h3 liquid-lp-title-clone" data-fittext="true" data-fittext-options='{ "maxFontSize": "currentFontSize" }'>
-														<a href="#" data-split-text="text" data-split-options='{ "type": "lines" }'>See the unmatched beauty of the great lakes</a>
-													</h2>
-												</header>
-												
-												<footer class="liquid-lp-footer">
-													<h2 class="liquid-lp-title size-sm font-weight-bold h3 liquid-lp-title-original" data-fittext="true" data-fittext-options='{ "maxFontSize": "currentFontSize" }'>
-														<a href="#" data-split-text="text" data-split-options='{ "type": "lines" }'>See the unmatched beauty of the great lakes</a>
-													</h2>
-													<a href="#" class="btn btn-naked text-uppercase ltr-sp-1 size-sm font-weight-bold liquid-lp-read-more">
-														<span>
-															<span class="btn-line btn-line-before"></span>
-															<span class="btn-txt">Continue Reading</span>
-															<span class="btn-line btn-line-after"></span>
+											<div class="liquid-lp-excerpt">
+												<p>We're conducting a study of marijuana use during pregnancy.</p>
+											</div><!-- /.latest-post-excerptc -->
+										
+											<footer class="liquid-lp-footer">
+												<a href="#" class="btn btn-naked liquid-lp-read-more font-weight-bold">
+													<span>
+														<span class="btn-txt">Read more</span>
+														<span class="btn-icon">
+															<i class="fa fa-angle-right"></i>
 														</span>
-													</a>
-												</footer>
-										
-											</div><!-- /.liquid-blog-item-inner -->
+													</span>
+												</a>
+											</footer>
 										
 										</article>
-										
-									</div><!-- /.lqd-column col-lg-3 col-md-4 col-sm-6 col-xs-12 masonry-item -->
-									
-									<div class="lqd-column col-lg-3 col-md-4 col-sm-6 col-xs-12 masonry-item">
-
-										<article class="liquid-lp liquid-blog-item liquid-blog-contents-inside liquid-blog-item-masonry liquid-blog-scheme-light liquid-blog-cloned-title h-300">
-
-											<figure class="liquid-lp-media" style="background-image: url(./assets/demo/latest-posts/lp-16.jpg);">
+	
+									</div><!-- /.col-md-3 col-sm-6 -->
+	
+									<div class="lqd-column col-md-3 col-sm-6 masonry-item">
+	
+										<article class="liquid-lp mb-40">
+	
+											<figure class="liquid-lp-media">
 												<a href="#">
-													<img src="./assets/demo/latest-posts/lp-16.jpg" alt="Lates Post">
+													<img src="./assets/demo/blog/blog-26.jpg" alt="Lates Post">
 												</a>
 											</figure>
 										
-											<div class="liquid-blog-item-inner">
+											<header class="liquid-lp-header">
+												<h2 class="liquid-lp-title h4 font-size-19"><a href="#">Live poker how to win tournament games</a></h2>
+											</header>
 										
-												<a href="#" class="liquid-overlay-link">See the unmatched beauty of the great lakes</a>
-											
-												<header class="liquid-lp-header">
-													<div class="liquid-lp-details">
-														<ul class="liquid-lp-category liquid-lp-category-filled">
-															<li><a href="#">Business</a></li>
-														</ul>
-													</div><!-- /.liquid-lp-details -->
-													<h2 class="liquid-lp-title size-sm font-weight-bold h3 liquid-lp-title-clone" data-fittext="true" data-fittext-options='{ "maxFontSize": "currentFontSize" }'>
-														<a href="#" data-split-text="text" data-split-options='{ "type": "lines" }'>See the unmatched beauty of the great lakes</a>
-													</h2>
-												</header>
-												
-												<footer class="liquid-lp-footer">
-													<h2 class="liquid-lp-title size-sm font-weight-bold h3 liquid-lp-title-original" data-fittext="true" data-fittext-options='{ "maxFontSize": "currentFontSize" }'>
-														<a href="#" data-split-text="text" data-split-options='{ "type": "lines" }'>See the unmatched beauty of the great lakes</a>
-													</h2>
-													<a href="#" class="btn btn-naked text-uppercase ltr-sp-1 size-sm font-weight-bold liquid-lp-read-more">
-														<span>
-															<span class="btn-line btn-line-before"></span>
-															<span class="btn-txt">Continue Reading</span>
-															<span class="btn-line btn-line-after"></span>
+											<div class="liquid-lp-excerpt">
+												<p>We're conducting a study of marijuana use during pregnancy.</p>
+											</div><!-- /.latest-post-excerptc -->
+										
+											<footer class="liquid-lp-footer">
+												<a href="#" class="btn btn-naked liquid-lp-read-more font-weight-bold">
+													<span>
+														<span class="btn-txt">Read more</span>
+														<span class="btn-icon">
+															<i class="fa fa-angle-right"></i>
 														</span>
-													</a>
-												</footer>
-										
-											</div><!-- /.liquid-blog-item-inner -->
+													</span>
+												</a>
+											</footer>
 										
 										</article>
-										
-									</div><!-- /.lqd-column col-lg-3 col-md-4 col-sm-6 col-xs-12 masonry-item -->
-
-								</div><!-- /.liquid-blog-grid liquid-blog-grid liquid-blog-style-masonry -->
+	
+									</div><!-- /.col-md-3 col-sm-6 -->
+	
+								</div><!-- /.liquid-blog-grid row -->
 							</div><!-- /.liquid-blog-posts -->
 
-						</div><!-- /.lqd-column col-md-12 -->
+						</div><!-- /.col-md-12 -->
 
 					</div><!-- /.row -->
-				</div><!-- /.container-fluid -->
-
-			</section>
+				</div><!-- /.container -->
+			</section><!-- /.vc_row -->
 			
 		</main><!-- /#content.content -->
 		

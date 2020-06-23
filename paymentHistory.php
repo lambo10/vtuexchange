@@ -37,19 +37,7 @@
     ?>
 		<main id="content" class="content">
 			
-			<section class="vc_row pt-50 pb-50 bg-cover bg-center" style="background: rgb(241, 241, 241);">
-				<div class="lqd-particles-bg-wrap">
-
-					<div class="ld-particles-container">
-						<div
-							class="ld-particles-inner"
-							id="ld-particles-1"
-							data-particles="true"
-							data-particles-options='{"particles":{"number":{"value":2,"density":1},"color":{"value":["#b9dee2","#ffe3dd"]},"shape":{"type":["circle"]},"size":{"value":450},"move":{"enable":true,"direction":"top","speed":2,"random":true,"out_mode":"out"}},"interactivity":[]}'>
-						</div><!-- /.ld-particles-inner -->
-					</div><!-- /.ld-particles-container -->
-					
-				</div><!-- /.lqd-particles-bg-wrap -->
+			<section class="vc_row pt-50 pb-50 bg-cover bg-center" style="background: rgb(228, 228, 240);">
 
 				<div class="container">
 					<div class="row" style="padding-left: 20px; padding-right: 20px;">

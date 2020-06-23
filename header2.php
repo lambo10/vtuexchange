@@ -32,215 +32,85 @@
                         
                         <div class="collapse navbar-collapse" id="main-header-collapse">
                             
-                            <ul id="primary-nav" class="main-nav nl_index_main-nav nav align-items-lg-stretch justify-content-lg-start" data-submenu-options='{ "toggleType":"fade", "handler":"mouse-in-out" }' data-localscroll="true">
-                                
-                                <li>
-                                    <a href="index.php">
-                                        <span class="link-icon"></span>
-                                        <span class="link-txt">
-                                            <span class="link-ext"></span>
-                                            <span class="txt">
-                                                Home
-                                                <span class="submenu-expander">
-                                                    <i class="fa fa-angle-down"></i>
-                                                </span>
-                                            </span>
+                        <ul id="primary-nav" class="main-nav nl_index_main-nav nav align-items-lg-stretch justify-content-lg-start" data-submenu-options='{ "toggleType":"fade", "handler":"mouse-in-out" }' data-localscroll="true">
+                 
+                            <li class="nl_searchBarMob_profileLI">
+                                <a style="padding: 0px;">
+                                    <span class="link-icon"></span>
+                                    <span class="link-txt">
+                                    <span class="link-ext"></span>
+                                        <span class="txt">
+                                            <input type="text" placeholder="Search" class="bg-fade-white-01" style="border: solid 1px white; color: white; outline: none;"/>
+                                            <button type="button" style="color:#003879"><i class="fa fa-search"></i></button>
                                         </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="buyAirtime.php">
-                                        <span class="link-icon"></span>
-                                        <span class="link-txt">
-                                            <span class="link-ext"></span>
-                                            <span class="txt">
-                                            Buy Airtime
-                                                <span class="submenu-expander">
-                                                    <i class="fa fa-angle-down"></i>
-                                                </span>
-                                            </span>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="buyData.php">
-                                        <span class="link-icon"></span>
-                                        <span class="link-txt">
-                                            <span class="link-ext"></span>
-                                            <span class="txt">
-                                                Buy Data
-                                                <span class="submenu-expander">
-                                                    <i class="fa fa-angle-down"></i>
-                                                </span>
-                                            </span>
-                                        </span>
-                                    </a>
-                                </li>
+                                    </span>
+                                </a>
+                            </li>
 
-                                <li class="menu-item-has-children">
-                                    <a>
-                                        <span class="link-icon"></span>
-                                        <span class="link-txt">
-                                            <span class="link-ext"></span>
-                                            <span class="txt">
-                                                More
-                                                <span class="submenu-expander">
-                                                    <i class="fa fa-angle-down"></i>
-                                                </span>
-                                            </span>
+                        <li>
+                            <a href="index.php">
+                                <span class="link-icon"></span>
+                                <span class="link-txt">
+                                    <span class="link-ext"></span>
+                                    <span class="txt">
+                                        Home
+                                        <span class="submenu-expander">
+                                            <i class="fa fa-angle-down"></i>
                                         </span>
-                                    </a>
-                                    <ul class="nav-item-children">
-                                        <li>
-                                            <a href="buyPower.php">
-                                                <span class="link-icon"></span>
-                                                <span class="link-txt">
-                                                    <span class="link-ext"></span>
-                                                    <span class="txt">
-                                                        Buy Power
-                                                        <span class="submenu-expander">
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </span>
-                                                    </span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="buyCableTvSub.php">
-                                                <span class="link-icon"></span>
-                                                <span class="link-txt">
-                                                    <span class="link-ext"></span>
-                                                    <span class="txt">
-                                                        Cable Tv Subscription
-                                                        <span class="submenu-expander">
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </span>
-                                                    </span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="printRechargeCard.php">
-                                                <span class="link-icon"></span>
-                                                <span class="link-txt">
-                                                    <span class="link-ext"></span>
-                                                    <span class="txt">
-                                                        Print Recharge Card
-                                                        <span class="submenu-expander">
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </span>
-                                                    </span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="fundAccount.php">
-                                                <span class="link-icon"></span>
-                                                <span class="link-txt">
-                                                    <span class="link-ext"></span>
-                                                    <span class="txt">
-                                                        Fund Account
-                                                        <span class="submenu-expander">
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </span>
-                                                    </span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="transferFund.php">
-                                                <span class="link-icon"></span>
-                                                <span class="link-txt">
-                                                    <span class="link-ext"></span>
-                                                    <span class="txt">
-                                                        Transfer Funds
-                                                        <span class="submenu-expander">
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </span>
-                                                    </span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="paymentHistory.php">
-                                                <span class="link-icon"></span>
-                                                <span class="link-txt">
-                                                    <span class="link-ext"></span>
-                                                    <span class="txt">
-                                                        Payment History
-                                                        <span class="submenu-expander">
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </span>
-                                                    </span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="transactions.php">
-                                                <span class="link-icon"></span>
-                                                <span class="link-txt">
-                                                    <span class="link-ext"></span>
-                                                    <span class="txt">
-                                                        Transactions
-                                                        <span class="submenu-expander">
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </span>
-                                                    </span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="notification.php">
-                                                <span class="link-icon"></span>
-                                                <span class="link-txt">
-                                                    <span class="link-ext"></span>
-                                                    <span class="txt">
-                                                        Notifications
-                                                        <span class="submenu-expander">
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </span>
-                                                    </span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="referral.php">
-                                                <span class="link-icon"></span>
-                                                <span class="link-txt">
-                                                    <span class="link-ext"></span>
-                                                    <span class="txt">
-                                                        Referals
-                                                        <span class="submenu-expander">
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </span>
-                                                    </span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="blog-main.php">
-                                                <span class="link-icon"></span>
-                                                <span class="link-txt">
-                                                    <span class="link-ext"></span>
-                                                    <span class="txt">
-                                                        Blog
-                                                        <span class="submenu-expander">
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </span>
-                                                    </span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="buyAirtime.php">
+                                <span class="link-icon"></span>
+                                <span class="link-txt">
+                                    <span class="link-ext"></span>
+                                    <span class="txt">
+                                    Buy Airtime
+                                        <span class="submenu-expander">
+                                            <i class="fa fa-angle-down"></i>
+                                        </span>
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="buyData.php">
+                                <span class="link-icon"></span>
+                                <span class="link-txt">
+                                    <span class="link-ext"></span>
+                                    <span class="txt">
+                                        Buy Data
+                                        <span class="submenu-expander">
+                                            <i class="fa fa-angle-down"></i>
+                                        </span>
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
 
+                        <li class="menu-item-has-children">
+                            <a>
+                                <span class="link-icon"></span>
+                                <span class="link-txt">
+                                    <span class="link-ext"></span>
+                                    <span class="txt">
+                                        More
+                                        <span class="submenu-expander">
+                                            <i class="fa fa-angle-down"></i>
+                                        </span>
+                                    </span>
+                                </span>
+                            </a>
+                            <ul class="nav-item-children">
                                 <li>
-                                    <a href="login.php">
+                                    <a href="buyPower.php">
                                         <span class="link-icon"></span>
                                         <span class="link-txt">
                                             <span class="link-ext"></span>
                                             <span class="txt">
-                                                Login
+                                                Buy Power
                                                 <span class="submenu-expander">
                                                     <i class="fa fa-angle-down"></i>
                                                 </span>
@@ -248,14 +118,13 @@
                                         </span>
                                     </a>
                                 </li>
-
                                 <li>
-                                    <a href="register.php">
+                                    <a href="buyCableTvSub.php">
                                         <span class="link-icon"></span>
                                         <span class="link-txt">
                                             <span class="link-ext"></span>
                                             <span class="txt">
-                                                Register
+                                                Cable Tv Subscription
                                                 <span class="submenu-expander">
                                                     <i class="fa fa-angle-down"></i>
                                                 </span>
@@ -263,25 +132,168 @@
                                         </span>
                                     </a>
                                 </li>
-
                                 <li>
-											<a href="profile.php" style="padding: 0px;">
-												<span class="link-icon"></span>
-												<span class="link-txt">
-													<img src="images/user.svg" style="width: 30px; height: 30px;" /> 
-													<span class="link-ext"></span>
-													<span class="txt">
-														Profile
-														<span class="submenu-expander">
-															<i class="fa fa-angle-down"></i>
-														</span>
-													</span>
-												</span>
-											</a><div style="height: 18px;"></div>
-										</li>
-                                
-                            
-                            </ul><!-- /#primary-nav  -->
+                                    <a href="printRechargeCard.php">
+                                        <span class="link-icon"></span>
+                                        <span class="link-txt">
+                                            <span class="link-ext"></span>
+                                            <span class="txt">
+                                                Print Recharge Card
+                                                <span class="submenu-expander">
+                                                    <i class="fa fa-angle-down"></i>
+                                                </span>
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="fundAccount.php">
+                                        <span class="link-icon"></span>
+                                        <span class="link-txt">
+                                            <span class="link-ext"></span>
+                                            <span class="txt">
+                                                Fund Account
+                                                <span class="submenu-expander">
+                                                    <i class="fa fa-angle-down"></i>
+                                                </span>
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="transferFund.php">
+                                        <span class="link-icon"></span>
+                                        <span class="link-txt">
+                                            <span class="link-ext"></span>
+                                            <span class="txt">
+                                                Transfer Funds
+                                                <span class="submenu-expander">
+                                                    <i class="fa fa-angle-down"></i>
+                                                </span>
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="paymentHistory.php">
+                                        <span class="link-icon"></span>
+                                        <span class="link-txt">
+                                            <span class="link-ext"></span>
+                                            <span class="txt">
+                                                Payment History
+                                                <span class="submenu-expander">
+                                                    <i class="fa fa-angle-down"></i>
+                                                </span>
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="transactions.php">
+                                        <span class="link-icon"></span>
+                                        <span class="link-txt">
+                                            <span class="link-ext"></span>
+                                            <span class="txt">
+                                                Transactions
+                                                <span class="submenu-expander">
+                                                    <i class="fa fa-angle-down"></i>
+                                                </span>
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="notification.php">
+                                        <span class="link-icon"></span>
+                                        <span class="link-txt">
+                                            <span class="link-ext"></span>
+                                            <span class="txt">
+                                                Notifications
+                                                <span class="submenu-expander">
+                                                    <i class="fa fa-angle-down"></i>
+                                                </span>
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="referral.php">
+                                        <span class="link-icon"></span>
+                                        <span class="link-txt">
+                                            <span class="link-ext"></span>
+                                            <span class="txt">
+                                                Referals
+                                                <span class="submenu-expander">
+                                                    <i class="fa fa-angle-down"></i>
+                                                </span>
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="blog-main.php">
+                                        <span class="link-icon"></span>
+                                        <span class="link-txt">
+                                            <span class="link-ext"></span>
+                                            <span class="txt">
+                                                Blog
+                                                <span class="submenu-expander">
+                                                    <i class="fa fa-angle-down"></i>
+                                                </span>
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="login.php">
+                                <span class="link-icon"></span>
+                                <span class="link-txt">
+                                    <span class="link-ext"></span>
+                                    <span class="txt">
+                                        Login
+                                        <span class="submenu-expander">
+                                            <i class="fa fa-angle-down"></i>
+                                        </span>
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="register.php">
+                                <span class="link-icon"></span>
+                                <span class="link-txt">
+                                    <span class="link-ext"></span>
+                                    <span class="txt">
+                                        Register
+                                        <span class="submenu-expander">
+                                            <i class="fa fa-angle-down"></i>
+                                        </span>
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="login.php">
+                                <span class="link-icon"></span>
+                                <span class="link-txt">
+                                    <span class="link-ext"></span>
+                                    <i class="fa fa-user" ></i> 
+                                    <span class="txt">
+                                        Profile
+                                        <span class="submenu-expander">
+                                        </span>
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                     
+         
+         </ul><!-- /#primary-nav  -->
                         
                         </div><!-- /#main-header-collapse -->
                         

@@ -33,18 +33,9 @@
 		
 		<main id="content" class="content">
 
-			<section class="vc_row pt-50 pb-50 bg-cover bg-center" style="background: rgb(241, 241, 241);">
+			<section class="vc_row pt-50 pb-50 bg-cover bg-center" style="background: rgb(228, 228, 240);">
 				
 				<div class="lqd-particles-bg-wrap">
-
-					<div class="ld-particles-container">
-						<div
-							class="ld-particles-inner"
-							id="ld-particles-1"
-							data-particles="true"
-							data-particles-options='{"particles":{"number":{"value":2,"density":1},"color":{"value":["#b9dee2","#ffe3dd"]},"shape":{"type":["circle"]},"size":{"value":450},"move":{"enable":true,"direction":"top","speed":2,"random":true,"out_mode":"out"}},"interactivity":[]}'>
-						</div><!-- /.ld-particles-inner -->
-					</div><!-- /.ld-particles-container -->
 					
 				</div><!-- /.lqd-particles-bg-wrap -->
 				
@@ -59,8 +50,8 @@
                                     <div><img src="images/power.svg" style="width: 80px; height: 80px;" /><span style="font-size: 25px;">Buy Power</span></div>
 								</header><!-- /.fancy-title -->
 
-								<div class="contact-form contact-form-inputs-filled contact-form-button-block font-size-14">
-									<form action="assets/php/mailer.php" method="post" novalidate="novalidate">
+								<div class="contact-form contact-form-button-block font-size-14">
+									<form novalidate="novalidate">
 
                                         <div class="row d-flex flex-wrap">
                                             <div class="lqd-column col-md-6 mb-20">
@@ -89,11 +80,11 @@
                                                     <option>YES</option>
                                                 </select>
                                             </div><!-- /.col-md-12 -->
-                                            <div class="lqd-column col-md-6 text-md-right">
-                                                <input type="submit" value="VERIFY METER NUMBER">
+                                            <div class="lqd-column col-md-6 text-md-right" style="padding-top: 10px;">
+                                                <input type="button" value="VERIFY METER NUMBER">
                                             </div><!-- /.col-md-6 -->
-                                            <div class="lqd-column col-md-6 text-md-right">
-                                                <input type="submit" value="BUY NOW">
+                                            <div class="lqd-column col-md-6 text-md-right" style="padding-top: 10px;">
+                                                <input type="button" value="BUY NOW">
                                             </div><!-- /.col-md-6 -->
                                         </div><!-- /.row -->
 									</form>

@@ -19,6 +19,8 @@
 	<link rel="stylesheet" href="assets/css/theme-vendors.min.css" />
 	<link rel="stylesheet" href="assets/css/theme.min.css" />
 	<link rel="stylesheet" href="assets/css/themes/seo.css" />
+	<link rel="stylesheet" href="css/jBox.all.min.css" />
+	<link rel="stylesheet" href="css/nl_addition.css" />
 	
 	<!-- Head Libs -->
 	<script async src="assets/vendors/modernizr.min.js"></script>
@@ -27,22 +29,14 @@
 <body data-mobile-nav-trigger-alignment="right" data-mobile-nav-align="left" data-mobile-nav-style="modern" data-mobile-nav-shceme="gray" data-mobile-header-scheme="gray" data-mobile-nav-breakpoint="1199">
 	
 	<div id="wrap">
-		
-    <?php 
-    include 'header.php';
-    ?>
-	
-		<main id="content" class="content">
-			<section class="vc_row bg-cover bg-center d-flex align-items-center py-5" style="height: 300px;" data-row-bg="images/people/2.jpg">
+	<div class="titlebar scheme-light" data-parallax="true" data-parallax-options='{ "parallaxBG": true }' style="background-image: url(images/people/11.jpg);">
+			
+		<?php
+		include 'header.php'
+		?>
 
-				<span class="row-bg-loader"></span>
-
-				<div class="container">
-					<div class="row d-flex flex-wrap align-items-center">
-						
-						<div class="lqd-column col-md-8 col-md-offset-2 text-md-center mt-md-9">
-
-							<div class="ld-fancy-heading">
+<div>
+<div class="ld-fancy-heading" style="text-align: center;">
 								<h2
 								class="text-white ltr-sp--015"
 								data-fittext="true"
@@ -62,58 +56,53 @@
 									</span>
 								</h2>
 							</div><!-- /.ld-fancy-heading -->
+</div>
 
-							<div
-							class="lqd-column-inner"
-							data-custom-animations="true"
-							data-ca-options='{ "triggerHandler":"inview", "animationTarget":"all-childs", "duration":"1200", "startDelay": 900, "easing":"easeOutQuint", "direction":"forward", "initValues":{"translateY": 50, "opacity": 0}, "animations":{"translateY":0,"opacity":1} }'>
+			<div class="titlebar-inner py-0 mt-0" >
+				<div class="container titlebar-container">
+					<div class="row titlebar-container" style="padding-left: 20px; padding-right: 20px;">
 
-							</div><!-- /.lqd-column-inner -->
+						<div class="titlebar-col col-md-12 bg-white pt-10 bg-white box-shadow-1">
+							<div class="row">
 
-						</div><!-- /.col-md-8 -->
+								<div class="col-md-2 col-md-offset-1">
+									<h6 class="font-size-14 font-weight-medium text-uppercase ltr-sp-2">Login</h6>
+								</div><!-- /.col-md-2 -->
 
-					</div><!-- /.row -->
-				</div><!-- /.container -->
 
-			</section>
+							</div><!-- /.row -->
+						</div><!-- /.col-md-12 -->
+
+					</div><!-- /.titlebar-row -->
+				</div><!-- /.titlebar-container -->
+			</div><!-- /.titlebar-inner -->
 			
-			<section class="vc_row pt-50 pb-50 bg-cover bg-center" style="background: rgb(241, 241, 241);">
-				<div class="lqd-particles-bg-wrap">
-
-					<div class="ld-particles-container">
-						<div
-							class="ld-particles-inner"
-							id="ld-particles-1"
-							data-particles="true"
-							data-particles-options='{"particles":{"number":{"value":2,"density":1},"color":{"value":["#b9dee2","#ffe3dd"]},"shape":{"type":["circle"]},"size":{"value":450},"move":{"enable":true,"direction":"top","speed":2,"random":true,"out_mode":"out"}},"interactivity":[]}'>
-						</div><!-- /.ld-particles-inner -->
-					</div><!-- /.ld-particles-container -->
+		</div><!-- /.titlebar -->
+	
+		
+		<main id="content" class="content">
 					
-				</div><!-- /.lqd-particles-bg-wrap -->
-
+			<section class="vc_row pb-50 bg-cover bg-center" style="background: rgb(228, 228, 240);">
+				
 				<div class="container">
 					<div class="row" style="padding-left: 20px; padding-right: 20px;">
 						
-						<div class="lqd-column col-md-12 px-4 pt-45 pb-30 bg-white box-shadow-1">
+						<div class="lqd-column col-md-12 px-4 pb-30 bg-white box-shadow-1">
 							
 							<div class="lqd-column-inner bg-white border-radius-6 px-3 px-md-4 pt-40 pb-40">
 
-								<header class="fancy-title">
-									<h2 class="mb-2 font-size-30 font-weight-light">Login</h2>
-									<p class="mt-0"></p>
-								</header><!-- /.fancy-title -->
 
-								<div class="contact-form contact-form-inputs-filled contact-form-button-block font-size-14">
-									<form action="assets/php/mailer.php" method="post" novalidate="novalidate">
+								<div class="contact-form contact-form-button-block font-size-14">
+								<form novalidate="novalidate">
 
-                                        <div class="row d-flex flex-wrap">
-                                            <div class="lqd-column col-md-12 mb-20">
-                                                <input class="bg-gray text-dark mb-30" type="email" name="email" aria-required="true" aria-invalid="false" placeholder="Your email address" required>
-                                                <input class="bg-gray text-dark mb-30" type="password" name="pasword" aria-required="true" aria-invalid="false" placeholder="Password" required>
-                                                <p class="font-size-16 opacity-07">Forgot Password? <a href="#">Click here</a>.</p><br>
-                                                <input type="submit" value="Login">
-                                            </div><!-- /.col-md-6 -->
-                                        </div><!-- /.row -->
+									<div class="row d-flex flex-wrap">
+										<div class="lqd-column col-md-12 mb-20">
+											<input class="bg-gray text-dark mb-30" type="email" id="email" aria-required="true" aria-invalid="false" placeholder="Your email address" required>
+											<input class="bg-gray text-dark mb-30" type="password" id="password" aria-required="true" aria-invalid="false" placeholder="Password" required>
+											<p class="font-size-16 opacity-07">Forgot Password? <a href="#">Click here</a>.</p><br>
+											<input type="button" value="Login" onclick="$.fn.submit_data()" />
+										</div><!-- /.col-md-6 -->
+									</div><!-- /.row -->
 									</form>
 									<div class="contact-form-result hidden"></div><!-- /.contact-form-result -->
 								</div><!-- /.contact-form -->
@@ -134,10 +123,36 @@
 	
 </div><!-- /#wrap -->
 
-<script src="./assets/vendors/jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/jbox.all.min.js"></script>
+<script src="js/generalOp.js"></script>
 <script src="./assets/js/theme-vendors.js"></script>
 <script src="./assets/js/theme.min.js"></script>
 <script src="./assets/js/liquidAjaxMailchimp.min.js"></script>
-
+<script>
+	$.fn.submit_data = function(){
+            var email = $("#email").val();
+			var password = $("#password").val();
+			
+			if(email.length == 0 || password.length == 0){
+				alert("No field can be left empty");
+			}else{
+					$.post( "api/login_process.php",{
+				email : email,
+				password : password
+			}, function( data ) {
+			if(data === "11111"){
+				$.fn.confirm("Login Successful","",function (){window.location = "index.php";});
+			}else if(data === "100113"){
+				$.fn.notification("Email or Password Incorrect","red");
+			}else if(data === "100114" || data === "100115"){
+				$.fn.notification("Invalid Inputed Data","red");
+			}
+			});
+				
+			}
+         
+		 }
+</script>
 </body>
 </html>

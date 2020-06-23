@@ -59,8 +59,8 @@
 									<p class="ld_sf_paragraph pr-2">
 										<input type="email" class="ld_sf_text" id="mce-EMAIL" name="EMAIL" placeholder="Your email" value="">
 									</p>
-									<button type="submit" class="ld_sf_submit px-4">
-										<span class="submit-icon">
+									<button type="button" class="ld_sf_button px-4">
+										<span class="button-icon">
 											<i class="fa fa-angle-right"></i>
 										</span>
 										<span class="ld-sf-spinner">
@@ -85,7 +85,7 @@
 						<div class="lqd-column col-md-6">
 							
 							<ul class="lqd-custom-menu reset-ul inline-nav">
-								<li><a href="#">Blog</a></li>
+								<li><a href="blog-main.php">Blog</a></li>
 								<li><a href="#">Support</a></li>
 								<li><a href="#">Developer's API</a></li>
 							</ul>

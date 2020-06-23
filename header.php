@@ -33,7 +33,20 @@
 								<div class="collapse navbar-collapse" id="main-header-collapse">
 									
 								<ul id="primary-nav" class="main-nav nl_index_main-nav nav align-items-lg-stretch justify-content-lg-start" data-submenu-options='{ "toggleType":"fade", "handler":"mouse-in-out" }' data-localscroll="true">
-                                
+                 
+                                    <li class="nl_searchBarMob_profileLI">
+                                        <a style="padding: 0px;">
+                                            <span class="link-icon"></span>
+                                            <span class="link-txt">
+                                            <span class="link-ext"></span>
+                                                <span class="txt">
+                                                    <input type="text" placeholder="Search" class="bg-fade-white-01" style="border: solid 1px white; color: white; outline: none;"/>
+                                                    <button type="button" style="color:#003879; border: solid white 1px"><i class="fa fa-search"></i></button>
+                                                </span>
+                                            </span>
+                                        </a>
+                                    </li>
+
                                 <li>
                                     <a href="index.php">
                                         <span class="link-icon"></span>
@@ -265,21 +278,20 @@
                                 </li>
 
                                 <li>
-											<a href="profile.php" style="padding: 0px;">
-												<span class="link-icon"></span>
-												<span class="link-txt">
-													<img src="images/user.svg" style="width: 30px; height: 30px;" /> 
-													<span class="link-ext"></span>
-													<span class="txt">
-														Profile
-														<span class="submenu-expander">
-															<i class="fa fa-angle-down"></i>
-														</span>
-													</span>
-												</span>
-											</a><div style="height: 18px;"></div>
-										</li>
-                                
+                                    <a href="login.php">
+                                        <span class="link-icon"></span>
+                                        <span class="link-txt">
+                                            <span class="link-ext"></span>
+                                            <i class="fa fa-user" ></i> 
+                                            <span class="txt">
+                                                Profile
+                                                <span class="submenu-expander">
+                                                </span>
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+                                        
                             
                             </ul><!-- /#primary-nav  -->
 								

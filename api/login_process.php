@@ -28,13 +28,13 @@ if($exisit==1){
     $_SESSION["name"] = $name;
     echo "11111";
 }else{
-    echo "100111";
+    echo "100113";
 }
     }else{
-        echo "100113";  
+        echo "100114";  
     }
 }else{
-    echo "100114";
+    echo "100115";
 }
 
 function scrutinize($data){
