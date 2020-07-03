@@ -104,12 +104,13 @@
 										<div class="lqd-column col-md-6 mb-20">
 											<input class="bg-gray text-dark mb-30" type="password" id="password" aria-required="true" aria-invalid="false" placeholder="Password" required>
 											<input class="bg-gray text-dark mb-30" type="password" id="password2" aria-required="true" aria-invalid="false" placeholder="Re-Type Password" required>
+											<input class="bg-gray text-dark mb-30" type="text" id="whoReferred_id" aria-required="true" aria-invalid="false" placeholder="Referal ID" required>
 										</div><!-- /.col-md-12 -->
 										<div class="lqd-column col-md-6">
 											<p class="font-size-16 opacity-07">By clicking register, you agree to our <a href="#">Terms of Use</a>.</p>
 										</div><!-- /.col-md-6 -->
 										<div class="lqd-column col-md-6 text-md-right">
-											<input type="button" onclick="$.fn.submit_data()" value="Submit">
+										<button id="submitBTN" style="cursor: pointer;" onclick="$.fn.submit_data()" type="button"><span id="submitBtnTxt">REGISTER </span><img id="submitBTNLoaderImg" src="images/loading.gif" style="width: 50px; height:50px; display:none" /></button>
 										</div><!-- /.col-md-6 -->
 									</div><!-- /.row -->
 									</form>
@@ -134,6 +135,7 @@
 
 <script src="js/jquery.min.js"></script>
 <script src="js/jbox.all.min.js"></script>
+<script src="js/generalOp.js"></script>
 <script src="./assets/js/theme-vendors.js"></script>
 <script src="./assets/js/theme.min.js"></script>
 <script src="./assets/js/liquidAjaxMailchimp.min.js"></script>
@@ -144,23 +146,41 @@
 			var password = $("#password").val();
 			var password2 = $("#password2").val();
 			var phone = $("#phone").val();
+			var whoReferred_id = $("#whoReferred_id").val();
+			if(whoReferred_id.length <= 0){
+				whoReferred_id = "AD1123";
+			}
 			
 			if(name.length == 0 || email.length == 0 || password.length == 0 || phone.length == 0){
-				alert("No field can be left empty");
+				$.fn.confirm("No field can be left empty ","red",function(){});
 			}else{
 				if(password === password2){
+					dispSubmitBtnLoader();
 					$.post( "api/signUp_process.php",{
 				name : name,
 				email : email,
 				password : password,
-				phone : phone
+				phone : phone,
+				whoReferred_id:whoReferred_id
+				
 			}, function( data ) {
 			if(data === "11111"){
-				$.fn.confirm("Registerd Successfully","",function (){window.location = "index.php";});
+				$.fn.confirm("Registerd Successfully","",function (){
+					window.location = `<?php 
+						if(empty($orderID)){
+							echo "dashboard.php";
+						}else{
+							echo "order.php";
+						}
+						
+						?>`;
+					});
 			}else if(data === "100113"){
 				$.fn.notification("User with email already exsist","red");
+				clearSubmitBtnLoader();
 			}else if(data === "100114" || data === "100115"){
 				$.fn.notification("Invalid Inputed Data","red");
+				clearSubmitBtnLoader();
 			}
 			});
 				}else{
@@ -168,6 +188,23 @@
 			}
 			}
          
+		 }
+		 function dispSubmitBtnLoader(){
+			 getE("submitBTNLoaderImg").style.display = "block";
+			 getE("submitBtnTxt").style.display = "none";
+			 getE("submitBTN").disabled = true;
+			 getE("submitBTN").style.cursor = "not-allowed";
+		 }
+
+		 function clearSubmitBtnLoader(){
+			 getE("submitBTNLoaderImg").style.display = "none";
+			 getE("submitBtnTxt").style.display = "block";
+			 getE("submitBTN").disabled = false;
+			 getE("submitBTN").style.cursor = "pointer";
+		 }
+
+		 function getE(id){
+			 return document.getElementById(id);
 		 }
 </script>
 </body>

@@ -97,30 +97,27 @@
 
                                         <div class="row d-flex flex-wrap">
                                             <div class="lqd-column col-md-6 mb-20">
-                                                <select id="netWorkSelection" class="bg-gray text-dark mb-30" aria-required="true" aria-invalid="false" >
-                                                    <option>-Select Network Provider-</option>
-                                                    <option>MTN</option>
-                                                    <option>GLO</option>
-                                                    <option>Airtel</option>
-                                                    <option>9mobile</option>
-                                                </select>
+											<select id="netWorkSelection" class="bg-gray text-dark mb-30" aria-required="true" aria-invalid="false" >
+												<option>-Select Network Provider-</option>
+												<option value="MTN">MTN</option>
+												<option value="GLO">GLO</option>
+												<option value="AIRTEL">AIRTEL</option>
+												<option value="9MOBILE">9MOBILE</option>
+											</select>
                                                 <input class="bg-gray text-dark mb-30" id="airtimeValue" type="text" name="airtimeValue" aria-required="true" aria-invalid="false" placeholder="AIRTIME VALUE (50-50,000)" required>
-                                                <input class="bg-gray text-dark mb-30" id="mobileNo" type="number" name="mobileNo" aria-required="true" aria-invalid="false" placeholder="ENTER MOBILE NUMBERS" required>
+                                                <input id="phoneNo" class="bg-gray text-dark mb-30" type="email" name="mobileNo" aria-required="true" aria-invalid="false" placeholder="ENTER MOBILE NUMBER" required>
                                                
                                             </div><!-- /.col-md-6 -->
                                             <div class="lqd-column col-md-6 mb-20">
-                                                <input class="bg-gray text-dark mb-30" type="text" name="amountToPay" aria-required="true" aria-invalid="false" placeholder="AMOUNT TO PAY (4% Discount)" required>
-                                                <select class="bg-gray text-dark mb-30" aria-required="true" aria-invalid="false" >
-                                                    <option>-Auto Renew-</option>
-                                                    <option>NO</option>
-                                                    <option>Monthly</option>
-                                                    <option>Every 3 Weeks</option>
-                                                    <option>Every 2 Weeks</option>
-                                                    <option>Every Week</option>
-                                                </select>
+											<input id="amountToPay" disabled="true" style="cursor: not-allowed;" class="bg-gray text-dark mb-30" type="text" name="amountToPay" aria-required="true" aria-invalid="false" placeholder="AMOUNT TO PAY (4% Discount)" required>
+												<select id="autoRenew" class="bg-gray text-dark mb-30" aria-required="true" aria-invalid="false" >
+												<option>-Auto Renew-</option>
+												<option>NO</option>
+												<option>YES</option>
+											</select>
                                             </div><!-- /.col-md-12 -->
                                             <div class="lqd-column col-md-6 text-md-right">
-                                                <input type="button" value="BUY NOW" onclick="$.fn.submit_data()" />
+											<button id="submitBTN" style="cursor: pointer;" onclick="$.fn.submit_data()" type="button"><span id="submitBtnTxt">BUY NOW </span><img id="submitBTNLoaderImg" src="images/loading.gif" style="width: 50px; height:50px; display:none" /></button>
                                             </div><!-- /.col-md-6 -->
                                         </div><!-- /.row -->
 									</form>
@@ -145,15 +142,91 @@
 
 <script src="js/jquery.min.js"></script>
 <script src="js/jbox.all.min.js"></script>
+<script src="js/generalOp.js"></script>
 <script src="./assets/js/theme-vendors.js"></script>
 <script src="./assets/js/theme.min.js"></script>
 <script src="./assets/js/liquidAjaxMailchimp.min.js"></script>
+
 <script>
-	$.fn.submit_data = function(){ 
-			var networkProvider = $("#netWorkSelection").val();
-			var airtimeValue = $("#airtimeValue").val();
-			var mobileNo = $("#mobileNo").val();
-			alert(networkProvider);
+	var static_data = {
+		serviceID:""
+	};
+		 $.fn.submit_data = function(){ 
+			var airTime_amount = $("#airtimeValue").val();
+			var autoRenewRaw = $("#autoRenew").val();
+			var phoneNo = $("#phoneNo").val();
+
+			if(phoneNo.length > 0){
+			if(airTime_amount.length <= 0){
+				$.fn.confirm("Pls Enter Airtime Amount ","red",function(){});
+			}else{
+				
+				if(autoRenewRaw === "-Auto Renew-"){
+					autoRenewRaw = "NO";
+				}
+
+				dispSubmitBtnLoader();
+				$.get( "api/process_buyService.php",{
+				serviceID: static_data.serviceID,
+				autoRenew: autoRenewRaw,
+				phoneNo: phoneNo,
+				airTime_amount: airTime_amount
+				}, function( result ) {
+					if(result === "100111"){
+						$.fn.notification("Erro purchasing data -- Pls try again","red");
+						clearSubmitBtnLoader();
+					}else{
+						$.fn.notification("Data purchase successsfull","green");
+						clearSubmitBtnLoader();
+					}
+				});
+
+			}
+		}else{
+			$.fn.confirm("Enter mobile number","red",function(){});
+		}
+			
+		 }
+		 $.fn.getServiceID_and_setAmtp = function(){ 
+			var val = $("#netWorkSelection").val();
+			
+			$.get( "api/get_profit_margin.php",{
+				networkProvider: val,
+				serviceType: "AIRTIME",
+			}, function( profitMargin ) {
+				$.get( "api/getServices.php",{
+				networkProvider: val,
+				serviceType: "AIRTIME",
+			}, function( data ) {
+				var json_data = JSON.parse(data);
+					static_data.serviceID = json_data[0].id;
+		  getE("amountToPay").value = (parseInt($("#airtimeValue").val()) - (parseFloat(json_data[0].cost) * parseInt($("#airtimeValue").val())) )+ parseInt(JSON.parse(profitMargin)[0].profit);	
+			
+		});
+
+			});
+		 }
+		 
+		 $("#airtimeValue").keypress(function (event) {
+			$.fn.getServiceID_and_setAmtp();
+		 });
+
+		 function dispSubmitBtnLoader(){
+			 getE("submitBTNLoaderImg").style.display = "block";
+			 getE("submitBtnTxt").style.display = "none";
+			 getE("submitBTN").disabled = true;
+			 getE("submitBTN").style.cursor = "not-allowed";
+		 }
+
+		 function clearSubmitBtnLoader(){
+			 getE("submitBTNLoaderImg").style.display = "none";
+			 getE("submitBtnTxt").style.display = "block";
+			 getE("submitBTN").disabled = false;
+			 getE("submitBTN").style.cursor = "pointer";
+		 }
+
+		 function getE(id){
+			 return document.getElementById(id);
 		 }
 </script>
 </body>

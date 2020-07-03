@@ -48,22 +48,20 @@
 								</header><!-- /.fancy-title -->
 
 								<div class="contact-form contact-form-button-block font-size-14">
-									<form novalidate="novalidate">
+									<form novalidate="novalidate" id="paymentForm">
 
                                         <div class="row d-flex flex-wrap">
                                             <div class="lqd-column col-md-6 mb-20">
-                                                <input class="bg-gray text-dark mb-30" type="number" name="name" aria-required="true" aria-invalid="false" placeholder="Amount" required>
-                                                <input class="bg-gray text-dark mb-30" type="number" name="cardNo" aria-required="true" aria-invalid="false" placeholder="Card No" required>
-                                                <input class="bg-gray text-dark mb-30" type="date" name="expDate" aria-required="true" aria-invalid="false" placeholder="Exp Date" required>
-                                                
+                                                <input class="bg-gray text-dark mb-30" id="email-address" type="email" name="email" aria-required="true" aria-invalid="false" disabled="true" style="cursor: not-allowed;" value="<?php echo $email; ?>" required>
+                                                <input class="bg-gray text-dark mb-30" id="amount" type="tel" name="amount" aria-required="true" aria-invalid="false" placeholder="Amount" required>
+                                                 
                                             </div><!-- /.col-md-6 -->
                                             <div class="lqd-column col-md-6 mb-20">
-                                                <input class="bg-gray text-dark mb-30" type="text" name="cvv" aria-required="true" aria-invalid="false" maxlength="3" size="3" placeholder="cvv" required>  
                                                 <div><img src="images/paystack.png" style="width: 200px; height: 70px;" /><input type="radio" name="paymentOption" value="1" checked></div>
                                                 <div><img src="images/Flutterwave.png" style="width: 200px; height: 100px;" /><input type="radio" name="paymentOption" value="2"></div>
                                             </div><!-- /.col-md-12 -->
                                                 <div class="lqd-column col-md-6 text-md-right">
-                                                <input type="button" value="Pay">
+                                                <button type="button" onclick="startPayment()">Pay</button>
                                             </div><!-- /.col-md-6 -->
                                         </div><!-- /.row -->
 									</form>
@@ -90,6 +88,38 @@
 <script src="./assets/js/theme-vendors.js"></script>
 <script src="./assets/js/theme.min.js"></script>
 <script src="./assets/js/liquidAjaxMailchimp.min.js"></script>
+<script src="https://js.paystack.co/v1/inline.js"></script> 
+<script>
 
+const paymentForm = document.getElementById('paymentForm');
+
+function payWithPaystack() {
+  
+  let handler = PaystackPop.setup({
+    key: 'pk_live_b2d83ff9093a14c82298daba8d77846bed3af62e', // Replace with your public key
+    email: document.getElementById("email-address").value,
+    amount: document.getElementById("amount").value * 100,
+    ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+    // label: "Optional string that replaces customer email"
+    onClose: function(){
+      alert('Window closed.');
+    },
+    callback: function(response){
+      let message = 'Payment complete! Reference: ' + response.reference;
+      alert(message);
+    }
+  });
+  handler.openIframe();
+}
+
+function startPayment(){
+	var inputsD = document.getElementsByName("paymentOption");
+          if(inputsD[0].checked){
+            payWithPaystack();
+          }else if(inputsD[1].checked){
+            
+          }
+}
+</script>
 </body>
 </html>

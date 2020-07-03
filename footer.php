@@ -33,7 +33,7 @@
 							
 							<h3 class="widget-title text-white">contact</h3>
 							<p>
-								<a href="mailto:customer@vtuexchange.com">customer@vtuexchange.com</a>
+								<a href="mailto:support@diligentmart.com">support@diligentmart.com</a>
 								<br>
 								<br>
 								No NewHaven, Enugu, Enugu
@@ -48,9 +48,9 @@
 							
 							<h3 class="widget-title text-white">Follow us</h3>
 							<ul class="social-icon social-icon-md">
-								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
+								<li><a href="https://facebook.com/Diligentmart"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="https://twitter.com/diligentmart?s=09"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="https://t.me/Diligentmart"><i class="fa fa-telegram"></i></a></li>
 							</ul>
 							
 							<h3 class="widget-title text-white">Subscribe</h3>

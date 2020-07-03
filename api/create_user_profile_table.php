@@ -9,6 +9,8 @@ email VARCHAR(30),
 phone VARCHAR(30),
 AccBalance TEXT DEFAULT 0,
 password VARCHAR(30),
+whoReferredID VARCHAR(50),
+referralID VARCHAR(50),
 reg_date TIMESTAMP
 )";
 

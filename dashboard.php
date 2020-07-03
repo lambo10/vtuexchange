@@ -31,8 +31,25 @@
 	<div id="wrap">
 	<div class="titlebar scheme-light" data-parallax="true" data-parallax-options='{ "parallaxBG": true }' style="background-image: url(images/people/11.jpg);">
 			
-		<?php
-		include 'header.php'
+        <?php
+        include 'api/connect.php';
+        include 'header.php';
+        
+        $phone = "";
+        $AccBalance = "";
+        $whoReferredID = "";
+        $referralID = "";
+
+        $handle2 = "SELECT * FROM users WHERE email='$email'";
+    $result2 = $conn->query($handle2);
+    if ($result2->num_rows > 0) {
+        while($row = $result2->fetch_assoc()) {
+            $phone = $row["phone"];
+            $AccBalance = $row["AccBalance"];
+            $whoReferredID = $row["whoReferredID"];
+            $referralID = $row["referralID"];
+        }
+    }
 		?>
 
 <div>
@@ -80,8 +97,8 @@
 <div class="iconbox text-left iconbox-semiround iconbox-xl iconbox-filled iconbox-filled  iconbox-scale-bg" style="width:100%; box-shadow:0 25px 70px rgba(0, 0, 0, 0.3); padding:25px 3%">
     
     <div class="contents">
-        <h3>Lambert&nbsp;Nnadi</h3>
-        <p><span><a href="logout.php" style="color: red;">(logout)</a></span></p>
+        <h3><?php echo $name; ?></h3>
+        <p><span><a href="api/logout.php" style="color: red;">(logout)</a></span></p>
         
     </div><!-- /.contents -->
 </div><!-- /.iconbox -->
@@ -95,8 +112,8 @@
     
                                             <div class="contents" style="width:100%">
                                             <div class="label label-success">Wallet</div>
-                                                <div style="text-align: center;"><h3>N0.00</h3></div>
-                                                <p><span><a href="deposite.php" style="color: blue;"><u>Deposit Money</u></a></span></p>
+                                                <div style="text-align: center;"><h3>₦ <?php echo $AccBalance; ?></h3></div>
+                                                <p><span><a href="fundAccount.php" style="color: blue;"><u>Deposit Money</u></a></span></p>
                                                 <p><span><a href="deposite.php" style="color: blue;"><u>View Deposit History</u></a></span></p>
                                             </div><!-- /.contents -->
                                         </div><!-- /.iconbox -->

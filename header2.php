@@ -1,3 +1,13 @@
+<?php
+session_start();
+$email = $_SESSION["email"];
+$name = $_SESSION["name"];
+$orderID = $_SESSION["orderID"];
+
+if(empty($email)){
+    header("location:login.php");
+}
+?>
 <header class="main-header" style="background: #2D323D;" data-react-to-megamenu="true" data-sticky-header="true" data-sticky-options='{ "stickyTrigger": "first-section" }'>
 		
     <div class="mainbar-wrap">
@@ -247,50 +257,110 @@
                             </ul>
                         </li>
 
-                        <li>
-                            <a href="login.php">
-                                <span class="link-icon"></span>
-                                <span class="link-txt">
-                                    <span class="link-ext"></span>
-                                    <span class="txt">
-                                        Login
-                                        <span class="submenu-expander">
-                                            <i class="fa fa-angle-down"></i>
+                        <?php 
+                                if(empty($email)){
+                                    echo '<li>
+                                    <a href="login.php">
+                                        <span class="link-icon"></span>
+                                        <span class="link-txt">
+                                            <span class="link-ext"></span>
+                                            <span class="txt">
+                                                Login
+                                            </span>
                                         </span>
-                                    </span>
-                                </span>
-                            </a>
-                        </li>
+                                    </a>
+                                </li>
 
-                        <li>
-                            <a href="register.php">
-                                <span class="link-icon"></span>
-                                <span class="link-txt">
-                                    <span class="link-ext"></span>
-                                    <span class="txt">
-                                        Register
-                                        <span class="submenu-expander">
-                                            <i class="fa fa-angle-down"></i>
+                                <li>
+                                    <a href="register.php">
+                                        <span class="link-icon"></span>
+                                        <span class="link-txt">
+                                            <span class="link-ext"></span>
+                                            <span class="txt">
+                                                Register
+                                            </span>
                                         </span>
-                                    </span>
-                                </span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="login.php">
-                                <span class="link-icon"></span>
-                                <span class="link-txt">
-                                    <span class="link-ext"></span>
-                                    <i class="fa fa-user" ></i> 
-                                    <span class="txt">
-                                        Profile
-                                        <span class="submenu-expander">
-                                        </span>
-                                    </span>
-                                </span>
-                            </a>
-                        </li>
+                                    </a>
+                                </li>';
+                               
+                                }else{
+                                    echo '<li class="menu-item-has-children">
+                                    <a>
+                                            <span class="link-icon"></span>
+                                            <span class="link-txt">
+                                                <span class="link-ext"></span>
+                                                <i class="fa fa-user" ></i> 
+                                                <span class="txt">
+                                                    Account
+                                                    <span class="submenu-expander">
+                                                    <i class="fa fa-angle-down"></i>
+                                                    </span>
+                                                </span>
+                                            </span>
+                                        </a>
+                                        
+                                        <ul class="nav-item-children">
+                                              
+                                            <li>
+                                                <a href="dashboard.php">
+                                                    <span class="link-icon"></span>
+                                                    <span class="link-txt">
+                                                        <span class="link-ext"></span>
+                                                        <span class="txt">
+                                                            Dashboard
+                                                            <span class="submenu-expander">
+                                                                <i class="fa fa-angle-down"></i>
+                                                            </span>
+                                                        </span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="notification.php">
+                                                    <span class="link-icon"></span>
+                                                    <span class="link-txt">
+                                                        <span class="link-ext"></span>
+                                                        <span class="txt">
+                                                            Edith Profile
+                                                            <span class="submenu-expander">
+                                                                <i class="fa fa-angle-down"></i>
+                                                            </span>
+                                                        </span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="referral.php">
+                                                    <span class="link-icon"></span>
+                                                    <span class="link-txt">
+                                                        <span class="link-ext"></span>
+                                                        <span class="txt">
+                                                            Change Password
+                                                            <span class="submenu-expander">
+                                                                <i class="fa fa-angle-down"></i>
+                                                            </span>
+                                                        </span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="blog-main.php">
+                                                    <span class="link-icon"></span>
+                                                    <span class="link-txt">
+                                                        <span class="link-ext"></span>
+                                                        <span class="txt">
+                                                            Developer API
+                                                            <span class="submenu-expander">
+                                                                <i class="fa fa-angle-down"></i>
+                                                            </span>
+                                                        </span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>';
+                                }
+                                ?>
                      
          
          </ul><!-- /#primary-nav  -->
@@ -300,22 +370,22 @@
                     </div><!-- /.col -->
                 
                     <div class="col text-right">
-
-                        <div class="header-module">
-                            <ul class="social-icon social-icon-sm">
-                                <li>
-                                    <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#" target="_blank"><i class="fa fa-telegram"></i></a>
-                                </li>
-                            </ul>
-                        </div><!-- /.header-module -->
-                        
-                    </div><!-- /.col -->
+                            
+                            <div class="header-module">
+                                <ul class="social-icon social-icon-sm">
+                                    <li>
+                                        <a href="https://facebook.com/Diligentmart" target="_blank"><i class="fa fa-facebook"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="https://twitter.com/diligentmart?s=09" target="_blank"><i class="fa fa-twitter"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="https://t.me/Diligentmart" target="_blank"><i class="fa fa-telegram"></i></a>
+                                    </li>
+                                </ul>
+                            </div><!-- /.header-module -->
+                            
+                        </div><!-- /.col -->
                 
                 </div><!-- /.mainbar-row -->
             </div><!-- /.mainbar -->

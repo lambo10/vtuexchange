@@ -78,12 +78,11 @@
 									</svg>
 								</span>
 							</a>
-
+							
 							<ul class="social-icon scheme-white social-icon-md mt-70 mb-150">
-								<li><a href="#" class="opacity-05 reset-opacity-onhover" target="_blank"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#" class="opacity-05 reset-opacity-onhover" target="_blank"><i class="fa fa-behance"></i></a></li>
-								<li><a href="#" class="opacity-05 reset-opacity-onhover" target="_blank"><i class="fa fa-dribbble"></i></a></li>
-								<li><a href="#" class="opacity-05 reset-opacity-onhover" target="_blank"><i class="fa fa-instagram"></i></a></li>
+								<li><a href="https://facebook.com/Diligentmart" class="opacity-05 reset-opacity-onhover" target="_blank"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="https://twitter.com/diligentmart?s=09" class="opacity-05 reset-opacity-onhover" target="_blank"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="https://t.me/Diligentmart" class="opacity-05 reset-opacity-onhover" target="_blank"><i class="fa fa-telegram"></i></a></li>
 							</ul>
 
 						</div><!-- /.col-md-6 -->
@@ -342,11 +341,7 @@
 								<div class="contents">
 									<h3>Customer Support</h3>
 									<p>Open a ticket for complaint, feedback or unresolved issues. Our customer is always available to attend to your needs</p>
-									<a href="#" class="btn btn-underlined text-uppercase btn-bordered border-thin btn-bordered-gradient btn-bordered-gradient-primary font-size-12 lh-15 font-weight-medium ltr-sp-2 text-dark">
-										<span>
-											<span class="btn-txt">Support</span>
-										</span>
-									</a>
+									
 								</div><!-- /.contents -->
 							</div><!-- /.iconbox -->
 
@@ -363,11 +358,7 @@
 								<div class="contents">
 									<h3>Resell</h3>
 									<p>Sell DataBundle, AirTime, Pay bill e.t.c at your own price and make profit</p>
-									<a href="#" class="btn btn-underlined text-uppercase btn-bordered border-thin btn-bordered-gradient btn-bordered-gradient-primary font-size-12 lh-15 font-weight-medium ltr-sp-2 text-dark">
-										<span>
-											<span class="btn-txt">Discover One</span>
-										</span>
-									</a>
+									
 								</div><!-- /.contents -->
 							</div><!-- /.iconbox -->
 
@@ -384,11 +375,7 @@
 								<div class="contents">
 									<h3>Are You a Developer?</h3>
 									<p>Integrate our APIs to your website or mobile app. Available; VTU API, Data API, Startimes API, DStv/Gotv API</p>
-									<a href="#" class="btn btn-underlined text-uppercase btn-bordered border-thin btn-bordered-gradient btn-bordered-gradient-primary font-size-12 lh-15 font-weight-medium ltr-sp-2 text-dark">
-										<span>
-											<span class="btn-txt">Discover One</span>
-										</span>
-									</a>
+									
 								</div><!-- /.contents -->
 							</div><!-- /.iconbox -->
 

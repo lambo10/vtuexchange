@@ -2,21 +2,17 @@
 
 include'connect.php';
 
-$sql = "CREATE TABLE transactions (
+$sql = "CREATE TABLE service_Order (
 id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-userEmail VARCHAR(30),
-network VARCHAR(30),
-cost VARCHAR(30),
+cost VARCHAR(30) DEFAULT 0,
 type TEXT,
-status TEXT,
-output TEXT,
-refID TEXT,
+satisfied INT(2) DEFAULT 0,
 meter_pnone_iuc_No VARCHAR(30),
 date TIMESTAMP
 )";
 
 if ($conn->query($sql) === TRUE) {
-    echo "Table transactions created successfully";
+    echo "Table service_Order created successfully";
 } else {
     echo "Error creating table: " . $conn->error;
 }

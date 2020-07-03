@@ -100,7 +100,8 @@
 											<input class="bg-gray text-dark mb-30" type="email" id="email" aria-required="true" aria-invalid="false" placeholder="Your email address" required>
 											<input class="bg-gray text-dark mb-30" type="password" id="password" aria-required="true" aria-invalid="false" placeholder="Password" required>
 											<p class="font-size-16 opacity-07">Forgot Password? <a href="#">Click here</a>.</p><br>
-											<input type="button" value="Login" onclick="$.fn.submit_data()" />
+											<button id="submitBTN" style="cursor: pointer;" onclick="$.fn.submit_data()" type="button"><span id="submitBtnTxt">REGISTER </span><img id="submitBTNLoaderImg" src="images/loading.gif" style="width: 50px; height:50px; display:none" /></button>
+										
 										</div><!-- /.col-md-6 -->
 									</div><!-- /.row -->
 									</form>
@@ -135,23 +136,61 @@
 			var password = $("#password").val();
 			
 			if(email.length == 0 || password.length == 0){
-				alert("No field can be left empty");
+				$.fn.confirm("No field can be left empty ","red",function(){});
 			}else{
+				dispSubmitBtnLoader();
 					$.post( "api/login_process.php",{
 				email : email,
 				password : password
 			}, function( data ) {
 			if(data === "11111"){
-				$.fn.confirm("Login Successful","",function (){window.location = "index.php";});
+				// $.fn.confirm("Login Successful","",function (){
+				// 	window.location = `<?php 
+				// 		if(empty($orderID)){
+				// 			echo "dashboard.php";
+				// 		}else{
+				// 			echo "order.php";
+				// 		}
+						
+				// 		?>`;
+				// });
+
+				window.location = `<?php 
+						if(empty($orderID)){
+							echo "dashboard.php";
+						}else{
+							echo "order.php";
+						}
+						?>`;
 			}else if(data === "100113"){
 				$.fn.notification("Email or Password Incorrect","red");
+				clearSubmitBtnLoader();
 			}else if(data === "100114" || data === "100115"){
 				$.fn.notification("Invalid Inputed Data","red");
+				clearSubmitBtnLoader();
 			}
 			});
 				
 			}
          
+		 }
+
+		 function dispSubmitBtnLoader(){
+			 getE("submitBTNLoaderImg").style.display = "block";
+			 getE("submitBtnTxt").style.display = "none";
+			 getE("submitBTN").disabled = true;
+			 getE("submitBTN").style.cursor = "not-allowed";
+		 }
+
+		 function clearSubmitBtnLoader(){
+			 getE("submitBTNLoaderImg").style.display = "none";
+			 getE("submitBtnTxt").style.display = "block";
+			 getE("submitBTN").disabled = false;
+			 getE("submitBTN").style.cursor = "pointer";
+		 }
+
+		 function getE(id){
+			 return document.getElementById(id);
 		 }
 </script>
 </body>

@@ -97,36 +97,29 @@
 
 									<div class="row d-flex flex-wrap">
 										<div class="lqd-column col-md-6 mb-20">
-											<select class="bg-gray text-dark mb-30" aria-required="true" aria-invalid="false" >
+											<select id="netWorkSelection" class="bg-gray text-dark mb-30" aria-required="true" aria-invalid="false" >
 												<option>-Select Network Provider-</option>
-												<option>MTN</option>
-												<option>GLO</option>
-												<option>Airtel</option>
-												<option>9mobile</option>
+												<option value="MTN">MTN</option>
+												<option value="GLO">GLO</option>
+												<option value="AIRTEL">AIRTEL</option>
+												<option value="9MOBILE">9MOBILE</option>
 											</select>
-											<select class="bg-gray text-dark mb-30" aria-required="true" aria-invalid="false" >
+											<select id="plans" class="bg-gray text-dark mb-30" aria-required="true" aria-invalid="false" >
 												<option>-Data Plan-</option>
-												<option>500 MB(SME) - 30 days</option>
-												<option>1GB(SME) - 30 days</option>
-												<option>2GB MB(SME) - 30 days</option>
-												<option>5GB MB(SME) - 30 days</option>
 											</select>
-											<input class="bg-gray text-dark mb-30" type="email" name="mobileNo" aria-required="true" aria-invalid="false" placeholder="ENTER MOBILE NUMBERS" required>
+											<input id="phoneNo" class="bg-gray text-dark mb-30" type="email" name="mobileNo" aria-required="true" aria-invalid="false" placeholder="ENTER MOBILE NUMBER" required>
 										
 										</div><!-- /.col-md-6 -->
 										<div class="lqd-column col-md-6 mb-20">
-											<input class="bg-gray text-dark mb-30" type="text" name="amountToPay" aria-required="true" aria-invalid="false" placeholder="AMOUNT TO PAY (4% Discount)" required>
-											<select class="bg-gray text-dark mb-30" aria-required="true" aria-invalid="false" >
+											<input id="amountToPay" disabled="true" style="cursor: not-allowed;" class="bg-gray text-dark mb-30" type="text" name="amountToPay" aria-required="true" aria-invalid="false" placeholder="AMOUNT TO PAY (4% Discount)" required>
+											<select id="autoRenew" class="bg-gray text-dark mb-30" aria-required="true" aria-invalid="false" >
 												<option>-Auto Renew-</option>
 												<option>NO</option>
-												<option>Monthly</option>
-												<option>Every 3 Weeks</option>
-												<option>Every 2 Weeks</option>
-												<option>Every Week</option>
+												<option>YES</option>
 											</select>
 										</div><!-- /.col-md-12 -->
 										<div class="lqd-column col-md-6 text-md-right">
-											<input type="button" value="BUY NOW">
+											<button id="submitBTN" style="cursor: pointer;" onclick="$.fn.submit_data()" type="button"><span id="submitBtnTxt">BUY NOW </span><img id="submitBTNLoaderImg" src="images/loading.gif" style="width: 50px; height:50px; display:none" /></button>
 										</div><!-- /.col-md-6 -->
 									</div><!-- /.row -->
 									</form>
@@ -151,15 +144,98 @@
 
 <script src="js/jquery.min.js"></script>
 <script src="js/jbox.all.min.js"></script>
+<script src="js/generalOp.js"></script>
 <script src="./assets/js/theme-vendors.js"></script>
 <script src="./assets/js/theme.min.js"></script>
 <script src="./assets/js/liquidAjaxMailchimp.min.js"></script>
 <script>
-	$.fn.submit_data = function(){ 
-			var networkProvider = $("#netWorkSelection").val();
-			var airtimeValue = $("#airtimeValue").val();
-			var mobileNo = $("#mobileNo").val();
-			alert(networkProvider);
+		 $.fn.submit_data = function(){ 
+			var planRaw = $("#plans").val();
+			var autoRenewRaw = $("#autoRenew").val();
+			var phoneNo = $("#phoneNo").val();
+
+			if(phoneNo.length > 0){
+			if(planRaw === "-Data Plan-"){
+				$.fn.confirm("Pls Select a Data Plan ","red",function(){});
+			}else{
+				var plan = planRaw.split("|");
+				if(autoRenewRaw === "-Auto Renew-"){
+					autoRenewRaw = "NO";
+				}
+
+				dispSubmitBtnLoader();
+				$.get( "api/process_buyData.php",{
+				serviceID: plan[0],
+				autoRenew: autoRenewRaw,
+				phoneNo: phoneNo
+				}, function( result ) {
+					if(result === "100111"){
+						$.fn.notification("Erro purchasing data -- Pls try again","red");
+						clearSubmitBtnLoader();
+					}else{
+						$.fn.notification("Data purchase successsfull","green");
+						clearSubmitBtnLoader();
+					}
+				});
+
+			}
+		}else{
+			$.fn.confirm("Enter mobile number","red",function(){});
+		}
+			
+		 }
+		 $.fn.getDataPlans = function(){ 
+			var val = $("#netWorkSelection").val();
+			
+			$.get( "api/get_profit_margin.php",{
+				networkProvider: val,
+				serviceType: "DATA",
+			}, function( profitMargin ) {
+
+				$.get( "api/getServices.php",{
+				networkProvider: val,
+				serviceType: "DATA",
+			}, function( data ) {
+				var json_data = JSON.parse(data);
+				var optionsCollections = "<option>-Data Plan-</option>"
+          json_data.forEach((element) => {
+				var wrkStr = '<option value="'+element.id+'|'+(parseInt(element.cost) + parseInt(JSON.parse(profitMargin)[0].profit) )+'">'+element.type+'    =    ₦ '+(parseInt(element.cost) + parseInt(JSON.parse(profitMargin)[0].profit) )+'   '+element.validity+'</option>';
+				optionsCollections = optionsCollections + wrkStr;
+		  });		
+		  $("#plans").html(optionsCollections);	
+			});
+
+			});
+		 }
+		 
+		 $("#netWorkSelection").change(function () {
+			$.fn.getDataPlans();
+		 });
+		 $("#plans").change(function(){
+			var val = $(this).val();
+			if(val === "-Data Plan-"){
+			}else{
+			var cost = val.split("|");
+			getE("amountToPay").value = "₦ "+cost[1];
+			}
+		 });
+
+		 function dispSubmitBtnLoader(){
+			 getE("submitBTNLoaderImg").style.display = "block";
+			 getE("submitBtnTxt").style.display = "none";
+			 getE("submitBTN").disabled = true;
+			 getE("submitBTN").style.cursor = "not-allowed";
+		 }
+
+		 function clearSubmitBtnLoader(){
+			 getE("submitBTNLoaderImg").style.display = "none";
+			 getE("submitBtnTxt").style.display = "block";
+			 getE("submitBTN").disabled = false;
+			 getE("submitBTN").style.cursor = "pointer";
+		 }
+
+		 function getE(id){
+			 return document.getElementById(id);
 		 }
 </script>
 </body>

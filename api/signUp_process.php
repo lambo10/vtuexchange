@@ -6,6 +6,7 @@ include'connect.php';
   $email = $_POST["email"];
   $phone = $_POST["phone"];
   $password = $_POST["password"];
+  $whoReferred_id = $_POST["whoReferred_id"];
   
 if(scrutinize($email)){
     if(scrutinize($password)){
@@ -25,8 +26,9 @@ if ($result2->num_rows > 0) {
 }
 
 if($exisit==0){
-$sql = "INSERT INTO users (name,email,phone,password)
-VALUES ('$name','$email','$phone','$password')";
+    $token = genarateToken(5);
+$sql = "INSERT INTO users (name,email,phone,password,whoReferredID,referralID)
+VALUES ('$name','$email','$phone','$password','$whoReferred_id','$token')";
 
 if ($conn->query($sql) === TRUE) {
 session_start();
@@ -46,6 +48,10 @@ echo "100113";
 }else{
     echo "100115";
 }
+
+function genarateToken($len = 32){
+    return substr(md5(openssl_random_pseudo_bytes(20)), -$len);
+    }
 
 function scrutinize($data){
     $has_semicolon = stripos($data, '"') !== false;
