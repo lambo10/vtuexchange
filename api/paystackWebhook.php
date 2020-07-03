@@ -8,7 +8,7 @@ if ((strtoupper($_SERVER['REQUEST_METHOD']) != 'POST' ) || !array_key_exists('HT
 
 // Retrieve the request's body
 $input = @file_get_contents("php://input");
-define('PAYSTACK_SECRET_KEY','sk_xxxx_xxxxxx');
+define('PAYSTACK_SECRET_KEY','sk_live_7b1929f6259ec77441910467401c430480d2902c');
 
 if(!$_SERVER['HTTP_X_PAYSTACK_SIGNATURE'] || ($_SERVER['HTTP_X_PAYSTACK_SIGNATURE'] !== hash_hmac('sha512', $input, PAYSTACK_SECRET_KEY))){
   // silently forget this ever happened
@@ -21,6 +21,7 @@ http_response_code(200);
 // parse event (which is json string) as object
 // Do something - that will not take long - with $event
 $event = json_decode($input);
+
 switch($event->event){
     // subscription.create
     case 'subscription.create':
@@ -28,21 +29,20 @@ switch($event->event){
 
     // charge.success
     case 'charge.success':
-        break;
-
-    // subscription.disable
-    case 'subscription.disable':
-        $costumer_email = $event->customer;
+        $costumer_email = $event->data->customer->email;
         $paid_amount = $event->data->amount;
         $refID = $event->data->reference;
         $prev_user_balance = getUserBalance ($conn,$costumer_email);
         if(strcmp($prev_user_balance,"null") == 0){
         }else{
-             if(updateUserBalance($conn,((int)$paid_amount+(int)$prev_user_balance),$costumer_email)){
-                insertTransaction($conn,$costumer_email,$paid_amount,$type,$refID);
+             if(updateUserBalance($conn,(((float)$paid_amount/100) + (float)$prev_user_balance),$costumer_email)){
+                insertTransaction($conn,$costumer_email,$paid_amount,"FUND",$refID);
             };
         }
-        
+        break;
+
+    // subscription.disable
+    case 'subscription.disable':
         break;
 
     // invoice.create and invoice.update
