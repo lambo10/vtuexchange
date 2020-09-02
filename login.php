@@ -1,3 +1,7 @@
+<?php
+include 'api/connect.php';
+include 'api/clearReset_key_table.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -99,8 +103,9 @@
 										<div class="lqd-column col-md-12 mb-20">
 											<input class="bg-gray text-dark mb-30" type="email" id="email" aria-required="true" aria-invalid="false" placeholder="Your email address" required>
 											<input class="bg-gray text-dark mb-30" type="password" id="password" aria-required="true" aria-invalid="false" placeholder="Password" required>
-											<p class="font-size-16 opacity-07">Forgot Password? <a href="#">Click here</a>.</p><br>
-											<button id="submitBTN" style="cursor: pointer;" onclick="$.fn.submit_data()" type="button"><span id="submitBtnTxt">REGISTER </span><img id="submitBTNLoaderImg" src="images/loading.gif" style="width: 50px; height:50px; display:none" /></button>
+											<p class="font-size-16 opacity-07">Forgot Password? <a href="forgot_pass_eEmail.php">Click here</a>.</p>
+											<p class="font-size-16 opacity-07"><a href="register.php">Click here</a> to register if you dont have an account</p><br>
+											<button id="submitBTN" style="cursor: pointer;" onclick="$.fn.submit_data()" type="button"><span id="submitBtnTxt">LOGIN </span><img id="submitBTNLoaderImg" src="images/loading.gif" style="width: 50px; height:50px; display:none" /></button>
 										
 										</div><!-- /.col-md-6 -->
 									</div><!-- /.row -->
@@ -192,6 +197,10 @@
 		 function getE(id){
 			 return document.getElementById(id);
 		 }
+		 
 </script>
+<?php
+	include 'api/footerAdditions.php'
+	?>
 </body>
 </html>

@@ -17,8 +17,10 @@
 	<link rel="stylesheet" href="assets/vendors/liquid-icon/liquid-icon.min.css" />
 	<link rel="stylesheet" href="assets/vendors/font-awesome/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="assets/css/theme-vendors.min.css" />
-	<link rel="stylesheet" href="assets/css/theme.min.css" />
+	<link rel="stylesheet" href="assets/css/theme.css" />
 	<link rel="stylesheet" href="assets/css/themes/seo.css" />
+	<link rel="stylesheet" href="css/jBox.all.min.css" />
+	<link rel="stylesheet" href="css/nl_addition.css" />
 	
 	<!-- Head Libs -->
 	<script async src="assets/vendors/modernizr.min.js"></script>
@@ -28,7 +30,8 @@
 	
 	<div id="wrap">
     <?php 
-    include 'header2.php';
+	include 'header2.php';
+	include 'api/connect.php'
     ?>
 		
 		<main id="content" class="content">
@@ -55,25 +58,30 @@
 
                                         <div class="row d-flex flex-wrap">
                                             <div class="lqd-column col-md-6 mb-20">
-                                                <select class="bg-gray text-dark mb-30" aria-required="true" aria-invalid="false" >
+                                                <select id="ElectricCompany" class="bg-gray text-dark mb-30" aria-required="true" aria-invalid="false" >
                                                     <option>-Electricity Company-</option>
-                                                    <option>EKED</option>
-                                                    <option>IKEDC</option>
-                                                    <option>AEDC</option>
-                                                    <option>IBEDC</option>
+                                                    <?php 
+
+											$handle2 = "SELECT * FROM networks WHERE status='1' AND type='POWER'";
+											$result2 = $conn->query($handle2);
+											if ($result2->num_rows > 0) {
+												while($row = $result2->fetch_assoc()) {
+													echo '<option value="'.$row["name"].'">'.$row["name"].'</option>';
+												}
+											}
+													?>
                                                 </select>
-                                                <select class="bg-gray text-dark mb-30" aria-required="true" aria-invalid="false" >
-                                                    <option>-Meter Type-</option>
-                                                    <option>Prepaid</option>
-                                                    <option>Postpaid</option>
+                                                <select id="meterType" class="bg-gray text-dark mb-30" aria-required="true" aria-invalid="false" >
+                                                    <option value="00">-Meter Type-</option>
+                                                    <option value="01">Prepaid</option>
+                                                    <option value="02">Postpaid</option>
                                                 </select>
-                                                <input class="bg-gray text-dark mb-30" type="number" name="meter_no" aria-required="true" aria-invalid="false" placeholder="METER NUMBER -> " required>
+                                                <input id="meterNumber" class="bg-gray text-dark mb-30" type="number" name="meter_no" aria-required="true" aria-invalid="false" placeholder="METER NUMBER -> " required>
                                             </div><!-- /.col-md-6 -->
                                             <div class="lqd-column col-md-6 mb-20">
                                                 
-                                                <input class="bg-gray text-dark mb-30" type="number" name="phone_no" aria-required="true" aria-invalid="false" placeholder="PHONE NUMBER -> " required>
-                                                <input class="bg-gray text-dark mb-30" type="number" name="amount" aria-required="true" aria-invalid="false" placeholder="Amount" required>
-                                                <!-- <input class="bg-gray text-dark mb-30" type="number" name="amountToPay" aria-required="true" aria-invalid="false" placeholder="Amount to pay" required> -->
+                                                <input id="phoneNo" class="bg-gray text-dark mb-30" type="number" name="phone_no" aria-required="true" aria-invalid="false" placeholder="PHONE NUMBER -> " required>
+                                                <input id="sub_amount" class="bg-gray text-dark mb-30" type="number" name="amount" aria-required="true" aria-invalid="false" placeholder="Amount" required>
                                                 <select class="bg-gray text-dark mb-30" aria-required="true" aria-invalid="false" >
                                                     <option>-Auto Renew-</option>
                                                     <option>NO</option>
@@ -81,10 +89,11 @@
                                                 </select>
                                             </div><!-- /.col-md-12 -->
                                             <div class="lqd-column col-md-6 text-md-right" style="padding-top: 10px;">
-                                                <input type="button" value="VERIFY METER NUMBER">
+                                            <button id="verifyBTN" class="lamboSubmitBTN" style="cursor: pointer;" onclick="$.fn.verifyMeterNo()" type="button"><span id="verifyBtnTxt">VERIFY METER NUMBER </span><img id="verifyBTNLoaderImg" src="images/loading.gif" style="width: 50px; height:50px; display:none" /></button>
+
                                             </div><!-- /.col-md-6 -->
                                             <div class="lqd-column col-md-6 text-md-right" style="padding-top: 10px;">
-                                                <input type="button" value="BUY NOW">
+                                            <button id="submitBTN" class="lamboSubmitBTN" style="cursor: pointer;" onclick="$.fn.submit_data()" type="button"><span id="submitBtnTxt">BUY NOW </span><img id="submitBTNLoaderImg" src="images/loading.gif" style="width: 50px; height:50px; display:none" /></button>
                                             </div><!-- /.col-md-6 -->
                                         </div><!-- /.row -->
 									</form>
@@ -107,10 +116,139 @@
 	
 </div><!-- /#wrap -->
 
-<script src="./assets/vendors/jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/jbox.all.min.js"></script>
+<script src="js/generalOp.js"></script>
 <script src="./assets/js/theme-vendors.js"></script>
-<script src="./assets/js/theme.min.js"></script>
+<script src="./assets/js/theme.js"></script>
 <script src="./assets/js/liquidAjaxMailchimp.min.js"></script>
+
+<script>
+	var static_data = {
+		serviceID:""
+	};
+
+	$.fn.verifyMeterNo = function(){ 
+            var ElectricCompany = $("#ElectricCompany").val();
+            var meterNumber = $("#meterNumber").val();
+
+                if(meterNumber.length <= 0){
+                    $.fn.confirm("Enter Meter Number ","red",function(){});
+                    }else{
+                        if(ElectricCompany === "-Electricity Company-"){
+                        $.fn.confirm("Pls Select -Electricity Company- ","red",function(){});
+                        }else{
+
+				dispVerifyBtnLoader();
+				$.get( "api/process_buyService.php",{
+                ElectricCompany: ElectricCompany,
+                meterNumber: meterNumber,
+                sub_service_type:"VERIFY_METER_NO"
+				}, function( result ) {
+					if(result === "100111"){
+						$.fn.notification("Erro Verifying Meter No -- Pls try again","red");
+						clearVerifyBtnLoader();
+					}else{
+						$.fn.confirm(result,"#808291",function(){});
+						clearVerifyBtnLoader();
+					}
+				});
+
+			
+            }
+            }
+			
+		 }
+
+		 $.fn.submit_data = function(){ 
+			var sub_amount = $("#sub_amount").val();
+			var autoRenewRaw = $("#autoRenew").val();
+			var phoneNo = $("#phoneNo").val();
+            var ElectricCompany = $("#ElectricCompany").val();
+            var meterType = $("#meterType").val();
+            var meterNumber = $("#meterNumber").val();
+
+			if(phoneNo.length > 0){
+                if(meterType === "00"){
+                    $.fn.confirm("Pls Select -Meter Type- ","red",function(){});
+                    }else{
+                        if(ElectricCompany === "-Electricity Company-"){
+                        $.fn.confirm("Pls Select -Electricity Company- ","red",function(){});
+                        }else{
+			if(sub_amount.length <= 0){
+				$.fn.confirm("Pls Enter Amount ","red",function(){});
+			}else{
+				
+				if(autoRenewRaw === "-Auto Renew-"){
+					autoRenewRaw = "NO";
+				}
+
+				dispSubmitBtnLoader();
+				$.get( "api/process_buyService.php",{
+                ElectricCompany: ElectricCompany,
+                meterType: meterType,
+                meterNumber: meterNumber,
+				autoRenew: autoRenewRaw,
+				phoneNo: phoneNo,
+				sub_amount: sub_amount,
+                sub_service_type:"POWER"
+				}, function( result ) {
+					if(result === "100111"){
+						$.fn.notification("Erro purchasing Power -- Pls try again","red");
+						clearSubmitBtnLoader();
+					}else if(result === "100119"){
+						$.fn.notification("Insufficient Balance","red");
+						clearSubmitBtnLoader();
+					}else{
+						$.fn.notification("Power purchase successsfull","green");
+						clearSubmitBtnLoader();
+					}
+				});
+
+			}
+            }
+            }
+		}else{
+			$.fn.confirm("Enter mobile number","red",function(){});
+		}
+			
+		 }
+
+		 function dispSubmitBtnLoader(){
+			 getE("submitBTNLoaderImg").style.display = "block";
+			 getE("submitBtnTxt").style.display = "none";
+			 getE("submitBTN").disabled = true;
+			 getE("submitBTN").style.cursor = "not-allowed";
+		 }
+
+		 function clearSubmitBtnLoader(){
+			 getE("submitBTNLoaderImg").style.display = "none";
+			 getE("submitBtnTxt").style.display = "block";
+			 getE("submitBTN").disabled = false;
+			 getE("submitBTN").style.cursor = "pointer";
+		 }
+
+		 function dispVerifyBtnLoader(){
+			 getE("verifyBTNLoaderImg").style.display = "block";
+			 getE("verifyBtnTxt").style.display = "none";
+			 getE("verifyBTN").disabled = true;
+			 getE("verifyBTN").style.cursor = "not-allowed";
+		 }
+
+		 function clearVerifyBtnLoader(){
+			 getE("verifyBTNLoaderImg").style.display = "none";
+			 getE("verifyBtnTxt").style.display = "block";
+			 getE("verifyBTN").disabled = false;
+			 getE("verifyBTN").style.cursor = "pointer";
+		 }
+
+		 function getE(id){
+			 return document.getElementById(id);
+		 }
+</script>
+<?php
+	include 'api/footerAdditions.php'
+	?>
 
 </body>
 </html>

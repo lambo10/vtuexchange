@@ -1,3 +1,7 @@
+<?php
+include 'api/connect.php';
+include 'api/clearReset_key_table.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,6 +23,7 @@
 	<link rel="stylesheet" href="assets/css/theme-vendors.min.css" />
 	<link rel="stylesheet" href="assets/css/theme.min.css" />
 	<link rel="stylesheet" href="assets/css/themes/seo.css" />
+	<link rel="stylesheet" href="css/jBox.all.min.css" />
 	<link rel="stylesheet" href="css/nl_addition.css" />
 	
 	<!-- Head Libs -->
@@ -315,7 +320,7 @@
 								<a href="transferFund.php">
 								<div class="contents">
 									<h3>Transfer Funds</h3>
-									<p>Praesent pharetra risus pharetra orci ultrices, vel pharetra.</p>
+									<p>Transfer funds to other diligentmart users instantly.</p>
 								</div><!-- /.contents -->
 								</a>
 							</div><!-- /.iconbox -->
@@ -385,147 +390,59 @@
 				</div><!-- /.container -->
 			</section>
 
-			<section class="vc_row pt-100 pb-50">
+			<section class="vc_row pb-50">
 				<div class="container">
 					<div class="row">
 
-						<div class="lqd-column col-md-12">
+					<div class="lqd-column col-md-12 pt-85">
 
-							<div class="liquid-blog-posts">
-								<div class="liquid-blog-grid row" data-liquid-masonry="true">
+					<div class="row">
+					<?php 
 
-									<div class="lqd-column col-md-4 masonry-item">
+$handle2 = "SELECT * FROM blog_posts ORDER BY id DESC LIMIT 4";
+$result2 = $conn->query($handle2);
+if ($result2->num_rows > 0) {
+	while($row = $result2->fetch_assoc()) {
+		$shortend_title = substr($row["title"],0,50);
+		$shortend_body = substr($row["body"],0,100);
+		echo '<div class="lqd-column col-md-3 col-sm-6 masonry-item">
 
-										<article class="liquid-lp liquid-blog-item liquid-blog-item-grid liquid-blog-scheme-dark">
+		<article class="liquid-lp mb-40">
 
-											<figure class="liquid-lp-media">
-												<a href="#">
-													<img src="./images/dishs.jpg" alt="Lates Post" style="height: 200px;">
-												</a>
-											</figure>
-											
-											<div class="liquid-blog-item-inner">
-												
-												<a href="#" class="liquid-overlay-link">Business meeting 2017 in San Francisco</a>
-										
-												<header class="liquid-lp-header">
-													<h2 class="liquid-lp-title font-weight-bold h3 size-sm">
-														<a href="#" data-split-text="text" data-split-options='{ "type": "lines" }'>Nigerian internet subscriptions rise in April from March but broadband penetration rate falls</a>
-													</h2>
-													<div class="liquid-lp-details">
-														<time class="liquid-lp-date" datetime="2017-09-25">5 hours ago</time>
-													</div><!-- /.liquid-lp-details -->
-												</header>
-												
-												<div class="liquid-lp-excerpt">
-													<p>The number of internet subscriptions recorded on mobile, fixed wired and VoIP networks increased to 138.7 million at the end of April from 136.20 million in March, according to the Nigerian Communications Commission (NCC). The broadband penetration rate dropped to 39.58 percent from 39.90 per cent in March.</p>
-												</div><!-- /.latest-post-excerptc -->
-												
-												<footer class="liquid-lp-footer">
-													<a href="#" class="btn btn-naked text-uppercase ltr-sp-1 size-sm font-weight-bold liquid-lp-read-more">
-														<span>
-															<span class="btn-line btn-line-before"></span>
-															<span class="btn-txt">Continue Reading</span>
-															<span class="btn-line btn-line-after"></span>
-														</span>
-													</a>
-												</footer>
-												
-											</div><!-- /.liquid-blog-item-inner -->
-											
-										</article>
-										
-									</div><!-- /.col-md-4 -->
+			<figure class="liquid-lp-media">
+				<a href="blog-post.php?id='.$row["id"].'">
+					<img style="height: 250px;" src="./api/uploads/blog_post_pic/'.$row["id"].'/post_pic.jpg" alt="Lates Post">
+				</a>
+			</figure>
+		
+			<header class="liquid-lp-header" style="height: 50px;">
+				<h2 class="liquid-lp-title h4 font-size-19"><a href="#">'.$shortend_title.'</a></h2>
+			</header>
+		
+			<div class="liquid-lp-excerpt" style="height: 50px;">
+				<p>'.$shortend_body.'</p>
+			</div><!-- /.latest-post-excerptc -->
+		
+			<footer class="liquid-lp-footer">
+				<a href="blog-post.php?id='.$row["id"].'" class="btn btn-naked liquid-lp-read-more font-weight-bold">
+					<span>
+						<a href="blog-post.php?id='.$row["id"].'"><span class="btn-txt">Read more</span></a>
+						<span class="btn-icon">
+							<i class="fa fa-angle-right"></i>
+						</span>
+					</span>
+				</a>
+			</footer>
+		
+		</article>
 
-									<div class="lqd-column col-md-4 masonry-item">
+	</div><!-- /.col-md-3 col-sm-6 -->';
+	}
+}
+?>
+					</div>
 
-										<article class="liquid-lp liquid-blog-item liquid-blog-item-grid liquid-blog-scheme-dark">
-
-											<figure class="liquid-lp-media">
-												<a href="#">
-													<img src="./images/cable.jpg" alt="Lates Post" style="height: 200px;">
-												</a>
-											</figure>
-											
-											<div class="liquid-blog-item-inner">
-												
-												<a href="#" class="liquid-overlay-link">NCC seeks public input on 5G policy</a>
-										
-												<header class="liquid-lp-header">
-													<h2 class="liquid-lp-title font-weight-bold h3 size-sm">
-														<a href="#" data-split-text="text" data-split-options='{ "type": "lines" }'>NCC seeks public input on 5G policy</a>
-													</h2>
-													<div class="liquid-lp-details">
-														<time class="liquid-lp-date" datetime="2017-09-25">8 hours ago</time>
-													</div><!-- /.liquid-lp-details -->
-												</header>
-												
-												<div class="liquid-lp-excerpt">
-													<p>The Nigerian Communications Commission has commenced plans to develop a policy for commercial deployment of 5G  technology and is seeking input from stakeholders. In a public notice, the regulator said a trial conducted on the 3.5 GHz and 26 GHz bands indicates that 5G technology had improved performance over previous ones and would be beneficial for Nigeria's socioeconomic development.</p>
-												</div><!-- /.latest-post-excerptc -->
-												
-												<footer class="liquid-lp-footer">
-													<a href="#" class="btn btn-naked text-uppercase ltr-sp-1 size-sm font-weight-bold liquid-lp-read-more">
-														<span>
-															<span class="btn-line btn-line-before"></span>
-															<span class="btn-txt">Continue Reading</span>
-															<span class="btn-line btn-line-after"></span>
-														</span>
-													</a>
-												</footer>
-												
-											</div><!-- /.liquid-blog-item-inner -->
-											
-										</article>
-										
-									</div><!-- /.col-md-4 -->
-
-									<div class="lqd-column col-md-4 masonry-item">
-
-										<article class="liquid-lp liquid-blog-item liquid-blog-item-grid liquid-blog-scheme-dark">
-
-											<figure class="liquid-lp-media">
-												<a href="#">
-													<img src="./images/globe.jpg" alt="Lates Post" style="height: 200px;">
-												</a>
-											</figure>
-											
-											<div class="liquid-blog-item-inner">
-												
-												<a href="#" class="liquid-overlay-link">NCC reserves 26 GHz, 38 GHz and 42 GHz frequencies for 5G licensing</a>
-										
-												<header class="liquid-lp-header">
-													<h2 class="liquid-lp-title font-weight-bold h3 size-sm">
-														<a href="#" data-split-text="text" data-split-options='{ "type": "lines" }'>NCC reserves 26 GHz, 38 GHz and 42 GHz frequencies for 5G licensing</a>
-													</h2>
-													<div class="liquid-lp-details">
-														<time class="liquid-lp-date" datetime="2017-09-25">2 days ago</time>
-												</header>
-												
-												<div class="liquid-lp-excerpt">
-													<p>The Nigeria Communications Commission (NCC) says the country is reserving the 26 GHz, 38 GHz and 42 GHz spectrum frequencies for 5G mobile broadband licensing, The Leadership reported. NCC CEO Umar Garba Danbatta said it is waiting in anticipation for standardisation to be completed at the World Radio Communication (WRC) in Egypt and then see how to move forward with licensing in the three frequencies.</p>
-												</div><!-- /.latest-post-excerptc -->
-												
-												<footer class="liquid-lp-footer">
-													<a href="#" class="btn btn-naked text-uppercase ltr-sp-1 size-sm font-weight-bold liquid-lp-read-more">
-														<span>
-															<span class="btn-line btn-line-before"></span>
-															<span class="btn-txt">Continue Reading</span>
-															<span class="btn-line btn-line-after"></span>
-														</span>
-													</a>
-												</footer>
-												
-											</div><!-- /.liquid-blog-item-inner -->
-											
-										</article>
-										
-									</div><!-- /.col-md-4 -->
-
-								</div><!-- /.liquid-blog-grid row -->
-							</div><!-- /.liquid-blog-posts -->
-
-						</div><!-- /.lqd-column col-md-12 -->
+					</div><!-- /.col-md-12 -->
 
 					</div><!-- /.row -->
 				</div><!-- /.container -->
@@ -535,91 +452,40 @@
 			<div class="container">
 									<div class="row">
 
+									<?php 
+
+$handle2 = "SELECT * FROM products_posts ORDER BY id DESC LIMIT 4";
+$result2 = $conn->query($handle2);
+if ($result2->num_rows > 0) {
+	while($row = $result2->fetch_assoc()) {
+		echo '<div class="lqd-column col-md-3 col-xs-6" style="height: 400px;">
+				
+		<div class="ld-sp pos-rel">
+			<figure class="ld-sp-img">
+				<a>
+					<img class="nl_produImg" style="height: 130px;" src="./api/uploads/product_post/'.$row["id"].'/post_pic.jpg" alt="Product">
+				</a>
+			</figure>
+			<div class="ld-sp-info">
+				<h3>
+					<div style="color: white; height: 50px;" >'.$row["name"].'</div>
+				</h3>
+				<p class="ld-sp-price">
+					<span class="ld-sp-price-amount" style="color: white;">
+						<span class="ld-sp-currency" >₦</span>'.$row["price"].'
+					</span>
+				</p>
+				<p><a href="Tel:'.$row["phone"].'"><button type="button" class="btn ld_sf_button px-4">Call</button></a></p>
+			</div><!-- /.ld-sp-info -->
+		</div><!-- /.ld-sp -->
+
+	</div>';
+	}
+}
+?>
+
 									
-										<div class="lqd-column col-md-3 col-xs-6">
-				
-											<div class="ld-sp pos-rel">
-												<figure class="ld-sp-img">
-													<a href="#">
-														<img class="nl_produImg" src="./assets/demo/shop/products/product-3.jpg" alt="Product">
-													</a>
-												</figure>
-												<div class="ld-sp-info">
-													<h3>
-														<a href="#" style="color: white;">Shiny Sweater</a>
-													</h3>
-													<p class="ld-sp-price">
-														<span class="ld-sp-price-amount" style="color: white;">
-															<span class="ld-sp-currency" >$</span>9.90
-														</span>
-													</p>
-												</div><!-- /.ld-sp-info -->
-											</div><!-- /.ld-sp -->
-				
-										</div><!-- /.lqd-column col-md-3 col-xs-6 -->
-										<div class="lqd-column col-md-3 col-xs-6">
-				
-											<div class="ld-sp pos-rel">
-												<figure class="ld-sp-img">
-													<a href="#">
-														<img class="nl_produImg" src="./assets/demo/shop/products/product-3.jpg" alt="Product">
-													</a>
-												</figure>
-												<div class="ld-sp-info">
-													<h3>
-														<a href="#" style="color: white;">Shiny Sweater</a>
-													</h3>
-													<p class="ld-sp-price">
-														<span class="ld-sp-price-amount" style="color: white;">
-															<span class="ld-sp-currency" >$</span>9.90
-														</span>
-													</p>
-												</div><!-- /.ld-sp-info -->
-											</div><!-- /.ld-sp -->
-				
-										</div><!-- /.lqd-column col-md-3 col-xs-6 -->
-										<div class="lqd-column col-md-3 col-xs-6">
-				
-											<div class="ld-sp pos-rel">
-												<figure class="ld-sp-img">
-													<a href="#">
-														<img class="nl_produImg" src="./assets/demo/shop/products/product-3.jpg" alt="Product">
-													</a>
-												</figure>
-												<div class="ld-sp-info">
-													<h3>
-														<a href="#" style="color: white;">Shiny Sweater</a>
-													</h3>
-													<p class="ld-sp-price">
-														<span class="ld-sp-price-amount" style="color: white;">
-															<span class="ld-sp-currency" >$</span>9.90
-														</span>
-													</p>
-												</div><!-- /.ld-sp-info -->
-											</div><!-- /.ld-sp -->
-				
-										</div><!-- /.lqd-column col-md-3 col-xs-6 -->
-										<div class="lqd-column col-md-3 col-xs-6">
-				
-											<div class="ld-sp pos-rel">
-												<figure class="ld-sp-img">
-													<a href="#">
-														<img class="nl_produImg" src="./assets/demo/shop/products/product-3.jpg" alt="Product">
-													</a>
-												</figure>
-												<div class="ld-sp-info">
-													<h3>
-														<a href="#" style="color: white;">Shiny Sweater</a>
-													</h3>
-													<p class="ld-sp-price">
-														<span class="ld-sp-price-amount" style="color: white;">
-															<span class="ld-sp-currency" >$</span>9.90
-														</span>
-													</p>
-												</div><!-- /.ld-sp-info -->
-											</div><!-- /.ld-sp -->
-				
-										</div><!-- /.lqd-column col-md-3 col-xs-6 -->
+										
 				
 									</div><!-- /.row -->
 			</div>
@@ -638,7 +504,11 @@
 <script src="./assets/vendors/jquery.min.js"></script>
 <script src="./assets/js/theme-vendors.js"></script>
 <script src="./assets/js/theme.min.js"></script>
-
-
+<script src="js/jquery.min.js"></script>
+<script src="js/jbox.all.min.js"></script>
+<script src="js/generalOp.js"></script>
+<?php
+include 'api/footerAdditions.php'
+?>
 </body>
 </html>

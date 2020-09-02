@@ -19,6 +19,7 @@
 	<link rel="stylesheet" href="assets/css/theme-vendors.min.css" />
 	<link rel="stylesheet" href="assets/css/theme.min.css" />
 	<link rel="stylesheet" href="assets/css/themes/seo.css" />
+	<link rel="stylesheet" href="css/jBox.all.min.css" />
 	
 	<!-- Head Libs -->
 	<script async src="assets/vendors/modernizr.min.js"></script>
@@ -44,7 +45,26 @@
 							<div class="lqd-column-inner bg-white border-radius-6 px-3 px-md-4 pt-40 pb-40">
 
 								<header class="fancy-title">
-                                    <div><img src="images/wallet.svg" style="width: 80px; height: 80px;" /><span style="font-size: 25px;">Fund</span></div>
+									<div><img src="images/wallet.svg" style="width: 80px; height: 80px;" /><span style="font-size: 25px;">Fund</span></div>
+									<div>Min Amount <?php 
+									include 'api/connect.php';
+											$accType = "";
+
+											$handle2 = "SELECT accType FROM users WHERE email='$email'";
+										$result2 = $conn->query($handle2);
+										if ($result2->num_rows > 0) {
+											while($row = $result2->fetch_assoc()) {
+												$accType = $row["accType"];
+												if(strcmp($accType,"Enduser") == 0){
+													 echo "₦1";
+													}else if(strcmp($accType,"Reseller") == 0){
+														echo "₦4000";
+													}else if(strcmp($accType,"Portal-Owner") == 0){
+														echo "₦7000";
+													}
+											}
+										}
+											?></div>
 								</header><!-- /.fancy-title -->
 
 								<div class="contact-form contact-form-button-block font-size-14">
@@ -84,7 +104,9 @@
 	
 </div><!-- /#wrap -->
 
-<script src="./assets/vendors/jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/jbox.all.min.js"></script>
+<script src="js/generalOp.js"></script>
 <script src="./assets/js/theme-vendors.js"></script>
 <script src="./assets/js/theme.min.js"></script>
 <script src="./assets/js/liquidAjaxMailchimp.min.js"></script>
@@ -94,19 +116,31 @@
 const paymentForm = document.getElementById('paymentForm');
 
 function payWithPaystack() {
-  
+  var deposite_amount = document.getElementById("amount").value;
+  var minamount = <?php if(strcmp($accType,"Enduser") == 0){
+									echo "1";
+								}else if(strcmp($accType,"Reseller") == 0){
+									echo "4000";
+								}else if(strcmp($accType,"Portal-Owner") == 0){
+									echo "7000";
+								}
+								?>;
+if(deposite_amount >= minamount){
   let handler = PaystackPop.setup({
-    key: 'pk_live_b2d83ff9093a14c82298daba8d77846bed3af62e', // Replace with your public key
+    key: 'pk_live_30015d0272892375c8b192f9a052e310921194ea', // Replace with your public key
     email: document.getElementById("email-address").value,
-    amount: document.getElementById("amount").value * 100,
+    amount: deposite_amount * 100,
     ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
     // label: "Optional string that replaces customer email"
     callback: function(response){
       let message = 'Payment complete! Reference: ' + response.reference;
-      alert(message);
+      $.fn.notification(message,"green");
     }
   });
   handler.openIframe();
+}else{
+	$.fn.notification("Amount below minimum amount","red");
+}
 }
 
 function startPayment(){
@@ -118,5 +152,8 @@ function startPayment(){
           }
 }
 </script>
+<?php
+	include 'api/footerAdditions.php'
+	?>
 </body>
 </html>

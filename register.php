@@ -1,3 +1,7 @@
+<?php
+include 'api/connect.php';
+include 'api/clearReset_key_table.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -100,11 +104,62 @@
 											<input class="bg-gray text-dark mb-30" type="text" id="name" aria-required="true" aria-invalid="false" placeholder="Full Name" required>
 											<input class="bg-gray text-dark mb-30" type="email" id="email" aria-required="true" aria-invalid="false" placeholder="Your email address" required>
 											<input class="bg-gray text-dark mb-30" type="tel" id="phone" aria-required="true" aria-invalid="false" placeholder="Mobile no" required>
+											<select id="gender" class="bg-gray text-dark mb-30" aria-required="true" aria-invalid="false" >
+												<option>-Gender-</option>
+												<option>Male</option>
+												<option>Female</option>
+											</select>
 										</div><!-- /.col-md-6 -->
 										<div class="lqd-column col-md-6 mb-20">
+										<select id="state" class="bg-gray text-dark mb-30" aria-required="true" aria-invalid="false" >
+												<option>-State-</option>
+												<option>ABUJA FCT</option>
+												<option>ABIA</option>
+												<option>ADAMAWA</option>
+												<option>AKWA IBOM</option>
+												<option>ANAMBRA</option>
+												<option>BAUCHI</option>
+												<option>BAYELSA</option>
+												<option>BENUE</option>
+												<option>BORNO</option>
+												<option>CROSS RIVER</option>
+												<option>DELTA</option>
+												<option>EBONYI</option>
+												<option>EDO</option>
+												<option>EKITI</option>
+												<option>ENUGU</option>
+												<option>GOMBE</option>
+												<option>IMO</option>
+												<option>JIGAWA</option>
+												<option>KADUNA</option>
+												<option>KANO</option>
+												<option>KATSINA</option>
+												<option>KEBBI</option>
+												<option>KOGI</option>
+												<option>KWARA</option>
+												<option>LAGOS</option>
+												<option>NASSARAWA</option>
+												<option>NIGER</option>
+												<option>OGUN</option>
+												<option>ONDO</option>
+												<option>OSUN</option>
+												<option>OYO</option>
+												<option>PLATEAU</option>
+												<option>RIVERS</option>
+												<option>SOKOTO</option>
+												<option>TARABA</option>
+												<option>YOBE</option>
+												<option>ZAMFARA</option>
+											</select>
 											<input class="bg-gray text-dark mb-30" type="password" id="password" aria-required="true" aria-invalid="false" placeholder="Password" required>
 											<input class="bg-gray text-dark mb-30" type="password" id="password2" aria-required="true" aria-invalid="false" placeholder="Re-Type Password" required>
-											<input class="bg-gray text-dark mb-30" type="text" id="whoReferred_id" aria-required="true" aria-invalid="false" placeholder="Referal ID" required>
+											<input class="bg-gray text-dark mb-30" type="text" value="<?php 
+											$whoR_refID = $_GET['refID']; 
+											if(empty($whoR_refID)){
+											}else{
+												echo $whoR_refID;
+												}
+										 ?>" id="whoReferred_id" aria-required="true" aria-invalid="false" placeholder="Referal ID" required>
 										</div><!-- /.col-md-12 -->
 										<div class="lqd-column col-md-6">
 											<p class="font-size-16 opacity-07">By clicking register, you agree to our <a href="#">Terms of Use</a>.</p>
@@ -147,28 +202,37 @@
 			var password2 = $("#password2").val();
 			var phone = $("#phone").val();
 			var whoReferred_id = $("#whoReferred_id").val();
+			var gender = $("#gender").val();
+			var state = $("#state").val();
 			if(whoReferred_id.length <= 0){
 				whoReferred_id = "AD1123";
 			}
 			
 			if(name.length == 0 || email.length == 0 || password.length == 0 || phone.length == 0){
 				$.fn.confirm("No field can be left empty ","red",function(){});
+			}else if(gender === "-Gender-"){
+				$.fn.confirm("Pls select your gender ","red",function(){});
+			}else if(state === "-State-"){
+				$.fn.confirm("Pls select your state ","red",function(){});
 			}else{
 				if(password === password2){
 					dispSubmitBtnLoader();
+					
 					$.post( "api/signUp_process.php",{
 				name : name,
 				email : email,
 				password : password,
 				phone : phone,
-				whoReferred_id:whoReferred_id
+				whoReferred_id:whoReferred_id,
+				gender: gender,
+				state: state
 				
 			}, function( data ) {
 			if(data === "11111"){
 				$.fn.confirm("Registerd Successfully","",function (){
 					window.location = `<?php 
 						if(empty($orderID)){
-							echo "dashboard.php";
+							echo "fundAccount.php";
 						}else{
 							echo "order.php";
 						}
@@ -189,6 +253,7 @@
 			}
          
 		 }
+		
 		 function dispSubmitBtnLoader(){
 			 getE("submitBTNLoaderImg").style.display = "block";
 			 getE("submitBtnTxt").style.display = "none";
@@ -207,5 +272,8 @@
 			 return document.getElementById(id);
 		 }
 </script>
+<?php
+	include 'api/footerAdditions.php'
+	?>
 </body>
 </html>

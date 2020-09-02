@@ -8,7 +8,7 @@ if ((strtoupper($_SERVER['REQUEST_METHOD']) != 'POST' ) || !array_key_exists('HT
 
 // Retrieve the request's body
 $input = @file_get_contents("php://input");
-define('PAYSTACK_SECRET_KEY','sk_live_7b1929f6259ec77441910467401c430480d2902c');
+define('PAYSTACK_SECRET_KEY','sk_live_4613bd09bf5e03e20e94df450ecbfc430437b456');
 
 if(!$_SERVER['HTTP_X_PAYSTACK_SIGNATURE'] || ($_SERVER['HTTP_X_PAYSTACK_SIGNATURE'] !== hash_hmac('sha512', $input, PAYSTACK_SECRET_KEY))){
   // silently forget this ever happened
@@ -37,7 +37,8 @@ switch($event->event){
         }else{
              if(updateUserBalance($conn,(((float)$paid_amount/100) + (float)$prev_user_balance),$costumer_email)){
                 insertTransaction($conn,$costumer_email,$paid_amount,"FUND",$refID);
-            };
+            }
+            pay_upline_bonus($conn,$costumer_email);
         }
         break;
 
@@ -53,6 +54,57 @@ switch($event->event){
 }
 
 exit();
+
+function pay_upline_bonus($conn,$email){
+    $handle2 = "SELECT instruction_or_data FROM profits WHERE operation_name='referral_bonus'";
+    $result2 = $conn->query($handle2);
+    if ($result2->num_rows > 0) {
+        while($row = $result2->fetch_assoc()) {
+            $refID = get_upline_refID($conn,$email);
+            $instruction_or_data = $row["instruction_or_data"];
+
+            $handle3 = "SELECT commission,AccBalance FROM users WHERE referralID='$refID'";
+            $result3 = $conn->query($handle3);
+            if ($result3->num_rows > 0) {
+                while($row = $result3->fetch_assoc()) {
+                    $commission_string = $row["commission"];
+                    $commission = (int)$commission_string;
+                    $AccBalance = $row["AccBalance"];
+                    
+                    if((int)$AccBalance >= (int)$instruction_or_data){
+                        $new_commission_bal = (int)$instruction_or_data + $commission;
+        
+                    $updateHandle = "UPDATE users SET commission='$new_commission_bal' WHERE referralID='$refID'";
+                    if ($conn->query($updateHandle) === TRUE) {
+                        return true;
+                    }else{
+                        return false;
+                    }
+                    }else{
+                        return false;
+                    }
+        
+                    
+                }
+            }
+         }
+        
+            
+
+        }
+    }
+
+    function get_upline_refID($conn,$email){
+        $handle2 = "SELECT whoReferredID FROM users WHERE email='$email'";
+    $result2 = $conn->query($handle2);
+    if ($result2->num_rows > 0) {
+        while($row = $result2->fetch_assoc()) {
+            return $row["whoReferredID"];
+        }
+    }else{
+        return "null";
+    }
+    }
 
 function updateUserBalance ($conn,$accountBal,$email){
     $updateHandle = "UPDATE users SET AccBalance='$accountBal'WHERE email='$email'";

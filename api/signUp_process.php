@@ -7,6 +7,8 @@ include'connect.php';
   $phone = $_POST["phone"];
   $password = $_POST["password"];
   $whoReferred_id = $_POST["whoReferred_id"];
+  $gender = $_POST["gender"];
+  $state = $_POST["state"];
   
 if(scrutinize($email)){
     if(scrutinize($password)){
@@ -27,13 +29,15 @@ if ($result2->num_rows > 0) {
 
 if($exisit==0){
     $token = genarateToken(5);
-$sql = "INSERT INTO users (name,email,phone,password,whoReferredID,referralID)
-VALUES ('$name','$email','$phone','$password','$whoReferred_id','$token')";
+    $apiKey = genarateToken(12);
+$sql = "INSERT INTO users (name,email,phone,password,whoReferredID,referralID,gender,state,apiKey)
+VALUES ('$name','$email','$phone','$password','$whoReferred_id','$token','$gender','$state','$apiKey')";
 
 if ($conn->query($sql) === TRUE) {
 session_start();
 $_SESSION["email"] = $email;
 $_SESSION["name"] = $name;
+$_SESSION["refID"] = $token;
 echo '11111';
 } else {
     echo "100111";

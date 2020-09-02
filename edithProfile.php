@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,10 +33,17 @@
 	<div class="titlebar scheme-light" data-parallax="true" data-parallax-options='{ "parallaxBG": true }' style="background-image: url(images/people/12.jpg);">
 			
 		<?php
-		include 'header.php'
+		include 'header.php';
+		include 'api/connect.php';
+		$handle2 = "SELECT phone FROM users WHERE email='$email'";
+		$result2 = $conn->query($handle2);
+		$phone = "";
+		if ($result2->num_rows > 0) {
+			while($row = $result2->fetch_assoc()) {
+				$phone = $row["phone"];
+			}
+		}
 		?>
-
-<br><br>
 
 			<div class="titlebar-inner py-0 mt-0" >
 				<div class="container titlebar-container">
@@ -45,7 +53,7 @@
 							<div class="row">
 
 								<div class="col-md-2 col-md-offset-1">
-									<h6 class="font-size-14 font-weight-medium text-uppercase ltr-sp-2">Edith Profile</h6>
+									<h6 class="font-size-14 font-weight-medium text-uppercase ltr-sp-2">EDITH PROFILE</h6>
 								</div><!-- /.col-md-2 -->
 
 
@@ -76,15 +84,64 @@
 
 									<div class="row d-flex flex-wrap">
 										<div class="lqd-column col-md-6 mb-20">
-											<input class="bg-gray text-dark mb-30" type="text" id="name" aria-required="true" aria-invalid="false" placeholder="Full Name" required>
-											<input class="bg-gray text-dark mb-30" type="email" id="email" aria-required="true" aria-invalid="false" placeholder="Your email address" required>
-											<input class="bg-gray text-dark mb-30" type="tel" id="phone" aria-required="true" aria-invalid="false" placeholder="Mobile no" required>
+											
+										<input class="bg-gray text-dark mb-30" disabled = "true" style="cursor: not-allowed;" type="email" id="email" aria-required="true" aria-invalid="false" placeholder="<?php echo $email ?>" required>
+											<input class="bg-gray text-dark mb-30" type="text" id="name" value="<?php echo $name ?>" aria-required="true" aria-invalid="false" placeholder="Full Name" required>
+											<input class="bg-gray text-dark mb-30" type="tel" id="phone" value="<?php echo $phone ?>" aria-required="true" aria-invalid="false" placeholder="Mobile no" required>
+											
 										</div><!-- /.col-md-6 -->
 										<div class="lqd-column col-md-6 mb-20">
-											<input class="bg-gray text-dark mb-30" type="text" id="password" aria-required="true" aria-invalid="false" placeholder="Company Name" required>
+										<select id="gender" class="bg-gray text-dark mb-30" aria-required="true" aria-invalid="false" >
+												<option>-Gender-</option>
+												<option>Male</option>
+												<option>Female</option>
+											</select>
+										<select id="state" class="bg-gray text-dark mb-30" aria-required="true" aria-invalid="false" >
+												<option>-State-</option>
+												<option>ABUJA FCT</option>
+												<option>ABIA</option>
+												<option>ADAMAWA</option>
+												<option>AKWA IBOM</option>
+												<option>ANAMBRA</option>
+												<option>BAUCHI</option>
+												<option>BAYELSA</option>
+												<option>BENUE</option>
+												<option>BORNO</option>
+												<option>CROSS RIVER</option>
+												<option>DELTA</option>
+												<option>EBONYI</option>
+												<option>EDO</option>
+												<option>EKITI</option>
+												<option>ENUGU</option>
+												<option>GOMBE</option>
+												<option>IMO</option>
+												<option>JIGAWA</option>
+												<option>KADUNA</option>
+												<option>KANO</option>
+												<option>KATSINA</option>
+												<option>KEBBI</option>
+												<option>KOGI</option>
+												<option>KWARA</option>
+												<option>LAGOS</option>
+												<option>NASSARAWA</option>
+												<option>NIGER</option>
+												<option>OGUN</option>
+												<option>ONDO</option>
+												<option>OSUN</option>
+												<option>OYO</option>
+												<option>PLATEAU</option>
+												<option>RIVERS</option>
+												<option>SOKOTO</option>
+												<option>TARABA</option>
+												<option>YOBE</option>
+												<option>ZAMFARA</option>
+											</select>
 										</div><!-- /.col-md-12 -->
+										<div class="lqd-column col-md-6">
+											<p class="font-size-16 opacity-07">Pls make sure the inputed data is valid and correct before clicking save</p>
+										</div><!-- /.col-md-6 -->
 										<div class="lqd-column col-md-6 text-md-right">
-											<input type="button" onclick="$.fn.submit_data()" value="Submit">
+										<button id="submitBTN" style="cursor: pointer;" onclick="$.fn.submit_data()" type="button"><span id="submitBtnTxt">SAVE </span><img id="submitBTNLoaderImg" src="images/loading.gif" style="width: 50px; height:50px; display:none" /></button>
 										</div><!-- /.col-md-6 -->
 									</div><!-- /.row -->
 									</form>
@@ -109,41 +166,60 @@
 
 <script src="js/jquery.min.js"></script>
 <script src="js/jbox.all.min.js"></script>
+<script src="js/generalOp.js"></script>
 <script src="./assets/js/theme-vendors.js"></script>
 <script src="./assets/js/theme.min.js"></script>
 <script src="./assets/js/liquidAjaxMailchimp.min.js"></script>
 <script>
 	$.fn.submit_data = function(){
+		dispSubmitBtnLoader();
 			var name = $("#name").val();
-            var email = $("#email").val();
-			var password = $("#password").val();
-			var password2 = $("#password2").val();
 			var phone = $("#phone").val();
+			var gender = $("#gender").val();
+			var state = $("#state").val();
 			
-			if(name.length == 0 || email.length == 0 || password.length == 0 || phone.length == 0){
-				alert("No field can be left empty");
-			}else{
-				if(password === password2){
-					$.post( "api/signUp_process.php",{
+			
+			$.post( "api/process_update_user_profile.php",{
 				name : name,
-				email : email,
-				password : password,
-				phone : phone
+				phone : phone,
+				gender: gender,
+				state: state
+				
 			}, function( data ) {
 			if(data === "11111"){
-				$.fn.confirm("Registerd Successfully","",function (){window.location = "index.php";});
-			}else if(data === "100113"){
-				$.fn.notification("User with email already exsist","red");
-			}else if(data === "100114" || data === "100115"){
-				$.fn.notification("Invalid Inputed Data","red");
+				$.fn.notification("Saved Successfully","green");
+				clearSubmitBtnLoader();
+			}else if(data === "100112"){
+				$.fn.notification("Erro saving updates","red");
+				clearSubmitBtnLoader();
+			}else if(data === "100111"){
+				$.fn.notification("User does not exsist -- Try loging in first","red");
+				clearSubmitBtnLoader();
 			}
 			});
-				}else{
-					$.fn.notification("Re-type password does not match","red");
-			}
-			}
          
 		 }
+		
+		 function dispSubmitBtnLoader(){
+			 getE("submitBTNLoaderImg").style.display = "block";
+			 getE("submitBtnTxt").style.display = "none";
+			 getE("submitBTN").disabled = true;
+			 getE("submitBTN").style.cursor = "not-allowed";
+		 }
+
+		 function clearSubmitBtnLoader(){
+			 getE("submitBTNLoaderImg").style.display = "none";
+			 getE("submitBtnTxt").style.display = "block";
+			 getE("submitBTN").disabled = false;
+			 getE("submitBTN").style.cursor = "pointer";
+		 }
+
+		 function getE(id){
+			 return document.getElementById(id);
+		 }
 </script>
+<?php
+	include 'api/footerAdditions.php'
+	?>
 </body>
 </html>

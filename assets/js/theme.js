@@ -3882,7 +3882,7 @@ jQuery(document).ready(function ($) {
     },
     initSelect: function initSelect() {
       var form = $(this.element);
-      var selectElement = form.find('select').not('.select2-hidden-accessible, .select, .woo-rating, #bbp_stick_topic_select, #bbp_topic_status_select, #bbp_forum_id');
+      var selectElement = form.find('orgselect').not('.select2-hidden-accessible, .select, .woo-rating, #bbp_stick_topic_select, #bbp_topic_status_select, #bbp_forum_id');
 
       if (!selectElement.closest('.variations').length) {
         selectElement.each(function (i, element) {

@@ -45,7 +45,7 @@
 							<div class="row">
 
 								<div class="col-md-2 col-md-offset-1">
-									<h6 class="font-size-14 font-weight-medium text-uppercase ltr-sp-2">Login</h6>
+									<h6 class="font-size-14 font-weight-medium text-uppercase ltr-sp-2">CHANGE_PASSWORD</h6>
 								</div><!-- /.col-md-2 -->
 
 
@@ -76,11 +76,10 @@
 
 									<div class="row d-flex flex-wrap">
 										<div class="lqd-column col-md-12 mb-20">
-											<input class="bg-gray text-dark mb-30" type="password" id="email" aria-required="true" aria-invalid="false" placeholder="Previous Password" required>
-											<input class="bg-gray text-dark mb-30" type="password" id="password" aria-required="true" aria-invalid="false" placeholder="New Password" required>
-                                            <input class="bg-gray text-dark mb-30" type="password" id="password" aria-required="true" aria-invalid="false" placeholder="Confirm Password" required>
-                                            <p class="font-size-16 opacity-07">Forgot Password? <a href="#">Click here</a>.</p><br>
-											<input type="button" value="Login" onclick="$.fn.submit_data()" />
+											<input class="bg-gray text-dark mb-30" type="password" id="password" aria-required="true" aria-invalid="false" placeholder="Previous Password" required>
+											<input class="bg-gray text-dark mb-30" type="password" id="new_password" aria-required="true" aria-invalid="false" placeholder="New Password" required>
+                                            <input class="bg-gray text-dark mb-30" type="password" id="new_password_confirm" aria-required="true" aria-invalid="false" placeholder="Confirm Password" required>
+                                            <button id="submitBTN" style="cursor: pointer;" onclick="$.fn.submit_data()" type="button"><span id="submitBtnTxt">SAVE </span><img id="submitBTNLoaderImg" src="images/loading.gif" style="width: 50px; height:50px; display:none" /></button>
 										</div><!-- /.col-md-6 -->
 									</div><!-- /.row -->
 									</form>
@@ -111,28 +110,57 @@
 <script src="./assets/js/liquidAjaxMailchimp.min.js"></script>
 <script>
 	$.fn.submit_data = function(){
-            var email = $("#email").val();
+		dispSubmitBtnLoader();
+		
 			var password = $("#password").val();
+			var new_password = $("#new_password").val();
+			var new_password_confirm = $("#new_password_confirm").val();
 			
-			if(email.length == 0 || password.length == 0){
-				alert("No field can be left empty");
-			}else{
-					$.post( "api/login_process.php",{
-				email : email,
-				password : password
+			if(new_password === new_password_confirm){
+				
+				$.post( "api/process_changePassword.php",{
+					password : password,
+					new_password : new_password
+				
 			}, function( data ) {
 			if(data === "11111"){
-				$.fn.confirm("Login Successful","",function (){window.location = "index.php";});
-			}else if(data === "100113"){
-				$.fn.notification("Email or Password Incorrect","red");
-			}else if(data === "100114" || data === "100115"){
-				$.fn.notification("Invalid Inputed Data","red");
+				$.fn.notification("Saved Successfully","green");
+				clearSubmitBtnLoader();
+			}else if(data === "100112"){
+				$.fn.notification("Erro saving password","red");
+				clearSubmitBtnLoader();
+			}else if(data === "100111"){
+				$.fn.notification("User does not exsist -- Try loging in first","red");
+				clearSubmitBtnLoader();
 			}
 			});
-				
+			}else{
+				$.fn.notification("Re-Type password does not match","red");
+				clearSubmitBtnLoader();
 			}
          
 		 }
+		
+		 function dispSubmitBtnLoader(){
+			 getE("submitBTNLoaderImg").style.display = "block";
+			 getE("submitBtnTxt").style.display = "none";
+			 getE("submitBTN").disabled = true;
+			 getE("submitBTN").style.cursor = "not-allowed";
+		 }
+
+		 function clearSubmitBtnLoader(){
+			 getE("submitBTNLoaderImg").style.display = "none";
+			 getE("submitBtnTxt").style.display = "block";
+			 getE("submitBTN").disabled = false;
+			 getE("submitBTN").style.cursor = "pointer";
+		 }
+
+		 function getE(id){
+			 return document.getElementById(id);
+		 }
 </script>
+<?php
+	include 'api/footerAdditions.php'
+	?>
 </body>
 </html>

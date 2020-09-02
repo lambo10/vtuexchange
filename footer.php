@@ -24,7 +24,7 @@
 								<li><a href="transferFund.php">Transfer Funds</a></li>
 								<li><a href="fundAccount.php">Fund Account</a></li>
 								<li><a href="notification.php">Notifications</a></li>
-								<li><a href="developerAPI.php">Developer's API</a></li>
+								<li><a href="dev_API.php">Developer's API</a></li>
 							</ul>
 							
 						</div><!-- /.col-md-3 col-sm-6 -->
@@ -48,18 +48,18 @@
 							
 							<h3 class="widget-title text-white">Follow us</h3>
 							<ul class="social-icon social-icon-md">
-								<li><a href="https://facebook.com/Diligentmart"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="https://fb.me/diligentmartofficial"><i class="fa fa-facebook"></i></a></li>
 								<li><a href="https://twitter.com/diligentmart?s=09"><i class="fa fa-twitter"></i></a></li>
 								<li><a href="https://t.me/Diligentmart"><i class="fa fa-telegram"></i></a></li>
 							</ul>
 							
 							<h3 class="widget-title text-white">Subscribe</h3>
 							<div class="ld-sf ld-sf--input-solid ld-sf--button-solid ld-sf--size-xs ld-sf--circle ld-sf--border-thin ld-sf--button-show ld-sf--button-inline">
-								<form id="ld_subscribe_form" class="ld_sf_form" action="https://liquid-themes.us20.list-manage.com/subscribe/post?u=7f582d555cef808a99ea001a7&amp;id=58ab120d89" name="mc-embedded-subscribe-form" method="post">
+								<form class="ld_sf_form" action="https://liquid-themes.us20.list-manage.com/subscribe/post?u=7f582d555cef808a99ea001a7&amp;id=58ab120d89" name="mc-embedded-subscribe-form" method="post">
 									<p class="ld_sf_paragraph pr-2">
-										<input type="email" class="ld_sf_text" id="mce-EMAIL" name="EMAIL" placeholder="Your email" value="">
+										<input type="email" class="ld_sf_text" id="newsLetterEmail" name="EMAIL" placeholder="Your email" value="">
 									</p>
-									<button type="button" class="ld_sf_button px-4">
+									<button type="button" class="ld_sf_button px-4" onclick="$.fn.subscribe_client()">
 										<span class="button-icon">
 											<i class="fa fa-angle-right"></i>
 										</span>
@@ -86,8 +86,8 @@
 							
 							<ul class="lqd-custom-menu reset-ul inline-nav">
 								<li><a href="blog-main.php">Blog</a></li>
-								<li><a href="#">Support</a></li>
-								<li><a href="#">Developer's API</a></li>
+								<li><a href="mailto:support@diligentmart.com">Support</a></li>
+								<li><a href="dev_API.php">Developer's API</a></li>
 							</ul>
 							
 						</div><!-- /.col-md-6 -->
@@ -95,9 +95,11 @@
 						<div class="lqd-column col-md-6 text-md-right">
 							<p class="my-0"><span style="font-size: 15px;">© 2019 vtuexchange.com. Designed by <a href="https://linkedin.com/in/lambert-nnadi-842743178">Lambo</a>.</span></p>
 						</div><!-- /.col-md-6 text-md-right -->
+
 						
 					</div><!-- /.row -->
 				</div><!-- /.container -->
 			</section>
 			
 		</footer><!-- /.main-footer -->
+		

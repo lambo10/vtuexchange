@@ -2,6 +2,7 @@
 session_start();
 $email = $_SESSION["email"];
 $name = $_SESSION["name"];
+$refID = $_SESSION["refID"];
 $orderID = $_SESSION["orderID"];
 
 ?>
@@ -210,26 +211,12 @@ $orderID = $_SESSION["orderID"];
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="notification.php">
-                                                <span class="link-icon"></span>
-                                                <span class="link-txt">
-                                                    <span class="link-ext"></span>
-                                                    <span class="txt">
-                                                        Notifications
-                                                        <span class="submenu-expander">
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </span>
-                                                    </span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
                                             <a href="referral.php">
                                                 <span class="link-icon"></span>
                                                 <span class="link-txt">
                                                     <span class="link-ext"></span>
                                                     <span class="txt">
-                                                        Referals
+                                                        Referral
                                                         <span class="submenu-expander">
                                                             <i class="fa fa-angle-down"></i>
                                                         </span>
@@ -244,6 +231,34 @@ $orderID = $_SESSION["orderID"];
                                                     <span class="link-ext"></span>
                                                     <span class="txt">
                                                         Blog
+                                                        <span class="submenu-expander">
+                                                            <i class="fa fa-angle-down"></i>
+                                                        </span>
+                                                    </span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="product-main.php">
+                                                <span class="link-icon"></span>
+                                                <span class="link-txt">
+                                                    <span class="link-ext"></span>
+                                                    <span class="txt">
+                                                        products
+                                                        <span class="submenu-expander">
+                                                            <i class="fa fa-angle-down"></i>
+                                                        </span>
+                                                    </span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="data_services.php">
+                                                <span class="link-icon"></span>
+                                                <span class="link-txt">
+                                                    <span class="link-ext"></span>
+                                                    <span class="txt">
+                                                        Data Services
                                                         <span class="submenu-expander">
                                                             <i class="fa fa-angle-down"></i>
                                                         </span>
@@ -315,7 +330,7 @@ $orderID = $_SESSION["orderID"];
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="notification.php">
+                                                <a href="edithProfile.php">
                                                     <span class="link-icon"></span>
                                                     <span class="link-txt">
                                                         <span class="link-ext"></span>
@@ -329,7 +344,7 @@ $orderID = $_SESSION["orderID"];
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="referral.php">
+                                                <a href="changePassword.php">
                                                     <span class="link-icon"></span>
                                                     <span class="link-txt">
                                                         <span class="link-ext"></span>
@@ -343,12 +358,26 @@ $orderID = $_SESSION["orderID"];
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="blog-main.php">
+                                                <a href="dev_API.php">
                                                     <span class="link-icon"></span>
                                                     <span class="link-txt">
                                                         <span class="link-ext"></span>
                                                         <span class="txt">
                                                             Developer API
+                                                            <span class="submenu-expander">
+                                                                <i class="fa fa-angle-down"></i>
+                                                            </span>
+                                                        </span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="api/logout.php">
+                                                    <span class="link-icon"></span>
+                                                    <span class="link-txt">
+                                                        <span class="link-ext"></span>
+                                                        <span class="txt">
+                                                            Logout
                                                             <span class="submenu-expander">
                                                                 <i class="fa fa-angle-down"></i>
                                                             </span>
@@ -375,7 +404,7 @@ $orderID = $_SESSION["orderID"];
 								<div class="header-module">
 									<ul class="social-icon social-icon-sm">
 										<li>
-											<a href="https://facebook.com/Diligentmart" target="_blank"><i class="fa fa-facebook"></i></a>
+											<a href="https://fb.me/diligentmartofficial" target="_blank"><i class="fa fa-facebook"></i></a>
 										</li>
 										<li>
 											<a href="https://twitter.com/diligentmart?s=09" target="_blank"><i class="fa fa-twitter"></i></a>

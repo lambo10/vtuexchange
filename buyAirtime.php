@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="assets/vendors/liquid-icon/liquid-icon.min.css" />
 	<link rel="stylesheet" href="assets/vendors/font-awesome/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="assets/css/theme-vendors.min.css" />
-	<link rel="stylesheet" href="assets/css/theme.min.css" />
+	<link rel="stylesheet" href="assets/css/theme.css" />
 	<link rel="stylesheet" href="assets/css/themes/seo.css" />
 	<link rel="stylesheet" href="css/jBox.all.min.css" />
 	<link rel="stylesheet" href="css/nl_addition.css" />
@@ -32,7 +32,9 @@
 	<div class="titlebar scheme-light" data-parallax="true" data-parallax-options='{ "parallaxBG": true }' style="background-image: url(images/people/6.jpg);">
 			
 		<?php
-		include 'header.php'
+		include 'header.php';
+		include 'api/connect.php';
+		include 'api/clearReset_key_table.php';
 		?>
 
 <div>
@@ -99,10 +101,16 @@
                                             <div class="lqd-column col-md-6 mb-20">
 											<select id="netWorkSelection" class="bg-gray text-dark mb-30" aria-required="true" aria-invalid="false" >
 												<option>-Select Network Provider-</option>
-												<option value="MTN">MTN</option>
-												<option value="GLO">GLO</option>
-												<option value="AIRTEL">AIRTEL</option>
-												<option value="9MOBILE">9MOBILE</option>
+												<?php 
+
+											$handle2 = "SELECT * FROM networks WHERE status='1' AND type='DATA_AIRTIME'";
+											$result2 = $conn->query($handle2);
+											if ($result2->num_rows > 0) {
+												while($row = $result2->fetch_assoc()) {
+													echo '<option value="'.$row["name"].'">'.$row["name"].'</option>';
+												}
+											}
+													?>
 											</select>
                                                 <input class="bg-gray text-dark mb-30" id="airtimeValue" type="text" name="airtimeValue" aria-required="true" aria-invalid="false" placeholder="AIRTIME VALUE (50-50,000)" required>
                                                 <input id="phoneNo" class="bg-gray text-dark mb-30" type="email" name="mobileNo" aria-required="true" aria-invalid="false" placeholder="ENTER MOBILE NUMBER" required>
@@ -116,8 +124,9 @@
 												<option>YES</option>
 											</select>
                                             </div><!-- /.col-md-12 -->
+											<input type="text" id="sericeID" style="display: none;" />
                                             <div class="lqd-column col-md-6 text-md-right">
-											<button id="submitBTN" style="cursor: pointer;" onclick="$.fn.submit_data()" type="button"><span id="submitBtnTxt">BUY NOW </span><img id="submitBTNLoaderImg" src="images/loading.gif" style="width: 50px; height:50px; display:none" /></button>
+											<button id="submitBTN" class="lamboSubmitBTN" style="cursor: pointer;" onclick="$.fn.submit_data()" type="button"><span id="submitBtnTxt">BUY NOW </span><img id="submitBTNLoaderImg" src="images/loading.gif" style="width: 50px; height:50px; display:none" /></button>
                                             </div><!-- /.col-md-6 -->
                                         </div><!-- /.row -->
 									</form>
@@ -144,14 +153,15 @@
 <script src="js/jbox.all.min.js"></script>
 <script src="js/generalOp.js"></script>
 <script src="./assets/js/theme-vendors.js"></script>
-<script src="./assets/js/theme.min.js"></script>
+<script src="./assets/js/theme.js"></script>
 <script src="./assets/js/liquidAjaxMailchimp.min.js"></script>
 
 <script>
-	var static_data = {
-		serviceID:""
-	};
 		 $.fn.submit_data = function(){ 
+			 var userEmail = "<?php echo $email; ?>";
+			 if(userEmail.length <= 0){
+				 window.location = "login.php";
+			 }else{
 			var airTime_amount = $("#airtimeValue").val();
 			var autoRenewRaw = $("#autoRenew").val();
 			var phoneNo = $("#phoneNo").val();
@@ -167,7 +177,7 @@
 
 				dispSubmitBtnLoader();
 				$.get( "api/process_buyService.php",{
-				serviceID: static_data.serviceID,
+				serviceID: $("#sericeID").val(),
 				autoRenew: autoRenewRaw,
 				phoneNo: phoneNo,
 				airTime_amount: airTime_amount
@@ -175,8 +185,11 @@
 					if(result === "100111"){
 						$.fn.notification("Erro purchasing data -- Pls try again","red");
 						clearSubmitBtnLoader();
+					}else if(result === "100119"){
+						$.fn.notification("Insufficient Balance","red");
+						clearSubmitBtnLoader();
 					}else{
-						$.fn.notification("Data purchase successsfull","green");
+						$.fn.notification("Airtime purchase successsfull","green");
 						clearSubmitBtnLoader();
 					}
 				});
@@ -185,7 +198,7 @@
 		}else{
 			$.fn.confirm("Enter mobile number","red",function(){});
 		}
-			
+		 }	
 		 }
 		 $.fn.getServiceID_and_setAmtp = function(){ 
 			var val = $("#netWorkSelection").val();
@@ -194,20 +207,29 @@
 				networkProvider: val,
 				serviceType: "AIRTIME",
 			}, function( profitMargin ) {
-				$.get( "api/getServices.php",{
+
+				if(profitMargin.length > 0){
+					$.get( "api/getServices.php",{
 				networkProvider: val,
 				serviceType: "AIRTIME",
 			}, function( data ) {
-				var json_data = JSON.parse(data);
-					static_data.serviceID = json_data[0].id;
+				if(data.length > 0){
+					var json_data = JSON.parse(data);
+					getE("sericeID").value = json_data[0].id;
 		  getE("amountToPay").value = (parseInt($("#airtimeValue").val()) - (parseFloat(json_data[0].cost) * parseInt($("#airtimeValue").val())) )+ parseInt(JSON.parse(profitMargin)[0].profit);	
-			
+
+				}			
 		});
+				}
 
 			});
 		 }
 		 
-		 $("#airtimeValue").keypress(function (event) {
+		 $("#airtimeValue").on('keydown', function(e){
+			$.fn.getServiceID_and_setAmtp();
+		 });
+
+		 $("#netWorkSelection").change(function(){
 			$.fn.getServiceID_and_setAmtp();
 		 });
 
@@ -229,5 +251,8 @@
 			 return document.getElementById(id);
 		 }
 </script>
+<?php
+	include 'api/footerAdditions.php'
+	?>
 </body>
 </html>

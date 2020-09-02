@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="assets/vendors/liquid-icon/liquid-icon.min.css" />
 	<link rel="stylesheet" href="assets/vendors/font-awesome/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="assets/css/theme-vendors.min.css" />
-	<link rel="stylesheet" href="assets/css/theme.min.css" />
+	<link rel="stylesheet" href="assets/css/theme.css" />
 	<link rel="stylesheet" href="assets/css/themes/seo.css" />
 	<link rel="stylesheet" href="css/jBox.all.min.css" />
 	<link rel="stylesheet" href="css/nl_addition.css" />
@@ -32,7 +32,9 @@
 	<div class="titlebar scheme-light" data-parallax="true" data-parallax-options='{ "parallaxBG": true }' style="background-image: url(images/people/5.jpg);">
 			
 		<?php
-		include 'header.php'
+		include 'header.php';
+		include 'api/connect.php';
+		include 'api/clearReset_key_table.php';
 		?>
 
 <div>
@@ -99,10 +101,16 @@
 										<div class="lqd-column col-md-6 mb-20">
 											<select id="netWorkSelection" class="bg-gray text-dark mb-30" aria-required="true" aria-invalid="false" >
 												<option>-Select Network Provider-</option>
-												<option value="MTN">MTN</option>
-												<option value="GLO">GLO</option>
-												<option value="AIRTEL">AIRTEL</option>
-												<option value="9MOBILE">9MOBILE</option>
+												<?php 
+
+											$handle2 = "SELECT * FROM networks WHERE status='1' AND type='DATA_AIRTIME'";
+											$result2 = $conn->query($handle2);
+											if ($result2->num_rows > 0) {
+												while($row = $result2->fetch_assoc()) {
+													echo '<option value="'.$row["name"].'">'.$row["name"].'</option>';
+												}
+											}
+													?>
 											</select>
 											<select id="plans" class="bg-gray text-dark mb-30" aria-required="true" aria-invalid="false" >
 												<option>-Data Plan-</option>
@@ -119,7 +127,7 @@
 											</select>
 										</div><!-- /.col-md-12 -->
 										<div class="lqd-column col-md-6 text-md-right">
-											<button id="submitBTN" style="cursor: pointer;" onclick="$.fn.submit_data()" type="button"><span id="submitBtnTxt">BUY NOW </span><img id="submitBTNLoaderImg" src="images/loading.gif" style="width: 50px; height:50px; display:none" /></button>
+											<button id="submitBTN" class="lamboSubmitBTN" style="cursor: pointer;" onclick="$.fn.submit_data()" type="button"><span id="submitBtnTxt">BUY NOW </span><img id="submitBTNLoaderImg" src="images/loading.gif" style="width: 50px; height:50px; display:none" /></button>
 										</div><!-- /.col-md-6 -->
 									</div><!-- /.row -->
 									</form>
@@ -146,10 +154,14 @@
 <script src="js/jbox.all.min.js"></script>
 <script src="js/generalOp.js"></script>
 <script src="./assets/js/theme-vendors.js"></script>
-<script src="./assets/js/theme.min.js"></script>
+<script src="./assets/js/theme.js"></script>
 <script src="./assets/js/liquidAjaxMailchimp.min.js"></script>
 <script>
 		 $.fn.submit_data = function(){ 
+			var userEmail = "<?php echo $email; ?>";
+			 if(userEmail.length <= 0){
+				 window.location = "login.php";
+			 }else{
 			var planRaw = $("#plans").val();
 			var autoRenewRaw = $("#autoRenew").val();
 			var phoneNo = $("#phoneNo").val();
@@ -164,13 +176,16 @@
 				}
 
 				dispSubmitBtnLoader();
-				$.get( "api/process_buyData.php",{
+				$.get( "api/process_buyService.php",{
 				serviceID: plan[0],
 				autoRenew: autoRenewRaw,
 				phoneNo: phoneNo
 				}, function( result ) {
 					if(result === "100111"){
 						$.fn.notification("Erro purchasing data -- Pls try again","red");
+						clearSubmitBtnLoader();
+					}else if(result === "100119"){
+						$.fn.notification("Insufficient Balance","red");
 						clearSubmitBtnLoader();
 					}else{
 						$.fn.notification("Data purchase successsfull","green");
@@ -182,6 +197,7 @@
 		}else{
 			$.fn.confirm("Enter mobile number","red",function(){});
 		}
+		 }
 			
 		 }
 		 $.fn.getDataPlans = function(){ 
@@ -191,18 +207,21 @@
 				networkProvider: val,
 				serviceType: "DATA",
 			}, function( profitMargin ) {
-
 				$.get( "api/getServices.php",{
 				networkProvider: val,
 				serviceType: "DATA",
 			}, function( data ) {
-				var json_data = JSON.parse(data);
+				if(data.length > 0){
+					var json_data = JSON.parse(data);
 				var optionsCollections = "<option>-Data Plan-</option>"
           json_data.forEach((element) => {
 				var wrkStr = '<option value="'+element.id+'|'+(parseInt(element.cost) + parseInt(JSON.parse(profitMargin)[0].profit) )+'">'+element.type+'    =    ₦ '+(parseInt(element.cost) + parseInt(JSON.parse(profitMargin)[0].profit) )+'   '+element.validity+'</option>';
 				optionsCollections = optionsCollections + wrkStr;
-		  });		
-		  $("#plans").html(optionsCollections);	
+		  });	
+		  $("#plans").html(optionsCollections);
+				}else{
+					$("#plans").html("<option>-Data Plan-</option>");
+				}
 			});
 
 			});
@@ -216,7 +235,29 @@
 			if(val === "-Data Plan-"){
 			}else{
 			var cost = val.split("|");
-			getE("amountToPay").value = "₦ "+cost[1];
+			var cost_sub = <?php 
+			 $accType = "";
+
+			 $handle2 = "SELECT accType FROM users WHERE email='$email'";
+		 $result2 = $conn->query($handle2);
+		 if ($result2->num_rows > 0) {
+			 while($row = $result2->fetch_assoc()) {
+				 $accType = $row["accType"];
+				 if(strcmp($accType,"Enduser") == 0){
+					 $accType = "0";
+					}else if(strcmp($accType,"Reseller") == 0){
+						$accType = "8.9";
+					   }else if(strcmp($accType,"Portal-Owner") == 0){
+						$accType = "12";
+					   }
+					   echo ((int)$accType/100);
+			 }
+		 }else{
+			 echo "0";
+		 }
+			?> * cost[1];
+			var calcost = cost[1] - cost_sub;
+			getE("amountToPay").value = "₦ "+calcost;
 			}
 		 });
 
@@ -238,5 +279,8 @@
 			 return document.getElementById(id);
 		 }
 </script>
+<?php
+	include 'api/footerAdditions.php'
+	?>
 </body>
 </html>

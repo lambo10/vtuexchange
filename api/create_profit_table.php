@@ -6,7 +6,7 @@ $sql = "CREATE TABLE profits (
 id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 network VARCHAR(30),
 serviceType VARCHAR(30),
-profit INT(10),
+profit VARCHAR(10),
 date TIMESTAMP
 )";
 

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,8 +18,10 @@
 	<link rel="stylesheet" href="assets/vendors/liquid-icon/liquid-icon.min.css" />
 	<link rel="stylesheet" href="assets/vendors/font-awesome/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="assets/css/theme-vendors.min.css" />
-	<link rel="stylesheet" href="assets/css/theme.min.css" />
+	<link rel="stylesheet" href="assets/css/theme.css" />
 	<link rel="stylesheet" href="assets/css/themes/seo.css" />
+	<link rel="stylesheet" href="css/jBox.all.min.css" />
+	<link rel="stylesheet" href="css/nl_addition.css" />
 	
 	<!-- Head Libs -->
 	<script async src="assets/vendors/modernizr.min.js"></script>
@@ -29,6 +32,16 @@
 	<div id="wrap">
 		<?php
 		include 'header2.php';
+		include 'api/connect.php';
+		$AccBalance = "";
+
+        $handle2 = "SELECT AccBalance FROM users WHERE email='$email'";
+    $result2 = $conn->query($handle2);
+    if ($result2->num_rows > 0) {
+        while($row = $result2->fetch_assoc()) {
+            $AccBalance = $row["AccBalance"];
+        }
+    }
 		?>
 		
 		<main id="content" class="content">
@@ -43,7 +56,8 @@
 							<div class="lqd-column-inner bg-white border-radius-6 px-3 px-md-4 pt-40 pb-40">
 
 								<header class="fancy-title">
-                                    <div><img src="images/money-transfer.svg" style="width: 80px; height: 80px;" /><span style="font-size: 25px;">Transfer</span></div>
+									<div><img src="images/money-transfer.svg" style="width: 80px; height: 80px;" /><span style="font-size: 25px;">Transfer</span></div>
+									<div>Wallet Balance: ₦<span id="balanceDisp"><?php echo $AccBalance; ?></span></div>
 								</header><!-- /.fancy-title -->
 
 								<div class="contact-form contact-form-button-block font-size-14">
@@ -51,10 +65,10 @@
 
                                         <div class="row d-flex flex-wrap">
                                             <div class="lqd-column col-md-12 mb-20">
-                                                <input class="bg-gray text-dark mb-30" type="email" name="reciver_email" aria-required="true" aria-invalid="false" placeholder="Reciver email address" required>
-                                                <input class="bg-gray text-dark mb-30" type="number" name="amount" aria-required="true" aria-invalid="false" placeholder="Amount" required>
+                                                <input class="bg-gray text-dark mb-30" type="email" id="reciverEmail" name="reciver_email" aria-required="true" aria-invalid="false" placeholder="Reciver email address" required>
+                                                <input class="bg-gray text-dark mb-30" type="number" id="amount" name="amount" aria-required="true" aria-invalid="false" placeholder="Amount" required>
                                                 
-                                                <input type="button" value="Send">
+                                                <button id="submitBTN" class="lamboSubmitBTN" style="cursor: pointer;" onclick="$.fn.submit_data()" type="button"><span id="submitBtnTxt">Transfer </span><img id="submitBTNLoaderImg" src="images/loading.gif" style="width: 50px; height:50px; display:none" /></button>
                                             </div><!-- /.col-md-6 -->
                                         </div><!-- /.row -->
 									</form>
@@ -77,10 +91,73 @@
 	
 </div><!-- /#wrap -->
 
-<script src="./assets/vendors/jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/jbox.all.min.js"></script>
+<script src="js/generalOp.js"></script>
 <script src="./assets/js/theme-vendors.js"></script>
-<script src="./assets/js/theme.min.js"></script>
+<script src="./assets/js/theme.js"></script>
 <script src="./assets/js/liquidAjaxMailchimp.min.js"></script>
+<script>
+	 $.fn.submit_data = function(){ 
+			var reciverEmail = $("#reciverEmail").val();
+			var amount = $("#amount").val();
+			if(reciverEmail.length <= 0){
+				$.fn.confirm("Pls Enter recivers email ","red",function(){});
+			}else if(amount.length <= 0){
+				$.fn.confirm("Pls Enter Amount ","red",function(){});
+			}else{
+				dispSubmitBtnLoader();
+				$.get( "api/process_transferFunds.php",{
+				reciverEmail: reciverEmail,
+				amount: amount
+				}, function( result ) {
+					if(result === "100111" || result === "100012" || result === "100015"){
+						$.fn.notification("Erro Transferring funds -- Pls try again","red");
+						clearSubmitBtnLoader();
+					}else if(result === "100013"){
+						$.fn.notification("Not Enough funds","red");
+						clearSubmitBtnLoader();
+					}else if(result === "100014"){
+						$.fn.notification("Invalid user email","red");
+						clearSubmitBtnLoader();
+					}else if(result === "11111"){
+						$.fn.notification("Transfer successsfull","green");
+						clearSubmitBtnLoader();
+					}else{
+						$.fn.notification("Erro Transferring funds -- Pls try again","red");
+						clearSubmitBtnLoader();
+					}
+					$.fn.get_AccBalance();
+				});
+			}
+			
+	 
+	 }
+	 $.fn.get_AccBalance = function(){ 
+		$.get( "api/get_user_balance.php",{},function(result){
+			getE("balanceDisp").innerHTML = result;
+			 });
+	 }
+	 function dispSubmitBtnLoader(){
+			 getE("submitBTNLoaderImg").style.display = "block";
+			 getE("submitBtnTxt").style.display = "none";
+			 getE("submitBTN").disabled = true;
+			 getE("submitBTN").style.cursor = "not-allowed";
+		 }
 
+		 function clearSubmitBtnLoader(){
+			 getE("submitBTNLoaderImg").style.display = "none";
+			 getE("submitBtnTxt").style.display = "block";
+			 getE("submitBTN").disabled = false;
+			 getE("submitBTN").style.cursor = "pointer";
+		 }
+
+		 function getE(id){
+			 return document.getElementById(id);
+		 }
+</script>
+<?php
+	include 'api/footerAdditions.php'
+	?>
 </body>
 </html>

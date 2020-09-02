@@ -19,6 +19,7 @@
 	<link rel="stylesheet" href="assets/css/theme-vendors.min.css" />
 	<link rel="stylesheet" href="assets/css/theme.min.css" />
 	<link rel="stylesheet" href="assets/css/themes/seo.css" />
+	<link rel="stylesheet" href="css/jBox.all.min.css" />
 	
 	<!-- Head Libs -->
 	<script async src="assets/vendors/modernizr.min.js"></script>
@@ -139,6 +140,12 @@
 <script src="./assets/js/theme-vendors.js"></script>
 <script src="./assets/js/theme.min.js"></script>
 <script src="./assets/js/liquidAjaxMailchimp.min.js"></script>
+<script src="js/jquery.min.js"></script>
+	<script src="js/jbox.all.min.js"></script>
+	<script src="js/generalOp.js"></script>
+	<?php
+	include 'api/footerAdditions.php'
+	?>
 
 </body>
 </html>
