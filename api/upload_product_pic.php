@@ -20,10 +20,10 @@ $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
 
 
-if ($_FILES["filesUP00012101"]["size"] > 50000000) {
-    echo "Sorry, your file is too large.";
-    $uploadOk = 0;
-}
+// if ($_FILES["filesUP00012101"]["size"] > 50000000) {
+//     echo "Sorry, your file is too large.";
+//     $uploadOk = 0;
+// }
 if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
 && $imageFileType != "gif" ) {
     echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";

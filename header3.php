@@ -4,6 +4,7 @@ $email = $_SESSION["email"];
 $name = $_SESSION["name"];
 $refID = $_SESSION["refID"];
 $orderID = $_SESSION["orderID"];
+$accType = $_SESSION["accType"];
 
 ?>
 <header class="main-header" style="background: #2D323D;" data-react-to-megamenu="true" data-sticky-header="true" data-sticky-options='{ "stickyTrigger": "first-section" }'>

@@ -10,6 +10,7 @@ type TEXT,
 validity VARCHAR(30),
 serviceType VARCHAR(30),
 extAPI_ID TEXT,
+check_balance TEXT,
 date TIMESTAMP
 )";
 

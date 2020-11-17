@@ -7,7 +7,9 @@ include'connect.php';
 if(scrutinize($email)){
     if(scrutinize($password)){
         $name = "";
-$handle2 = "SELECT email,name,referralID  FROM users WHERE password='$password' AND email='$email'";
+        $refID = "";
+        $accType = "";
+$handle2 = "SELECT email,name,referralID,accType  FROM users WHERE password='$password' AND email='$email'";
 $result2 = $conn->query($handle2);
 $exisit=0;
 if ($result2->num_rows > 0) {
@@ -16,7 +18,8 @@ if ($result2->num_rows > 0) {
      $big4 = $row["email"];
      $name = $row["name"];
      $refID = $row["referralID"];
-	 
+     $accType = $row["accType"];
+     
     if($email==$big4){
 	$exisit = $exisit+1;
 	}
@@ -28,6 +31,7 @@ if($exisit==1){
     $_SESSION["email"] = $email;
     $_SESSION["name"] = $name;
     $_SESSION["refID"] = $refID;
+    $_SESSION["accType"] = $accType;
     echo "11111";
 }else{
     echo "100113";

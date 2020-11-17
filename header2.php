@@ -4,6 +4,7 @@ $email = $_SESSION["email"];
 $name = $_SESSION["name"];
 $refID = $_SESSION["refID"];
 $orderID = $_SESSION["orderID"];
+$accType = $_SESSION["accType"];
 
 if(empty($email)){
     header("location:login.php");

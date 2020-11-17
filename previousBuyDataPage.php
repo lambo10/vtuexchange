@@ -29,7 +29,7 @@
 <body data-mobile-nav-trigger-alignment="right" data-mobile-nav-align="left" data-mobile-nav-style="modern" data-mobile-nav-shceme="gray" data-mobile-header-scheme="gray" data-mobile-nav-breakpoint="1199">
 	
 	<div id="wrap">
-	<div class="titlebar scheme-light" data-parallax="true" data-parallax-options='{ "parallaxBG": true }' style="background-image: url(images/people/6.jpg);">
+	<div class="titlebar scheme-light" data-parallax="true" data-parallax-options='{ "parallaxBG": true }' style="background-image: url(images/people/5.jpg);">
 			
 		<?php
 		include 'header.php';
@@ -51,8 +51,8 @@
 									<span class="ld-fh-txt">
 										Buy Cheap
 										<span class="txt-rotate-keywords">
-											<span class="keyword active">Airtime</span>
-											<span class="keyword">Data</span>
+											<span class="keyword active">Data</span>
+											<span class="keyword">Airtime</span>
 											<span class="keyword">Power</span>
 										</span>
 									</span>
@@ -68,7 +68,7 @@
 							<div class="row">
 
 								<div class="col-md-2 col-md-offset-1">
-									<h6 class="font-size-14 font-weight-medium text-uppercase ltr-sp-2">Buy Airtime</h6>
+									<h6 class="font-size-14 font-weight-medium text-uppercase ltr-sp-2">Buy Data</h6>
 								</div><!-- /.col-md-2 -->
 
 
@@ -95,10 +95,10 @@
 
 
 								<div class="contact-form contact-form-button-block font-size-14">
-									<form novalidate="novalidate">
+								<form novalidate="novalidate">
 
-                                        <div class="row d-flex flex-wrap">
-                                            <div class="lqd-column col-md-6 mb-20">
+									<div class="row d-flex flex-wrap">
+										<div class="lqd-column col-md-6 mb-20">
 											<select id="netWorkSelection" class="bg-gray text-dark mb-30" aria-required="true" aria-invalid="false" >
 												<option>-Select Network Provider-</option>
 												<?php 
@@ -112,23 +112,24 @@
 											}
 													?>
 											</select>
-                                                <input class="bg-gray text-dark mb-30" id="airtimeValue" type="text" name="airtimeValue" aria-required="true" aria-invalid="false" placeholder="AIRTIME VALUE (50-50,000)" required>
-                                                <input id="phoneNo" class="bg-gray text-dark mb-30" type="email" name="mobileNo" aria-required="true" aria-invalid="false" placeholder="ENTER MOBILE NUMBER" required>
-                                               
-                                            </div><!-- /.col-md-6 -->
-                                            <div class="lqd-column col-md-6 mb-20">
+											<select id="plans" class="bg-gray text-dark mb-30" aria-required="true" aria-invalid="false" >
+												<option>-Data Plan-</option>
+											</select>
+											<input id="phoneNo" class="bg-gray text-dark mb-30" type="email" name="mobileNo" aria-required="true" aria-invalid="false" placeholder="ENTER MOBILE NUMBER" required>
+										
+										</div><!-- /.col-md-6 -->
+										<div class="lqd-column col-md-6 mb-20">
 											<input id="amountToPay" disabled="true" style="cursor: not-allowed;" class="bg-gray text-dark mb-30" type="text" name="amountToPay" aria-required="true" aria-invalid="false" placeholder="AMOUNT TO PAY (4% Discount)" required>
-												<select id="autoRenew" class="bg-gray text-dark mb-30" aria-required="true" aria-invalid="false" >
+											<select id="autoRenew" class="bg-gray text-dark mb-30" aria-required="true" aria-invalid="false" >
 												<option>-Auto Renew-</option>
 												<option>NO</option>
 												<option>YES</option>
 											</select>
-                                            </div><!-- /.col-md-12 -->
-											<input type="text" id="sericeID" style="display: none;" />
-                                            <div class="lqd-column col-md-6 text-md-right">
+										</div><!-- /.col-md-12 -->
+										<div class="lqd-column col-md-6 text-md-right">
 											<button id="submitBTN" class="lamboSubmitBTN" style="cursor: pointer;" onclick="$.fn.submit_data()" type="button"><span id="submitBtnTxt">BUY NOW </span><img id="submitBTNLoaderImg" src="images/loading.gif" style="width: 50px; height:50px; display:none" /></button>
-                                            </div><!-- /.col-md-6 -->
-                                        </div><!-- /.row -->
+										</div><!-- /.col-md-6 -->
+									</div><!-- /.row -->
 									</form>
 									<div class="contact-form-result hidden"></div><!-- /.contact-form-result -->
 								</div><!-- /.contact-form -->
@@ -155,41 +156,39 @@
 <script src="./assets/js/theme-vendors.js"></script>
 <script src="./assets/js/theme.js"></script>
 <script src="./assets/js/liquidAjaxMailchimp.min.js"></script>
-
 <script>
 		 $.fn.submit_data = function(){ 
-			 var userEmail = "<?php echo $email; ?>";
+			var userEmail = "<?php echo $email; ?>";
 			 if(userEmail.length <= 0){
 				 window.location = "login.php";
 			 }else{
-			var airTime_amount = $("#airtimeValue").val();
+			var planRaw = $("#plans").val();
 			var autoRenewRaw = $("#autoRenew").val();
 			var phoneNo = $("#phoneNo").val();
 
 			if(phoneNo.length > 0){
-			if(airTime_amount.length <= 0){
-				$.fn.confirm("Pls Enter Airtime Amount ","red",function(){});
+			if(planRaw === "-Data Plan-"){
+				$.fn.confirm("Pls Select a Data Plan ","red",function(){});
 			}else{
-				
+				var plan = planRaw.split("|");
 				if(autoRenewRaw === "-Auto Renew-"){
 					autoRenewRaw = "NO";
 				}
 
 				dispSubmitBtnLoader();
 				$.get( "api/process_buyService.php",{
-				serviceID: $("#sericeID").val(),
+				serviceID: plan[0],
 				autoRenew: autoRenewRaw,
-				phoneNo: phoneNo,
-				airTime_amount: airTime_amount
+				phoneNo: phoneNo
 				}, function( result ) {
 					if(result === "100111"){
-						$.fn.notification("Erro purchasing Airtime -- Pls try again","red");
+						$.fn.notification("Erro purchasing data -- Pls try again","red");
 						clearSubmitBtnLoader();
 					}else if(result === "100119"){
 						$.fn.notification("Insufficient Balance","red");
 						clearSubmitBtnLoader();
 					}else{
-						$.fn.notification("Airtime purchase successsfull","green");
+						$.fn.notification("Data purchase successsfull","green");
 						clearSubmitBtnLoader();
 					}
 				});
@@ -198,51 +197,72 @@
 		}else{
 			$.fn.confirm("Enter mobile number","red",function(){});
 		}
-		 }	
 		 }
-		 $.fn.getServiceID_and_setAmtp = function(){ 
+			
+		 }
+		 $.fn.getDataPlans = function(){ 
 			var val = $("#netWorkSelection").val();
 			
 			$.get( "api/get_profit_margin.php",{
 				networkProvider: val,
-				serviceType: "AIRTIME",
+				serviceType: "DATA",
 			}, function( profitMargin ) {
-
-				if(profitMargin.length > 0){
-
-
-					$.get( "api/getServices.php",{
+				$.get( "api/getServices.php",{
 				networkProvider: val,
-				serviceType: "AIRTIME",
+				serviceType: "DATA",
 			}, function( data ) {
 				if(data.length > 0){
-					
-					$.get( "api/get_user_percentageDiscount.php",{
-			}, function( user_percentageDiscount ) {
-				if(data.length > 0){
-					var json_data = JSON.parse(data);
-					getE("sericeID").value = json_data[0].id;
-					getE("amountToPay").value = (parseInt($("#airtimeValue").val() + parseInt(JSON.parse(profitMargin)[0].profit)))-((parseInt(user_percentageDiscount)*parseInt($("#airtimeValue").val()))/100);
-
-				}			
-		});
-
-
-				}			
-		});
-
-
+					try{
+						var json_data = JSON.parse(data);
+				var optionsCollections = "<option>-Data Plan-</option>"
+          json_data.forEach((element) => {
+				var wrkStr = '<option value="'+element.id+'|'+(parseInt(element.cost) + parseInt(JSON.parse(profitMargin)[0].profit) )+'">'+element.type+'    =    ₦ '+(parseInt(element.cost) + parseInt(JSON.parse(profitMargin)[0].profit) )+'   '+element.validity+'</option>';
+				optionsCollections = optionsCollections + wrkStr;
+		  });	
+		  $("#plans").html(optionsCollections);
+					}catch(e){
+		console.log(e);
+					}
+				}else{
+					$("#plans").html("<option>-Data Plan-</option>");
 				}
+			});
 
 			});
 		 }
 		 
-		 $("#airtimeValue").on('keydown', function(e){
-			$.fn.getServiceID_and_setAmtp();
+		 $("#netWorkSelection").change(function () {
+			$.fn.getDataPlans();
 		 });
+		 $("#plans").change(function(){
+			var val = $(this).val();
+			if(val === "-Data Plan-"){
+			}else{
+			var cost = val.split("|");
+			var cost_sub = <?php 
+			 $accType = "";
 
-		 $("#netWorkSelection").change(function(){
-			$.fn.getServiceID_and_setAmtp();
+			 $handle2 = "SELECT accType FROM users WHERE email='$email'";
+		 $result2 = $conn->query($handle2);
+		 if ($result2->num_rows > 0) {
+			 while($row = $result2->fetch_assoc()) {
+				 $accType = $row["accType"];
+				 if(strcmp($accType,"Enduser") == 0){
+					 $accType = "0";
+					}else if(strcmp($accType,"Reseller") == 0){
+						$accType = "8.9";
+					   }else if(strcmp($accType,"Portal-Owner") == 0){
+						$accType = "12";
+					   }
+					   echo ((int)$accType/100);
+			 }
+		 }else{
+			 echo "0";
+		 }
+			?> * cost[1];
+			var calcost = cost[1] - cost_sub;
+			getE("amountToPay").value = "₦ "+calcost;
+			}
 		 });
 
 		 function dispSubmitBtnLoader(){

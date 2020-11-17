@@ -34,7 +34,9 @@
 		<?php
 		include 'header.php';
 		include 'api/connect.php';
-		include 'api/clearReset_key_table.php';
+        include 'api/clearReset_key_table.php';
+        
+        
 		?>
 
 <div>
@@ -90,26 +92,62 @@
 					<div class="row" style="padding-left: 20px; padding-right: 20px;">
 						
 						<div class="lqd-column col-md-12 px-4 pb-30 bg-white box-shadow-1">
-							
+                        <!-- <div class="lqd-column-inner bg-white border-radius-6 px-3 px-md-4 pt-40 pb-40">
+                        <div class="col-md-6" style="padding:10px;">
+                            <a href=""><div style="background: #003879; height:50px; width:100%; border-radius:5px; text-align:center; color:white;padding-top:5px;"><div style="padding-top:4px;">Daily</div></div></a>
+                            </div>
+                            <div class="col-md-6" style="padding:10px;">
+                            <a href=""><div style="background: #003879; height:50px; width:100%; border-radius:5px; text-align:center; color:white;padding-top:5px;"><div style="padding-top:4px;">Monthly</div></div></a>
+                            </div>
+                        </div> -->
 							<div class="lqd-column-inner bg-white border-radius-6 px-3 px-md-4 pt-40 pb-40">
+                            <?php
+$network = $_GET["network"];
+$handle2 = "SELECT * FROM services WHERE serviceType='DATA' AND network='$network'";
+$result2 = $conn->query($handle2);
+$dbData = array();
+if ($result2->num_rows > 0) {
+    while($row = $result2->fetch_assoc()) {
+		$profit_margin = getProfitMargin($conn,$serviceType,$networkProvider);
+		$acc_type_pd = getAcc_Type_pd($conn,$accType);
+		$cost = $row["cost"];
+        echo '<div class="col-md-3" style="padding:10px;">
+        <a href="enterBuyDataNum.php?serviceID='.$row["id"].'"><div style="background: #003879; height:150px; width:100%; border-radius:5px; text-align:center; color:white;padding-top:50px;"><div style="font-size:30px;"><b>'.$row["type"].'</b></div><div>N'.floor(((float)$profit_margin+(float)$cost-(((float)$acc_type_pd*((float)$profit_margin+(float)$cost))/100))).' - '.$row["validity"].'</div></div></a>
+        </div>';
+    }
+}else{
+		echo '<div class="col-md-12" style="padding:20px; text-align:center; font-size:30px">ComingSoon</div>';
+}
 
+function getProfitMargin($conn,$serviceType,$networkProvider){
+    $handle2 = "SELECT profit FROM profits WHERE serviceType='$serviceType' AND network='$networkProvider'";
+$result2 = $conn->query($handle2);
+if ($result2->num_rows > 0) {
+    while($row = $result2->fetch_assoc()) {
+        $profit = $row["profit"];
+        return $profit;
+    }
+    
+}else{
+    return -1;
+}
+}
 
-                            <div class="col-md-3" style="padding:10px;">
-                            <a href="buyData_dataview.php?network=MTN"><div style="background: #003879; height:150px; width:100%; border-radius:5px; font-size:30px; text-align:center; color:white;padding-top:50px;"><b>MTN</b></div></a>
-                            </div>
+function getAcc_Type_pd($conn,$name){
+	$handle2 = "SELECT instruction_or_data FROM site_operation_var WHERE operation_name='$name' LIMIT 1";
+    $result2 = $conn->query($handle2);
+    if ($result2->num_rows > 0) {
+        while($row = $result2->fetch_assoc()) {
+          return $row["instruction_or_data"];
+        }
+    }else{
+      return -1;
+    }
+}
 
-                            <div class="col-md-3" style="padding:10px;">
-                            <a href="buyData_dataview.php?network=GLO"><div style="background: #003879; height:150px; width:100%; border-radius:5px; font-size:30px; text-align:center; color:white;padding-top:50px;"><b>GLO</b></div></a>
-                            </div>
-
-                            <div class="col-md-3" style="padding:10px;">
-                            <a href="buyData_dataview.php?network=AIRTEL"><div style="background: #003879; height:150px; width:100%; border-radius:5px; font-size:30px; text-align:center; color:white;padding-top:50px;"><b>AIRTEL</b></div></a>
-                            </div>
-
-                            <div class="col-md-3" style="padding:10px;">
-                            <a href="buyData_dataview.php?network=9MOBILE"><div style="background: #003879; height:150px; width:100%; border-radius:5px; font-size:30px; text-align:center; color:white;padding-top:50px;"><b>9MOBILE</b></div></a>
-                            </div>
+?>
                             
+                           
 
 							</div><!-- /.lqd-column-inner -->
 

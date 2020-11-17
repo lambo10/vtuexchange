@@ -9,7 +9,7 @@
 	
 	<link rel="shortcut icon" href="./favicon.png" />
 	
-	<title>smartvtu</title>
+	<title>diligentmart</title>
 	
 	<link rel="stylesheet" href="https://use.typekit.net/{YOUR_API_KEY}.css">
 	

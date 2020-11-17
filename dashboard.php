@@ -9,7 +9,7 @@
 	
 	<link rel="shortcut icon" href="./favicon.png" />
 	
-	<title>smartvtu</title>
+	<title>diligentmart</title>
 
 	<link rel="stylesheet" href="https://use.typekit.net/scc6wwx.css">
 	<link href="https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap" rel="stylesheet">
@@ -165,9 +165,24 @@
 							<div class="lqd-column-inner bg-white border-radius-6 px-3 px-md-4 pt-40 pb-10">
                             <div>Account Type</div><br>
 								<div class="row">
-                                    <div class="col-md-4"><span>Enduser </span><input name="accType" type="radio" value="Enduser" <?php if(strcmp($accType,"Enduser") == 0){echo "checked";} ?> > <b>0% OFF</b></div>
-                                    <div class="col-md-4"><span>Reseller </span><input name="accType" type="radio" value="Reseller" <?php if(strcmp($accType,"Reseller") == 0){echo "checked";} ?> > <b>8.9% OFF</b></div>
-                                    <div class="col-md-4"><span>Portal-Owner </span><input name="accType" type="radio" value="Portal-Owner" <?php if(strcmp($accType,"Portal-Owner") == 0){echo "checked";} ?> > <b>12% OFF</b></div>
+
+                                    <?php
+                                if(strcmp($accType,"Enduser") == 0){
+
+                                    $handle2 = "SELECT * FROM site_operation_var WHERE operation_name='Enduser'";
+                                    $result2 = $conn->query($handle2);
+                                    if ($result2->num_rows > 0) {
+                                        while($row = $result2->fetch_assoc()) {
+                                            $instruction_or_data = $row["instruction_or_data"];
+                                        }
+                                    }
+
+                                    echo ' <div class="col-md-4"><span>Enduser </span><input name="accType" type="radio" value="Enduser" <?php if(strcmp($accType,"Enduser") == 0){echo "checked";} ?> > <b>0% OFF</b></div>
+                                    <div class="col-md-4"><span>Reseller </span><input name="accType" type="radio" value="Reseller" <?php if(strcmp($accType,"Reseller") == 0){echo "checked";} ?> > <b>8.9% OFF</b></div>';
+                                }
+                                    ?>
+                                   
+                                    <!-- <div class="col-md-4"><span>Portal-Owner </span><input name="accType" type="radio" value="Portal-Owner" <?php if(strcmp($accType,"Portal-Owner") == 0){echo "checked";} ?> > <b>12% OFF</b></div> -->
                                 </div>
 
 							</div><!-- /.lqd-column-inner -->
@@ -338,7 +353,7 @@
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <script>
 	$.fn.disp_welcome_msg = function(){ 
-			$.fn.confirm("Only MTN DATA is available for now. we are making upgrades on other services to serve you better","green",function(){});
+			$.fn.confirm("Only MTN and 9MOBILE DATA is available for now. we are making upgrades on other services to serve you better","green",function(){});
          }
 
     $('input[type=radio][name=accType]').change(function() {

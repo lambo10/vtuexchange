@@ -12,7 +12,6 @@ include'connect.php';
   
 if(scrutinize($email)){
     if(scrutinize($password)){
-        
 $handle2 = "SELECT email  FROM users WHERE email='$email'";
 $result2 = $conn->query($handle2);
 $exisit=0;
@@ -38,6 +37,7 @@ session_start();
 $_SESSION["email"] = $email;
 $_SESSION["name"] = $name;
 $_SESSION["refID"] = $token;
+$_SESSION["accType"] = "Enduser";
 echo '11111';
 } else {
     echo "100111";

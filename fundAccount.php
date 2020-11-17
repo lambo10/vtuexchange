@@ -9,7 +9,7 @@
 	
 	<link rel="shortcut icon" href="./favicon.png" />
 	
-	<title>smartvtu</title>
+	<title>diligentmart</title>
 
 	<link rel="stylesheet" href="https://use.typekit.net/scc6wwx.css">
 	<link href="https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap" rel="stylesheet">
@@ -56,9 +56,9 @@
 											while($row = $result2->fetch_assoc()) {
 												$accType = $row["accType"];
 												if(strcmp($accType,"Enduser") == 0){
-													 echo "₦1";
+													 echo "₦100";
 													}else if(strcmp($accType,"Reseller") == 0){
-														echo "₦4000";
+														echo "₦2000";
 													}else if(strcmp($accType,"Portal-Owner") == 0){
 														echo "₦7000";
 													}
@@ -111,25 +111,17 @@
 <script src="./assets/js/theme.min.js"></script>
 <script src="./assets/js/liquidAjaxMailchimp.min.js"></script>
 <script src="https://js.paystack.co/v1/inline.js"></script> 
+<script src="https://checkout.flutterwave.com/v3.js"></script>
 <script>
 
 const paymentForm = document.getElementById('paymentForm');
 
-function payWithPaystack() {
-  var deposite_amount = document.getElementById("amount").value;
-  var minamount = <?php if(strcmp($accType,"Enduser") == 0){
-									echo "1";
-								}else if(strcmp($accType,"Reseller") == 0){
-									echo "4000";
-								}else if(strcmp($accType,"Portal-Owner") == 0){
-									echo "7000";
-								}
-								?>;
-if(deposite_amount >= minamount){
+function payWithPaystack(deposite_amount) {
+
   let handler = PaystackPop.setup({
-    key: 'pk_live_30015d0272892375c8b192f9a052e310921194ea', // Replace with your public key
+    key: 'pk_live_e1a667ee839d8ae3dce180351a8f6dc30ab3c62c', // Replace with your public key
     email: document.getElementById("email-address").value,
-    amount: deposite_amount * 100,
+	amount: deposite_amount * 100,
     ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
     // label: "Optional string that replaces customer email"
     callback: function(response){
@@ -138,18 +130,59 @@ if(deposite_amount >= minamount){
     }
   });
   handler.openIframe();
+
+}
+
+function paywithflutterwave(deposite_amount) {
+    FlutterwaveCheckout({
+      public_key: "FLWPUBK-12911e9c85d808aeb67fda2c3099d103-X",
+      tx_ref: ''+Math.floor((Math.random() * 1000000000) + 1),
+      amount: deposite_amount,
+      currency: "NGN",
+      country: "NG",
+      payment_options: "card, banktransfer, ussd",
+      meta: {
+        consumer_id: 23,
+        consumer_mac: "92a3-912ba-1192a",
+      },
+      customer: {
+        email: document.getElementById("email-address").value,
+        phone_number: "",
+        name: "<?php echo $name; ?>",
+      },
+      redirect_url:"https://diligentmart.com/dashboard.php",
+      onclose: function() {
+        // close modal
+      },
+      customizations: {
+        title: "diligentmart",
+        description: "Fund Wallet",
+        logo: "https://diligentmart.com/images/logoBlack.png",
+      },
+    });
+  }
+
+function startPayment(){
+	var deposite_amount = document.getElementById("amount").value;
+  var minamount = <?php if(strcmp($accType,"Enduser") == 0){
+									echo "100";
+								}else if(strcmp($accType,"Reseller") == 0){
+									echo "2000";
+								}else if(strcmp($accType,"Portal-Owner") == 0){
+									echo "7000";
+								}
+								?>;
+if(deposite_amount >= minamount){
+	var inputsD = document.getElementsByName("paymentOption");
+          if(inputsD[0].checked){
+            payWithPaystack(deposite_amount);
+          }
+		  else if(inputsD[1].checked){
+            paywithflutterwave(deposite_amount);
+          }
 }else{
 	$.fn.notification("Amount below minimum amount","red");
 }
-}
-
-function startPayment(){
-	var inputsD = document.getElementsByName("paymentOption");
-          if(inputsD[0].checked){
-            payWithPaystack();
-          }else if(inputsD[1].checked){
-            
-          }
 }
 </script>
 <?php

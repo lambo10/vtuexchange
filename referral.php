@@ -10,7 +10,7 @@
 	
 	<link rel="shortcut icon" href="./favicon.png" />
 	
-	<title>smartvtu</title>
+	<title>diligentmart</title>
 
 	<link rel="stylesheet" href="https://use.typekit.net/scc6wwx.css">
 	<link href="https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap" rel="stylesheet">
@@ -57,7 +57,7 @@
 								<header class="fancy-title" style="padding-left: 30px;">
 									<div>Commission</div>
 									<h2 class="mb-2 font-size-30 font-weight-light">₦<span id="commison_div"></span></h2>
-									<a href=""><div style="color: #003879;">Withdraw</div></a>
+									<a href="withdrawCommission.php"><div style="color: #003879;">Withdraw</div></a>
 								</header><!-- /.fancy-title -->
 								<span class="font-size-20" style="padding-left: 30px;">Shear referral link with friends</span>
 								<div class="ld-sf ld-sf--input-bordered ld-sf--button-solid ld-sf--size-sm ld-sf--circle ld-sf--border-thin ld-sf--button-show ld-sf--button-inside">

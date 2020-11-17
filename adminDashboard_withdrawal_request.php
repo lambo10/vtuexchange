@@ -32,7 +32,7 @@ function verifyAdmin($conn,$email){
 	
 	<link rel="shortcut icon" href="./favicon.png" />
 	
-	<title>smartvtu</title>
+	<title>diligentmart</title>
 
 	<link rel="stylesheet" href="https://use.typekit.net/scc6wwx.css">
 	<link href="https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap" rel="stylesheet">

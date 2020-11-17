@@ -32,7 +32,7 @@ function verifyAdmin($conn,$email){
 	
 	<link rel="shortcut icon" href="./favicon.png" />
 	
-	<title>smartvtu</title>
+	<title>diligentmart</title>
 
 	<link rel="stylesheet" href="https://use.typekit.net/scc6wwx.css">
 	<link href="https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap" rel="stylesheet">
@@ -226,15 +226,31 @@ function verifyAdmin($conn,$email){
                                         <div class="row d-flex flex-wrap">
                                             <div class="lqd-column col-md-12 mb-20">
                                                 <div class="font-size-14 font-weight-medium ltr-sp-2">Enduser</div>
-                                                <input class="bg-gray text-dark mb-30" id="" type="number" name="type" aria-required="true" aria-invalid="false" value="0" required>
+                                                <input class="bg-gray text-dark mb-30" id="enduser_acc_t_p" type="number" name="type" aria-required="true" aria-invalid="false" value="<?php $handle2 = "SELECT instruction_or_data FROM site_operation_var WHERE operation_name='endUser'";
+                                                                                                                                                                                                $result2 = $conn->query($handle2);
+                                                                                                                                                                                                $dbData = array();
+                                                                                                                                                                                                if ($result2->num_rows > 0) {
+                                                                                                                                                                                                    while($row = $result2->fetch_assoc()) {
+                                                                                                                                                                                                        echo $row["instruction_or_data"];
+                                                                                                                                                                                                    }
+                                                                                                                                                                                                }
+                                                                                                                                                                                                ?>" required>
                                                 <div class="font-size-14 font-weight-medium ltr-sp-2">Reseller</div>
-                                                <input id="" class="bg-gray text-dark mb-30" type="number" name="cost" aria-required="true" aria-invalid="false" value="8.9" required>
-                                                <div class="font-size-14 font-weight-medium ltr-sp-2">Portal-Owner</div>
-                                                <input id="" class="bg-gray text-dark mb-30" type="number" name="cost" aria-required="true" aria-invalid="false" value="12" required>
+                                                <input id="reseller_acc_t_p" class="bg-gray text-dark mb-30" type="number" name="cost" aria-required="true" aria-invalid="false" value="<?php $handle2 = "SELECT instruction_or_data FROM site_operation_var WHERE operation_name='reseller'";
+                                                                                                                                                                                                $result2 = $conn->query($handle2);
+                                                                                                                                                                                                $dbData = array();
+                                                                                                                                                                                                if ($result2->num_rows > 0) {
+                                                                                                                                                                                                    while($row = $result2->fetch_assoc()) {
+                                                                                                                                                                                                        echo $row["instruction_or_data"];
+                                                                                                                                                                                                    }
+                                                                                                                                                                                                }
+                                                                                                                                                                                                ?>" required>
+                                                <!-- <div class="font-size-14 font-weight-medium ltr-sp-2">Portal-Owner</div>
+                                                <input id="" class="bg-gray text-dark mb-30" type="number" name="cost" aria-required="true" aria-invalid="false" value="12" required> -->
 
                                             </div><!-- /.col-md-6 -->
                                             <div class="lqd-column text-md-right" style="width: 100%;">
-											<button id="" class="lamboSubmitBTN" style="cursor: pointer;" onclick="" type="button"><span id="submitBtnTxt">SAVE </span><img id="submitBTNLoaderImg" src="images/loading.gif" style="width: 50px; height:50px; display:none" /></button>
+											<button id="submitBTN4" class="lamboSubmitBTN" style="cursor: pointer;" onclick="$.fn.save_acc_t_pd()" type="button"><span id="submitBtnTxt4">SAVE </span><img id="submitBTNLoaderImg4" src="images/loading.gif" style="width: 50px; height:50px; display:none" /></button>
                                             </div><!-- /.col-md-6 -->
 
                                         </div><!-- /.row -->
@@ -325,6 +341,39 @@ function verifyAdmin($conn,$email){
 <script src="./assets/js/theme.min.js"></script>
 <script src="./assets/js/liquidAjaxMailchimp.min.js"></script>
 <script>
+    $.fn.save_acc_t_pd = function(){
+		dispSubmitBtnLoader4();
+			var enduser_acc_t_p = $("#enduser_acc_t_p").val();
+			var reseller_acc_t_p = $("#reseller_acc_t_p").val();
+            $.post( "api/process_insert_site_operation_var.php",{
+                    operation_name: "Enduser",
+                    instruction_or_data: enduser_acc_t_p
+			}, function( data ) {
+			if(data === "11111"){
+                $.fn.notification("Saved EndUser Discount Successfully","green");
+                clearSubmitBtnLoader4();
+                $("#enduser_acc_t_p").val(enduser_acc_t_p);
+            }else{
+                $.fn.notification("Erro Saving EndUser Discount","red");
+                clearSubmitBtnLoader4();
+            }
+            });
+
+            $.post( "api/process_insert_site_operation_var.php",{
+                operation_name: "Reseller",
+                instruction_or_data: reseller_acc_t_p
+			}, function( data ) {
+			if(data === "11111"){
+                $.fn.notification("Saved Reseller Discount Successfully","green");
+                clearSubmitBtnLoader4();
+                $("#reseller_acc_t_p").val(reseller_acc_t_p);
+            }else{
+                $.fn.notification("Erro Saving Reseller Discount","red");
+                clearSubmitBtnLoader4();
+            }
+            });
+
+    }
         $.fn.delete_services = function(id){
             $.get( "api/admin_delete_service.php",{
                 id:id
@@ -529,6 +578,20 @@ function verifyAdmin($conn,$email){
     return false;
   });
 
+  function dispSubmitBtnLoader4(){
+			 getE("submitBTNLoaderImg4").style.display = "block";
+			 getE("submitBtnTxt4").style.display = "none";
+			 getE("submitBTN4").disabled = true;
+			 getE("submitBTN4").style.cursor = "not-allowed";
+		 }
+
+		 function clearSubmitBtnLoader4(){
+			 getE("submitBTNLoaderImg4").style.display = "none";
+			 getE("submitBtnTxt4").style.display = "block";
+			 getE("submitBTN4").disabled = false;
+			 getE("submitBTN4").style.cursor = "pointer";
+		 }
+
   function dispSubmitBtnLoader3(){
 			 getE("submitBTNLoaderImg3").style.display = "block";
 			 getE("submitBtnTxt3").style.display = "none";
@@ -571,6 +634,8 @@ function verifyAdmin($conn,$email){
 			 getE("submitBTN").disabled = false;
 			 getE("submitBTN").style.cursor = "pointer";
 		 }
+
+         
 
 		 function getE(id){
 			 return document.getElementById(id);

@@ -5,41 +5,43 @@
 				<div class="container">
 					<div class="row">
 						
-						<div class="lqd-column col-md-3 col-sm-6">
-							
-							<h3 class="widget-title text-white">Company</h3>
-							<ul class="lqd-custom-menu reset-ul text-white lh-2">
-								<li><a href="index.html">Home</a></li>
-								<li><a href="buyPower.php">Buy Power</a></li>
-								<li><a href="buyCableTvSub.php">Tv Subscription</a></li>
-								<li><a href="about.php">About Us</a></li>
-							</ul>
+						<div class="lqd-column col-md-5 col-sm-6">
+
+						<h3 class="widget-title text-white">About us</h3>
+						<p style="font-size: 15px;">Diligentmart is a reliable and affordable platform to get your data bundles and Airtime of all Nigerian network. We offer the best price rates for MTN, Airtel, 9mobile and Glo.
+
+Whether you are a casual surfer of the net or a heavy data user, we have affordable data plan that will suit your data needs 
+We also offer Engineering equipment services and sales, online marketing and general e-commerce, information and communication technology services
+
+With multiple payment options and 24/7 availability, take advantage of our services and  do better in every area of your life.</p>
+						<a href="terms_of_use.php">Terms of use</a>
 							
 						</div><!-- /.col-md-3 col-sm-6 -->
 						
-						<div class="lqd-column col-md-3 col-sm-6">
-							
-							<h3 class="widget-title text-white">Services</h3>
+						<div class="lqd-column col-md-2 col-sm-6">
+						<h3 class="widget-title text-white">Quick Links</h3>
 							<ul class="lqd-custom-menu reset-ul text-white lh-2">
 								<li><a href="transferFund.php">Transfer Funds</a></li>
 								<li><a href="fundAccount.php">Fund Account</a></li>
-								<li><a href="notification.php">Notifications</a></li>
+								<li><a href="buyPower.php">Buy Power</a></li>
+								<li><a href="buyCableTvSub.php">Tv Subscription</a></li>
 								<li><a href="dev_API.php">Developer's API</a></li>
 							</ul>
 							
 						</div><!-- /.col-md-3 col-sm-6 -->
 						
-						<div class="lqd-column col-md-3 col-sm-6">
+						<div class="lqd-column col-md-2 col-sm-6">
 							
 							<h3 class="widget-title text-white">contact</h3>
 							<p>
 								<a href="mailto:support@diligentmart.com">support@diligentmart.com</a>
 								<br>
 								<br>
-								No NewHaven, Enugu, Enugu
+								2A hospital road, G.R.A Enugu, Enugu state
 								<br>
 								<br>
-								<a href="Tel:+2347068497582">+234 7068497582</a>
+								<a href="Tel:+2347056955159">+234 7056955159</a><br>
+								<a href="Tel:+2348089634040">+234 8089634040</a>
 							</p>
 							
 						</div><!-- /.col-md-3 col-sm-6 -->
@@ -93,7 +95,7 @@
 						</div><!-- /.col-md-6 -->
 						
 						<div class="lqd-column col-md-6 text-md-right">
-							<p class="my-0"><span style="font-size: 15px;">© 2019 vtuexchange.com. Designed by <a href="https://linkedin.com/in/lambert-nnadi-842743178">Lambo</a>.</span></p>
+							<p class="my-0"><span style="font-size: 15px;">© 2020 diligentmart.com Rc 3157231.</span></p>
 						</div><!-- /.col-md-6 text-md-right -->
 
 						

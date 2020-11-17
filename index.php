@@ -13,7 +13,7 @@ include 'api/clearReset_key_table.php';
 	
 	<link rel="shortcut icon" href="./favicon.png" />
 	
-	<title>smartvtu</title>
+	<title>diligentmart</title>
 
 	<link rel="stylesheet" href="https://use.typekit.net/scc6wwx.css">
 	<link href="https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap" rel="stylesheet">
@@ -64,7 +64,7 @@ include 'api/clearReset_key_table.php';
 							data-custom-animations="true"
 							data-ca-options='{"triggerHandler":"inview","animationTarget":"all-childs","duration":"1200","delay":"150","easing":"easeOutQuint","direction":"forward","initValues":{"translateY":60,"translateZ":-150,"rotateX":-65,"opacity":0},"animations":{"translateY":0,"translateZ":0,"rotateX":0,"opacity":1}}'>
 
-							<h1 class="text-white pr-md-5 mt-0 mb-40" data-split-text="true" data-split-options='{"type":"lines"}'>1.5GB for as low as 500 Naira</h1>
+							<h1 class="text-white pr-md-5 mt-0 mb-40" data-split-text="true" data-split-options='{"type":"lines"}'>1GB for as low as 305 Naira</h1>
 							<p class="text-white font-size-16 lh-185 pr-md-7 mb-60" data-split-text="true" data-split-options='{"type":"lines"}'>Buy data and airtime at cheap and afordable rates.</p>
 
 							<a href="#" class="btn btn-solid text-uppercase semi-round btn-solid border-thin btn-gradient font-size-14 font-weight-semibold ltr-sp-1 px-2" data-localscroll="true" data-localscroll-options='{"scrollBelowSection":true}'>
@@ -92,57 +92,6 @@ include 'api/clearReset_key_table.php';
 
 						</div><!-- /.col-md-6 -->
 
-						<div class="lqd-column col-md-6 hidden-xs hidden-sm">
-
-							<div
-								class="lqd-parallax-images-2"
-								data-custom-animations="true"
-								data-ca-options='{"triggerHandler":"inview","animationTarget":"all-childs","duration":"1200","startDelay":"800","delay":"150","easing":"easeOutQuint","direction":"forward","initValues":{"translateX":40,"scaleX":0.75,"scaleY":0.75,"rotateY":-25,"opacity":0},"animations":{"translateX":0,"scaleX":1,"scaleY":1,"rotateY":0,"opacity":1}}'>
-
-								<div class="liquid-img-group-container">
-									<div class="liquid-img-group-inner">
-										<div class="liquid-img-group-single" data-roundness="8">
-											<div class="liquid-img-group-img-container">
-												<div class="liquid-img-container-inner" data-parallax="true" data-parallax-from='{"translateX":1,"translateY":1}' data-parallax-to='{"translateX":-17,"translateY":-27}' data-parallax-options='{"overflowHidden":false,"easing":"linear"}'>
-													<figure>
-														<img alt="Manage" src="./images/headerImg3.png" />
-													</figure>
-												</div><!-- /.liquid-img-container-inner -->
-											</div><!-- /.liquid-img-group-container -->
-										</div><!-- /.liquid-img-group-single -->
-									</div><!-- /.liquid-img-group-inner -->
-								</div><!-- /.liquid-img-group-container -->
-
-								<div class="liquid-img-group-container w-70">
-									<div class="liquid-img-group-inner">
-										<div class="liquid-img-group-single" data-roundness="8">
-											<div class="liquid-img-group-img-container">
-												<div class="liquid-img-container-inner" data-parallax="true" data-parallax-from='{"translateX":1,"translateY":1}' data-parallax-to='{"translateX":-45,"translateY":-69}' data-parallax-options='{"overflowHidden":false,"easing":"linear"}'>
-													<figure>
-														<img alt="Manage" src="./images/headerImg12.png" />
-													</figure>
-												</div><!-- /.liquid-img-container-inner -->
-											</div><!-- /.liquid-img-group-container -->
-										</div><!-- /.liquid-img-group-single -->
-									</div><!-- /.liquid-img-group-inner -->
-								</div><!-- /.liquid-img-group-container -->
-
-								<div class="liquid-img-group-container w-70">
-									<div class="liquid-img-group-inner">
-										<div class="liquid-img-group-single" data-shadow-style="3" data-roundness="8">
-											<div class="liquid-img-group-img-container">
-												<div class="liquid-img-container-inner" data-parallax="true" data-parallax-from='{"translateX":1,"translateY":32}' data-parallax-to='{"translateX":-56,"translateY":-181}' data-parallax-options='{"overflowHidden":false,"easing":"linear"}'>
-													<figure>
-														<img alt="Manage" src="" style="display: none;" />
-													</figure>
-												</div><!-- /.liquid-img-container-inner -->
-											</div><!-- /.liquid-img-group-container -->
-										</div><!-- /.liquid-img-group-single -->
-									</div><!-- /.liquid-img-group-inner -->
-								</div><!-- /.liquid-img-group-container -->
-							</div><!-- /.lqd-parallax-images-2 -->
-
-						</div><!-- /.col-md-6 hidden-xs hidden-sm -->
 
 					</div><!-- /.row -->
 				</div><!-- /.container -->
@@ -218,12 +167,14 @@ include 'api/clearReset_key_table.php';
 						<div class="lqd-column col-md-4">
 
 							<div  class="iconbox iconbox-center iconbox-circle iconbox-sm iconbox-heading-sm" data-plugin-options='{"color": "#fff"}'>
-								<div class="iconbox-icon-wrap">
+							<a href="buyData.php">	
+							<div class="iconbox-icon-wrap">
 									<span class="iconbox-icon-container bg-primary" style="width: 100px; height: 100px; font-size:50px;">
 										<span class="iconbox-icon-hover-bg"></span>
 										<i class="fa fa-exchange"></i>
 									</span>
 								</div><!-- /.iconbox-icon-wrap -->
+							</a>
 								<a href="buyData.php"><div class="contents">
 									<h3>Buy Data Bundle</h3>
 									<p>Start enjoying low rates for your internet browsing databundle.</p>
@@ -236,12 +187,14 @@ include 'api/clearReset_key_table.php';
 						<div class="lqd-column col-md-4">
 
 							<div  class="iconbox iconbox-center iconbox-circle iconbox-sm iconbox-heading-sm" data-plugin-options='{"color": "#fff"}'>
-								<div class="iconbox-icon-wrap">
+							<a href="buyAirtime.php">	
+							<div class="iconbox-icon-wrap">
 									<span class="iconbox-icon-container bg-primary" style="width: 100px; height: 100px; font-size:50px;">
 										<span class="iconbox-icon-hover-bg"></span>
 										<i class="fa fa-signal"></i>
 									</span>
 								</div><!-- /.iconbox-icon-wrap -->
+							</a>
 								<a href="buyAirtime.php"><div class="contents">
 									<h3>Buy Airtime</h3>
 									<p>Enjoy huge discount when you purchase airtime.</p>
@@ -254,12 +207,14 @@ include 'api/clearReset_key_table.php';
 						<div class="lqd-column col-md-4">
 
 							<div  class="iconbox iconbox-center iconbox-circle iconbox-sm iconbox-heading-sm" data-plugin-options='{"color": "#fff"}'>
-								<div class="iconbox-icon-wrap">
+							<a href="buyCableTvSub.php">	
+							<div class="iconbox-icon-wrap">
 									<span class="iconbox-icon-container bg-primary" style="width: 100px; height: 100px; font-size:50px;">
 										<span class="iconbox-icon-hover-bg"></span>
 										<i class="fa fa-tv"></i>
 									</span>
 								</div><!-- /.iconbox-icon-wrap -->
+							</a>
 								<a href="buyCableTvSub.php">
 								<div class="contents">
 									<h3>CableTv Subscription</h3>
@@ -273,12 +228,14 @@ include 'api/clearReset_key_table.php';
 						<div class="lqd-column col-md-4">
 
 							<div  class="iconbox iconbox-center iconbox-circle iconbox-sm iconbox-heading-sm" data-plugin-options='{"color": "#fff"}'>
-								<div class="iconbox-icon-wrap">
+							<a href="buyPower.php">	
+							<div class="iconbox-icon-wrap">
 									<span class="iconbox-icon-container bg-primary" style="width: 100px; height: 100px; font-size:50px;">
 										<span class="iconbox-icon-hover-bg"></span>
 										<i class="fa fa-bolt"></i>
 									</span>
 								</div><!-- /.iconbox-icon-wrap -->
+							</a>
 								<a href="buyPower.php">
 								<div class="contents">
 									<h3>Buy Power</h3>
@@ -292,12 +249,14 @@ include 'api/clearReset_key_table.php';
 						<div class="lqd-column col-md-4">
 
 							<div  class="iconbox iconbox-center iconbox-circle iconbox-sm iconbox-heading-sm" data-plugin-options='{"color": "#fff"}'>
-								<div class="iconbox-icon-wrap">
+							<a href="printRechargeCard.php">	
+							<div class="iconbox-icon-wrap">
 									<span class="iconbox-icon-container bg-primary" style="width: 100px; height: 100px; font-size:50px;">
 										<span class="iconbox-icon-hover-bg"></span>
 										<i class="fa fa-print"></i>
 									</span>
 								</div><!-- /.iconbox-icon-wrap -->
+							</a>
 								<a href="printRechargeCard.php">
 								<div class="contents">
 									<h3>Print Recharge Cards</h3>
@@ -311,12 +270,14 @@ include 'api/clearReset_key_table.php';
 						<div class="lqd-column col-md-4">
 
 							<div  class="iconbox iconbox-center iconbox-circle iconbox-sm iconbox-heading-sm" data-plugin-options='{"color": "#fff"}'>
-								<div class="iconbox-icon-wrap">
+							<a href="transferFund.php">
+							<div class="iconbox-icon-wrap">
 									<span class="iconbox-icon-container bg-primary" style="width: 100px; height: 100px; font-size:50px;">
 										<span class="iconbox-icon-hover-bg"></span>
 										<i class="fa fa-money"></i>
 									</span>
 								</div><!-- /.iconbox-icon-wrap -->
+							</a>
 								<a href="transferFund.php">
 								<div class="contents">
 									<h3>Transfer Funds</h3>
@@ -345,7 +306,7 @@ include 'api/clearReset_key_table.php';
 								</div><!-- /.iconbox-icon-wrap -->
 								<div class="contents">
 									<h3>Customer Support</h3>
-									<p>Open a ticket for complaint, feedback or unresolved issues. Our customer is always available to attend to your needs</p>
+									<p>Open a ticket for complaint, feedback or unresolved issues. Customer care is always available to attend to your needs</p>
 									
 								</div><!-- /.contents -->
 							</div><!-- /.iconbox -->

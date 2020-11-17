@@ -1,58 +1,49 @@
 <?php
 include 'connect.php';
 
-if ((strtoupper($_SERVER['REQUEST_METHOD']) != 'POST' ) || !array_key_exists('HTTP_X_PAYSTACK_SIGNATURE', $_SERVER) ) {
-    // only a post with paystack signature header gets our attention
+// Retrieve the request's body
+$body = @file_get_contents("php://input");
+
+// retrieve the signature sent in the reques header's.
+$signature = (isset($_SERVER['HTTP_VERIF_HASH']) ? $_SERVER['HTTP_VERIF_HASH'] : '');
+
+/* It is a good idea to log all events received. Add code *
+ * here to log the signature and body to db or file       */
+
+if (!$signature) {
+    // only a post with rave signature header gets our attention
     exit();
 }
 
-// Retrieve the request's body
-$input = @file_get_contents("php://input");
-define('PAYSTACK_SECRET_KEY','sk_live_7bcdf12082f9e7f9113c9ace03dad33ed2dbe6ca');
+// Store the same signature on your server as an env variable and check against what was sent in the headers
+$local_signature = getenv('d63365947225761a0c974c2f8767ecbf17000d18');
 
-if(!$_SERVER['HTTP_X_PAYSTACK_SIGNATURE'] || ($_SERVER['HTTP_X_PAYSTACK_SIGNATURE'] !== hash_hmac('sha512', $input, PAYSTACK_SECRET_KEY))){
+// confirm the event's signature
+if( $signature !== $local_signature ){
   // silently forget this ever happened
   exit();
 }
 
-
 http_response_code(200);
 
-// parse event (which is json string) as object
-// Do something - that will not take long - with $event
-$event = json_decode($input);
-
-switch($event->event){
-    // subscription.create
-    case 'subscription.create':
-        break;
-
-    // charge.success
-    case 'charge.success':
-        $costumer_email = $event->data->customer->email;
-        $paid_amount = $event->data->amount;
-        $refID = $event->data->reference;
-        $prev_user_balance = getUserBalance ($conn,$costumer_email);
-        if(strcmp($prev_user_balance,"null") == 0){
-        }else{
-             if(updateUserBalance($conn,(((float)$paid_amount/100) + (float)$prev_user_balance),$costumer_email)){
-                insertTransaction($conn,$costumer_email,$paid_amount,"FUND",$refID);
-            }
-            pay_upline_bonus($conn,$costumer_email);
+$response = json_decode($body);
+if ($response->status == 'successful') {
+  
+    $costumer_email = $response->customer->email;
+    $paid_amount = $response->amount;
+    $refID = $response->orderRef;
+    $prev_user_balance = getUserBalance ($conn,$costumer_email);
+    
+    if(strcmp($prev_user_balance,"null") == 0){
+    }else{
+         if(updateUserBalance($conn,((float)$paid_amount + (float)$prev_user_balance),$costumer_email)){
+            insertTransaction($conn,$costumer_email,$paid_amount,"FUND",$refID);
         }
-        break;
+        pay_upline_bonus($conn,$costumer_email);
+    }
 
-    // subscription.disable
-    case 'subscription.disable':
-        break;
-
-    // invoice.create and invoice.update
-    case 'invoice.create':
-    case 'invoice.update':
-        break;
 
 }
-
 exit();
 
 function pay_upline_bonus($conn,$email){

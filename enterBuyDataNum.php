@@ -55,9 +55,10 @@
 							
 							<div class="lqd-column-inner bg-white border-radius-6 px-3 px-md-4 pt-40 pb-40">
 
-								<header class="fancy-title">
-									<div><img src="images/money-transfer.svg" style="width: 80px; height: 80px;" /><span style="font-size: 25px;">Transfer</span></div>
-									<div>Wallet Balance: ₦<span id="balanceDisp"><?php echo $AccBalance; ?></span></div>
+								<header class="fancy-title" style="font-size: 17px;">
+									
+                                    <div>Wallet Balance</div>
+                                    <div style="font-size: 25px;">₦<span id="balanceDisp"><?php echo $AccBalance; ?></span></div>
 								</header><!-- /.fancy-title -->
 
 								<div class="contact-form contact-form-button-block font-size-14">
@@ -65,10 +66,9 @@
 
                                         <div class="row d-flex flex-wrap">
                                             <div class="lqd-column col-md-12 mb-20">
-                                                <input class="bg-gray text-dark mb-30" type="email" id="reciverEmail" name="reciver_email" aria-required="true" aria-invalid="false" placeholder="Reciver email address" required>
-                                                <input class="bg-gray text-dark mb-30" type="number" id="amount" name="amount" aria-required="true" aria-invalid="false" placeholder="Amount" required>
+                                                <input class="bg-gray text-dark mb-30" type="number" id="phoneNo" name="phoneNo" aria-required="true" aria-invalid="false" placeholder="Enter Phone No" required>
                                                 
-                                                <button id="submitBTN" class="lamboSubmitBTN" style="cursor: pointer;" onclick="$.fn.submit_data()" type="button"><span id="submitBtnTxt">Transfer </span><img id="submitBTNLoaderImg" src="images/loading.gif" style="width: 50px; height:50px; display:none" /></button>
+                                                <button id="submitBTN" class="lamboSubmitBTN" style="cursor: pointer;" onclick="$.fn.submit_data()" type="button"><span id="submitBtnTxt">Buy </span><img id="submitBTNLoaderImg" src="images/loading.gif" style="width: 50px; height:50px; display:none" /></button>
                                             </div><!-- /.col-md-6 -->
                                         </div><!-- /.row -->
 									</form>
@@ -98,47 +98,47 @@
 <script src="./assets/js/theme.js"></script>
 <script src="./assets/js/liquidAjaxMailchimp.min.js"></script>
 <script>
-	 $.fn.submit_data = function(){ 
-			var reciverEmail = $("#reciverEmail").val();
-			var amount = $("#amount").val();
-			if(reciverEmail.length <= 0){
-				$.fn.confirm("Pls Enter recivers email ","red",function(){});
-			}else if(amount.length <= 0){
-				$.fn.confirm("Pls Enter Amount ","red",function(){});
-			}else{
-				dispSubmitBtnLoader();
-				$.get( "api/process_transferFunds.php",{
-				reciverEmail: reciverEmail,
-				amount: amount
+    $.fn.submit_data = function(){ 
+			var userEmail = "<?php echo $email; ?>";
+			 if(userEmail.length <= 0){
+				 window.location = "login.php";
+			 }else{
+			// var autoRenewRaw = $("#autoRenew").val();
+			var phoneNo = $("#phoneNo").val();
+
+			if(phoneNo.length > 0){
+                dispSubmitBtnLoader();
+				$.get( "api/process_buyService.php",{
+				serviceID: "<?php echo $_GET["serviceID"]; ?>",
+				autoRenew: "",
+				phoneNo: phoneNo
 				}, function( result ) {
-					if(result === "100111" || result === "100012" || result === "100015"){
-						$.fn.notification("Erro Transferring funds -- Pls try again","red");
+					if(result === "100111"){
+						$.fn.notification("Erro purchasing data -- Pls try again","red");
 						clearSubmitBtnLoader();
-					}else if(result === "100013"){
-						$.fn.notification("Not Enough funds","red");
-						clearSubmitBtnLoader();
-					}else if(result === "100014"){
-						$.fn.notification("Invalid user email","red");
-						clearSubmitBtnLoader();
-					}else if(result === "11111"){
-						$.fn.notification("Transfer successsfull","green");
+					}else if(result === "100119"){
+						$.fn.notification("Insufficient Balance","red");
 						clearSubmitBtnLoader();
 					}else{
-						$.fn.notification("Erro Transferring funds -- Pls try again","red");
+						$.fn.notification("Data purchase successsfull","green");
 						clearSubmitBtnLoader();
+                        $.fn.get_AccBalance();
 					}
-					$.fn.get_AccBalance();
 				});
-			}
-			
-	 
-	 }
-	 $.fn.get_AccBalance = function(){ 
+		
+		}else{
+			$.fn.confirm("Enter mobile number","red",function(){});
+		}
+		 }
+    }
+
+    $.fn.get_AccBalance = function(){ 
 		$.get( "api/get_user_balance.php",{},function(result){
 			getE("balanceDisp").innerHTML = result;
 			 });
 	 }
-	 function dispSubmitBtnLoader(){
+
+    function dispSubmitBtnLoader(){
 			 getE("submitBTNLoaderImg").style.display = "block";
 			 getE("submitBtnTxt").style.display = "none";
 			 getE("submitBTN").disabled = true;
@@ -155,6 +155,8 @@
 		 function getE(id){
 			 return document.getElementById(id);
 		 }
+			
+		 
 </script>
 <?php
 	include 'api/footerAdditions.php'
