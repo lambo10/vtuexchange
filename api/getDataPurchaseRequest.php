@@ -8,7 +8,8 @@ $accessKey = $_GET["key"];
 
 if(strcmp($accessKey,"uraj1i2568") == 0 || strcmp($accessKey,"vdrat3t2356") == 0){
   if(strcmp($gifting_only_flag,"1") == 0){
-    $handle2 = "SELECT * FROM data_airtime_purchase_bucket WHERE status='0' AND ((network='$network1' AND SUBSTR(sms_usd_string,1,1) in ('1','2','3','4','5','6','7','8','9','0')) OR network='$network2') LIMIT 1";
+    // $handle2 = "SELECT * FROM data_airtime_purchase_bucket WHERE status='0' AND ((network='$network1' AND SUBSTR(sms_usd_string,1,1) in ('1','2','3','4','5','6','7','8','9','0')) OR network='$network2') LIMIT 1";
+    $handle2 = "SELECT * FROM data_airtime_purchase_bucket WHERE status='0' AND (network='$network1' OR network='$network2') LIMIT 1";
     $result2 = $conn->query($handle2);
     $dbData = array();
     if ($result2->num_rows > 0) {
@@ -21,7 +22,8 @@ if(strcmp($accessKey,"uraj1i2568") == 0 || strcmp($accessKey,"vdrat3t2356") == 0
         echo "{results:[]}";
     }
   }else{
-    $handle2 = "SELECT * FROM data_airtime_purchase_bucket WHERE status='0' AND ((network='$network1' AND sms_usd_string REGEXP '^S') OR network='$network2') LIMIT 1";
+    // $handle2 = "SELECT * FROM data_airtime_purchase_bucket WHERE status='0' AND ((network='$network1' AND sms_usd_string REGEXP '^S') OR network='$network2') LIMIT 1";
+    $handle2 = "SELECT * FROM data_airtime_purchase_bucket WHERE status='0' AND (network='$network1' OR network='$network2') LIMIT 1";
     $result2 = $conn->query($handle2);
     $dbData = array();
     if ($result2->num_rows > 0) {

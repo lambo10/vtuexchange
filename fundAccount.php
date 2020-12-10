@@ -78,7 +78,7 @@
                                             </div><!-- /.col-md-6 -->
                                             <div class="lqd-column col-md-6 mb-20">
                                                 <div><img src="images/paystack.png" style="width: 200px; height: 70px;" /><input type="radio" name="paymentOption" value="1" checked></div>
-                                                <div><img src="images/Flutterwave.png" style="width: 200px; height: 100px;" /><input type="radio" name="paymentOption" value="2"></div>
+                                                <!-- <div><img src="images/Flutterwave.png" style="width: 200px; height: 100px;" /><input type="radio" name="paymentOption" value="2"></div> -->
                                             </div><!-- /.col-md-12 -->
                                                 <div class="lqd-column col-md-6 text-md-right">
                                                 <button type="button" onclick="startPayment()">Pay</button>
@@ -135,7 +135,7 @@ function payWithPaystack(deposite_amount) {
 
 function paywithflutterwave(deposite_amount) {
     FlutterwaveCheckout({
-      public_key: "FLWPUBK-12911e9c85d808aeb67fda2c3099d103-X",
+      public_key: "FLWPUBK_TEST-e961cc8d9855b623557eca4440cd7708-X",
       tx_ref: ''+Math.floor((Math.random() * 1000000000) + 1),
       amount: deposite_amount,
       currency: "NGN",

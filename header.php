@@ -155,34 +155,6 @@ $accType = $_SESSION["accType"];
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="fundAccount.php">
-                                                <span class="link-icon"></span>
-                                                <span class="link-txt">
-                                                    <span class="link-ext"></span>
-                                                    <span class="txt">
-                                                        Fund Account
-                                                        <span class="submenu-expander">
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </span>
-                                                    </span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="transferFund.php">
-                                                <span class="link-icon"></span>
-                                                <span class="link-txt">
-                                                    <span class="link-ext"></span>
-                                                    <span class="txt">
-                                                        Transfer Funds
-                                                        <span class="submenu-expander">
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </span>
-                                                    </span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
                                             <a href="paymentHistory.php">
                                                 <span class="link-icon"></span>
                                                 <span class="link-txt">
@@ -329,13 +301,43 @@ $accType = $_SESSION["accType"];
                                                     </span>
                                                 </a>
                                             </li>
+                                            
+                                            <li>
+                                            <a href="fundAccount.php">
+                                                <span class="link-icon"></span>
+                                                <span class="link-txt">
+                                                    <span class="link-ext"></span>
+                                                    <span class="txt">
+                                                        Fund Account
+                                                        <span class="submenu-expander">
+                                                            <i class="fa fa-angle-down"></i>
+                                                        </span>
+                                                    </span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="transferFund.php">
+                                                <span class="link-icon"></span>
+                                                <span class="link-txt">
+                                                    <span class="link-ext"></span>
+                                                    <span class="txt">
+                                                        Transfer Funds
+                                                        <span class="submenu-expander">
+                                                            <i class="fa fa-angle-down"></i>
+                                                        </span>
+                                                    </span>
+                                                </span>
+                                            </a>
+                                        </li>
+
                                             <li>
                                                 <a href="edithProfile.php">
                                                     <span class="link-icon"></span>
                                                     <span class="link-txt">
                                                         <span class="link-ext"></span>
                                                         <span class="txt">
-                                                            Edith Profile
+                                                            Edit Profile
                                                             <span class="submenu-expander">
                                                                 <i class="fa fa-angle-down"></i>
                                                             </span>

@@ -28,6 +28,17 @@ include 'api/clearReset_key_table.php';
 	
 	<!-- Head Libs -->
 	<script async src="assets/vendors/modernizr.min.js"></script>
+
+	<style>
+		.field-icon {
+  float: right;
+  margin-left: -25px;
+  margin-top: -60px;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+}
+		</style>
 	
 </head>
 <body data-mobile-nav-trigger-alignment="right" data-mobile-nav-align="left" data-mobile-nav-style="modern" data-mobile-nav-shceme="gray" data-mobile-header-scheme="gray" data-mobile-nav-breakpoint="1199">
@@ -103,6 +114,7 @@ include 'api/clearReset_key_table.php';
 										<div class="lqd-column col-md-12 mb-20">
 											<input class="bg-gray text-dark mb-30" type="email" id="email" aria-required="true" aria-invalid="false" placeholder="Your email address" required>
 											<input class="bg-gray text-dark mb-30" type="password" id="password" aria-required="true" aria-invalid="false" placeholder="Password" required>
+											<span toggle="#password" class="fa fa-eye field-icon toggle-password"></span>
 											<p class="font-size-16 opacity-07">Forgot Password? <a href="forgot_pass_eEmail.php">Click here</a>.</p>
 											<p class="font-size-16 opacity-07"><a href="register.php">Click here</a> to register if you dont have an account</p><br>
 											<button id="submitBTN" style="cursor: pointer;" onclick="$.fn.submit_data()" type="button"><span id="submitBtnTxt">LOGIN </span><img id="submitBTNLoaderImg" src="images/loading.gif" style="width: 50px; height:50px; display:none" /></button>
@@ -136,6 +148,17 @@ include 'api/clearReset_key_table.php';
 <script src="./assets/js/theme.min.js"></script>
 <script src="./assets/js/liquidAjaxMailchimp.min.js"></script>
 <script>
+	$(".toggle-password").click(function() {
+
+$(this).toggleClass("fa-eye fa-eye-slash");
+var input = $($(this).attr("toggle"));
+if (input.attr("type") == "password") {
+  input.attr("type", "text");
+} else {
+  input.attr("type", "password");
+}
+});
+
 	$.fn.submit_data = function(){
             var email = $("#email").val();
 			var password = $("#password").val();

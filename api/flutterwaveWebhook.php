@@ -1,6 +1,6 @@
 <?php
 include 'connect.php';
-
+insertTransaction($conn,"gg","00","dfj","345");
 // Retrieve the request's body
 $body = @file_get_contents("php://input");
 

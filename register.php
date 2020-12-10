@@ -28,6 +28,17 @@ include 'api/clearReset_key_table.php';
 	
 	<!-- Head Libs -->
 	<script async src="assets/vendors/modernizr.min.js"></script>
+
+	<style>
+		.field-icon {
+  float: right;
+  margin-left: -25px;
+  margin-top: -60px;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+}
+		</style>
 	
 </head>
 <body data-mobile-nav-trigger-alignment="right" data-mobile-nav-align="left" data-mobile-nav-style="modern" data-mobile-nav-shceme="gray" data-mobile-header-scheme="gray" data-mobile-nav-breakpoint="1199">
@@ -152,6 +163,7 @@ include 'api/clearReset_key_table.php';
 												<option>ZAMFARA</option>
 											</select>
 											<input class="bg-gray text-dark mb-30" type="password" id="password" aria-required="true" aria-invalid="false" placeholder="Password" required>
+											<span toggle="#password" class="fa fa-eye field-icon toggle-password"></span>
 											<input class="bg-gray text-dark mb-30" type="password" id="password2" aria-required="true" aria-invalid="false" placeholder="Re-Type Password" required>
 											<input class="bg-gray text-dark mb-30" type="text" value="<?php 
 											$whoR_refID = $_GET['refID']; 
@@ -195,6 +207,17 @@ include 'api/clearReset_key_table.php';
 <script src="./assets/js/theme.min.js"></script>
 <script src="./assets/js/liquidAjaxMailchimp.min.js"></script>
 <script>
+		$(".toggle-password").click(function() {
+
+$(this).toggleClass("fa-eye fa-eye-slash");
+var input = $($(this).attr("toggle"));
+if (input.attr("type") == "password") {
+  input.attr("type", "text");
+} else {
+  input.attr("type", "password");
+}
+});
+
 	$.fn.submit_data = function(){
 			var name = $("#name").val();
             var email = $("#email").val();

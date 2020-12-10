@@ -53,7 +53,7 @@
 							<div class="row">
 
 								<div class="col-md-2 col-md-offset-1">
-									<h6 class="font-size-14 font-weight-medium text-uppercase ltr-sp-2">EDITH PROFILE</h6>
+									<h6 class="font-size-14 font-weight-medium text-uppercase ltr-sp-2">EDIT PROFILE</h6>
 								</div><!-- /.col-md-2 -->
 
 
@@ -189,6 +189,7 @@
 			if(data === "11111"){
 				$.fn.notification("Saved Successfully","green");
 				clearSubmitBtnLoader();
+				window.history.back();
 			}else if(data === "100112"){
 				$.fn.notification("Erro saving updates","red");
 				clearSubmitBtnLoader();

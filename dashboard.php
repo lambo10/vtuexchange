@@ -151,7 +151,7 @@
                                         </div><!-- /.row -->
                                     </form>
                                     <div style="text-align: center;">
-                                        For issues, compliants and support regarding any transactions kindly contact us via: <a href="mailto:support@diligentmart.com"><span style="color: blue;"><b>support@diligentmart.com</b></span></a>
+                                        For issues, complaints and support regarding any transactions kindly contact us via: <a href="mailto:support@diligentmart.com"><span style="color: blue;"><b>support@diligentmart.com</b></span></a>
                                     </div>
 									<div class="contact-form-result hidden"></div><!-- /.contact-form-result -->
                                 </div><!-- /.contact-form -->
